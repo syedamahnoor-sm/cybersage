@@ -1,2 +1,5 @@
 fastapi[standard]
 pydantic-settings
+pymupdf
+langchain-text-splitters
+pytest

@@ -2,8 +2,15 @@
 __pycache__/
 *.py[cod]
 .venv/
+venv/
+env/
 .pytest_cache/
 .ruff_cache/
+
+# Local model caches
+.cache/
+.huggingface/
+models--*/
 
 # Environment variables and secrets
 .env

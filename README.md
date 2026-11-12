@@ -1,8 +1,8 @@
 # CyberSage
 
 Cybersecurity RAG intelligence backend using Python 3.12, FastAPI, PostgreSQL 17,
-and pgvector. This milestone indexes local PDFs; retrieval and a frontend are not
-implemented yet.
+and pgvector. Local PDF ingestion and semantic evidence retrieval are implemented.
+Answer generation and a frontend are not implemented yet.
 
 ## Local setup (PowerShell)
 
@@ -109,6 +109,109 @@ Start the API from `backend/`:
 ```
 
 The existing health endpoint is `GET /api/v1/health`.
+
+## Semantic retrieval and PDF citations
+
+`POST /api/v1/retrieval/search` embeds the query using the same cached MiniLM
+model as ingestion. SQLAlchemy binds the vector, threshold, and result limit to a
+read-only pgvector cosine search joined to document metadata. Only `indexed`
+documents are searched. Each result includes content, chunk/document UUIDs,
+stored document title (nullable), filename, original PDF page number, chunk index,
+cosine distance, similarity score, and structured citation metadata.
+
+For this 206-chunk corpus, a materialized scoring CTE performs **exact** search
+before filtering and limiting. It deliberately does not use approximate HNSW
+candidate selection. Equal distances sort by document UUID, chunk index, and
+chunk UUID for deterministic results. This scans the full indexed corpus; larger
+collections will need performance evaluation before changing the search strategy.
+
+Cosine distance ranges from 0 to 2 (smaller is closer); cosine similarity is
+`1 - cosine_distance`, ranging from -1 to 1 (larger is closer). Similarity is a
+retrieval signal, **not a probability of correctness or proof of relevance**.
+The permissive initial threshold is `RETRIEVAL_MIN_SIMILARITY=0.2`, configurable
+in environment settings. Optional request/CLI `min_similarity` overrides it for
+that search. The cutoff is inclusive. Results below the cutoff are excluded before
+top-k; fewer than top-k results, including zero, are valid. No fallback evidence is
+fabricated. Threshold tuning requires a representative evaluation set.
+
+Queries are stripped and must contain 1..2000 characters. `top_k` defaults to 5
+and must be an integer from 1 to 20. Similarity cutoffs must be finite and in
+[-1, 1]. Invalid API requests return 422. Database/model failures return a generic
+503 without connection details, SQL parameters, or secrets. An empty successful
+search returns 200 with `results: []` and `result_count: 0`. Startup/health checks
+do not load the model or connect to PostgreSQL. Retrieval creates a shared engine
+lazily and disposes it on shutdown; synchronous work runs in a worker thread.
+
+Citation labels use a nonblank stored `documents.title`, falling back to the
+**exact filename** when no title is stored. `title_source` explicitly reports
+`metadata` or `filename`. The existing three documents have null titles, so their
+labels use filenames; retrieval does not infer or write titles. Document UUIDs
+and filenames distinguish sources even if their titles or content overlap.
+Pages are **1-based PDF page positions**, including front matter; printed page
+labels may differ. No page number is inferred from chunk text.
+
+From `backend/`, with the API running on its default port:
+
+```powershell
+$body = @{ query = 'How does NIST CSF 2.0 address incident response?'; top_k = 1 } | ConvertTo-Json
+Invoke-RestMethod -Method Post -Uri http://127.0.0.1:8000/api/v1/retrieval/search -ContentType application/json -Body $body
+```
+
+Example response from the existing corpus (only `content` shortened for readability):
+
+```json
+{
+  "query": "How does NIST CSF 2.0 address incident response?",
+  "results": [
+    {
+      "chunk_id": "45eebff5-cd2b-40b6-879d-f1161f0d7452",
+      "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+      "document_title": null,
+      "filename": "NIST.CSWP.29.pdf",
+      "page_number": 27,
+      "chunk_index": 76,
+      "content": "...RESPOND (RS): Actions regarding a detected cybersecurity incident are taken...",
+      "cosine_distance": 0.36449939012527466,
+      "similarity_score": 0.6355006098747253,
+      "citation": {
+        "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+        "document_title": null,
+        "filename": "NIST.CSWP.29.pdf",
+        "page_number": 27,
+        "display_title": "NIST.CSWP.29.pdf",
+        "title_source": "filename",
+        "label": "[NIST.CSWP.29.pdf, p. 27]"
+      }
+    }
+  ],
+  "result_count": 1,
+  "min_similarity": 0.2
+}
+```
+
+CLI searches (from `backend/`):
+
+```powershell
+$env:HF_HOME = Join-Path (Get-Location) '.cache\huggingface'
+# Set HF_HUB_OFFLINE=1 only if the model is already fully cached.
+.\.venv\Scripts\python.exe -m app.retrieval --query "What does Pakistan's cyber security policy say about critical infrastructure?" --top-k 5
+.\.venv\Scripts\python.exe -m app.retrieval --query "How does NIST CSF 2.0 address incident response?" --top-k 5
+.\.venv\Scripts\python.exe -m app.retrieval --query "What happened in the ransomware incidents described in the CyberSage casebook?" --top-k 5
+.\.venv\Scripts\python.exe -m app.retrieval --query "incident response" --min-similarity 0.4
+.\.venv\Scripts\python.exe test_retrieval_manual.py
+```
+
+CLI output is JSON; exit codes are 0 for success (including no evidence), 2 for
+invalid arguments, and 1 for an unavailable model/database. The manual script
+uses the actual API, model, database, and raw PDFs to check all 15 sample passage
+citations against their original page text. It also checks empty evidence and
+invalid requests. This checks provenance, not semantic relevance. Ordinary
+tests mock model inference; opt-in PostgreSQL tests use known vectors to check
+distances, negative similarities, thresholds, exact ranking, ties, metadata, and
+exclusion of failed documents. No new dependencies are required for retrieval.
+
+See [Milestone 5 validation](docs/milestone5-validation.md) for measured rankings,
+page checks, and observed relevance limitations.
 
 ## Milestone 4 validation (2026-11-12)
 

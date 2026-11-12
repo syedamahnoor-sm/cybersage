@@ -1,7 +1,7 @@
 from functools import lru_cache
 from pathlib import Path
 
-from pydantic import SecretStr
+from pydantic import Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -14,6 +14,7 @@ class Settings(BaseSettings):
     POSTGRES_USER: str | None = None
     POSTGRES_PASSWORD: SecretStr | None = None
     POSTGRES_DB: str | None = None
+    RETRIEVAL_MIN_SIMILARITY: float = Field(default=0.2, ge=-1, le=1, allow_inf_nan=False)
 
     model_config = SettingsConfigDict(
         env_file=(

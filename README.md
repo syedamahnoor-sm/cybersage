@@ -5,6 +5,137 @@ and pgvector. Local PDF ingestion and semantic evidence retrieval are implemente
 Grounded extractive RAG answers are available through Groq. A frontend is not
 implemented yet.
 
+## Bounded LangGraph cybersecurity agent
+
+`POST /api/v1/agent/invoke` offers two fixed capabilities: existing document-grounded
+RAG and a deterministic illustrative risk matrix. A single `StateGraph` uses an
+explicit typed state and the following acyclic transitions:
+
+```mermaid
+flowchart TD
+    START --> validate
+    validate -->|valid|select
+    validate -->|invalid|error
+    select -->|knowledge|rag
+    select -->|risk with complete inputs|risk
+    select -->|ambiguous, missing, conflicting, invalid|error
+    rag -->|answer or abstention|format
+    risk -->|assessment|format
+    rag -->|service failure|error
+    risk -->|invalid inputs|error
+    error --> format
+    format --> END
+```
+
+The normal path executes four nodes; a service failure executes five. Every path
+ends at `END`, with an additional fixed **eight-step recursion guard**. There are
+no loop edges, tool-call feedback loops, checkpointers, conversation memory, or
+multi-agent components. Only the formatted response is returned, never graph
+state or raw exceptions. The execution guard bounds graph steps, not total
+wall-clock latency; existing Groq per-request timeouts still apply to RAG calls.
+
+Routing is deterministic and uses conservative English cues. Named source terms
+(NIST, CSF, policy, framework, casebook, document) select knowledge; cybersecurity
+questions can also select knowledge. Explicit calculation commands or supplied
+likelihood/impact fields select risk. Numerical requests mixed with source
+questions, unknown requests, and conflicting inputs return clarification without
+calling RAG. Conceptual/ambiguous risk questions may need to be restated. There is
+no LLM intent classifier. Keyword routing is intentionally limited and may require
+users to rephrase; it is not a general natural-language intent recognizer.
+
+For risk, use structured fields or explicitly labeled English inputs such as
+`Calculate risk for an asset with likelihood 4 and impact 5.` The text parser
+supports a single digit 1..5 after each label (optionally `:`, `=`, `is`, or `of`).
+It rejects decimals, ranges, written-out numbers, repeated labels, and conflicts
+between text and structured fields. Unlabeled numbers are never guessed. Missing
+inputs are reported rather than inferred. JSON numbers must be actual integers
+1..5; booleans, floats, and numeric strings are invalid. Message length and top-k
+bounds remain 1..2000 stripped characters and integer 1..20, default top-k 5.
+
+### Illustrative risk matrix
+
+**Score = Likelihood × Impact**, where both inputs are integers 1..5:
+
+| Score | Category |
+|---|---|
+| 1–5 | Low |
+| 6–10 | Medium |
+| 11–15 | High |
+| 16–25 | Critical |
+
+This is an **illustrative qualitative scoring matrix, not a validated prediction
+of real-world cyber risk**. It does not estimate probabilities, losses, compliance,
+or a calibrated asset risk level. The pure Python tool calculates the score and
+category. No LLM calculates, changes, or overrides them, and risk responses have
+no PDF citations or model identifier. Pure risk requests initialize neither the
+database nor the provider and work without their credentials.
+
+### Agent API examples
+
+```powershell
+$body = @{ message = 'What does NIST CSF 2.0 say about incident response?' } | ConvertTo-Json
+Invoke-RestMethod -Method Post -Uri http://127.0.0.1:8000/api/v1/agent/invoke -ContentType application/json -Body $body
+
+$body = @{ message = 'Calculate risk'; likelihood = 4; impact = 5 } | ConvertTo-Json
+Invoke-RestMethod -Method Post -Uri http://127.0.0.1:8000/api/v1/agent/invoke -ContentType application/json -Body $body
+```
+
+Risk response:
+
+```json
+{
+  "capability": "risk",
+  "status": "assessed",
+  "answer": null,
+  "assessment": {
+    "likelihood": 4,
+    "impact": 5,
+    "score": 20,
+    "category": "Critical",
+    "interpretation": "Likelihood 4/5 and impact 5/5 produce 20/25, classified as Critical in this illustrative matrix.",
+    "disclaimer": "Illustrative qualitative matrix; not a validated prediction of real-world cyber risk."
+  },
+  "citations": [],
+  "error": null,
+  "model": null,
+  "retrieved_evidence_count": 0,
+  "selected_evidence_count": 0,
+  "abstention_reason": null
+}
+```
+
+Knowledge responses have `capability: "knowledge"`, an answer, existing RAG
+citations/counts/model, and `assessment: null`. The agent reuses the complete RAG
+service, including quotation/ID/relevance checks, synthetic incident labels,
+and `insufficient_evidence` abstention; it does not reconstruct or invent citations.
+
+Missing inputs and ambiguous requests return HTTP 200 with `missing_input` or
+`needs_clarification` and a public `error` object (`code`, `message`,
+`missing_inputs`). Schema-invalid requests return FastAPI HTTP 422. Invalid
+numbers parsed from otherwise valid text return 422 with `status: "invalid_input"`
+and the agent response schema. Knowledge provider/retrieval failures retain safe
+503 responses and provider timeouts 504; unexpected/step-limit failures return
+safe 500 responses. Failures do not fall back to a guessed score or fabricated
+answer. The risk path never opens a database/provider connection.
+
+No shell, filesystem, arbitrary network, user-defined tools, or dynamic execution
+tools are exposed. User text only selects among fixed capabilities; retrieved
+text remains untrusted within the existing RAG service. No authentication,
+frontend, external automation, persistence, or deployment was added.
+
+From `backend/`, run the optional real smoke check:
+
+```powershell
+$env:HF_HOME = Join-Path (Get-Location) '.cache\huggingface'
+# Use HF_HUB_OFFLINE=1 only when model weights are already cached.
+.\.venv\Scripts\python.exe test_agent_manual.py
+```
+
+It checks all four risk categories, invalid/missing/ambiguous requests, and (when
+Groq credentials exist) one real grounded question and a Mars abstention, with
+65-second pacing. Citations are checked against both PostgreSQL and raw PDF pages.
+See [Milestone 7 validation](docs/milestone7-validation.md) for actual results.
+
 ## Local setup (PowerShell)
 
 Create a repository-root `.env` using `.env.example` and set a nonempty local

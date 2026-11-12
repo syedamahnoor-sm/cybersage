@@ -5,6 +5,7 @@ from fastapi import FastAPI
 from app.core.config import get_settings
 from app.retrieval.api import router as retrieval_router
 from app.rag.api import router as rag_router
+from app.agent.api import router as agent_router
 
 settings = get_settings()
 
@@ -34,6 +35,7 @@ app = FastAPI(
 
 app.include_router(retrieval_router)
 app.include_router(rag_router)
+app.include_router(agent_router)
 
 
 @app.get("/api/v1/health", tags=["Health"])

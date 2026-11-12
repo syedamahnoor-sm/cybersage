@@ -4,6 +4,7 @@ from fastapi import FastAPI
 
 from app.core.config import get_settings
 from app.retrieval.api import router as retrieval_router
+from app.rag.api import router as rag_router
 
 settings = get_settings()
 
@@ -12,12 +13,16 @@ settings = get_settings()
 async def lifespan(app: FastAPI):
     # Health checks and startup do not require a database connection or model.
     app.state.retrieval_engine = None
+    app.state.llm_provider = None
     try:
         yield
     finally:
         engine = app.state.retrieval_engine
         if engine is not None:
             engine.dispose()
+        provider = app.state.llm_provider
+        if provider is not None:
+            provider.close()
 
 app = FastAPI(
     title=settings.APP_NAME,
@@ -28,6 +33,7 @@ app = FastAPI(
 )
 
 app.include_router(retrieval_router)
+app.include_router(rag_router)
 
 
 @app.get("/api/v1/health", tags=["Health"])

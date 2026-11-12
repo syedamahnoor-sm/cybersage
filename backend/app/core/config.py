@@ -15,6 +15,14 @@ class Settings(BaseSettings):
     POSTGRES_PASSWORD: SecretStr | None = None
     POSTGRES_DB: str | None = None
     RETRIEVAL_MIN_SIMILARITY: float = Field(default=0.2, ge=-1, le=1, allow_inf_nan=False)
+    GROQ_API_KEY: SecretStr | None = None
+    GROQ_MODEL: str = Field(default="openai/gpt-oss-120b", min_length=1, max_length=200)
+    GROQ_TEMPERATURE: float = Field(default=0.0, ge=0, le=1, allow_inf_nan=False)
+    GROQ_TIMEOUT_SECONDS: float = Field(default=30.0, gt=0, le=120, allow_inf_nan=False)
+    GROQ_MAX_OUTPUT_TOKENS: int = Field(default=2048, ge=128, le=8192)
+    RAG_MAX_RETRIEVED_CHUNKS: int = Field(default=8, ge=1, le=20)
+    RAG_MAX_CONTEXT_CHARS: int = Field(default=8000, ge=256, le=50000)
+    RAG_MAX_PROMPT_CHARS: int = Field(default=24000, ge=1000, le=100000)
 
     model_config = SettingsConfigDict(
         env_file=(

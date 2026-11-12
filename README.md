@@ -2,7 +2,8 @@
 
 Cybersecurity RAG intelligence backend using Python 3.12, FastAPI, PostgreSQL 17,
 and pgvector. Local PDF ingestion and semantic evidence retrieval are implemented.
-Answer generation and a frontend are not implemented yet.
+Grounded extractive RAG answers are available through Groq. A frontend is not
+implemented yet.
 
 ## Local setup (PowerShell)
 
@@ -212,6 +213,145 @@ exclusion of failed documents. No new dependencies are required for retrieval.
 
 See [Milestone 5 validation](docs/milestone5-validation.md) for measured rankings,
 page checks, and observed relevance limitations.
+
+## Grounded RAG answers (Groq)
+
+`POST /api/v1/rag/ask` reuses the existing retrieval service and database engine.
+The orchestration depends on a small provider protocol under `app/llm/`; only the
+Groq adapter imports the official Groq SDK. Retrieval and ingestion do not depend
+on Groq credentials or calls. Install updated requirements in the backend venv.
+
+Set `GROQ_API_KEY` in an ignored root/backend `.env` or process environment.
+Never put a real key in `.env.example`, source code, logs, or Git. Other settings
+and defaults are:
+
+| Setting | Default | Purpose |
+|---|---|---|
+| `GROQ_MODEL` | `openai/gpt-oss-120b` | Configurable text model hosted by Groq |
+| `GROQ_TEMPERATURE` | `0` | Low-variance evidence selection |
+| `GROQ_TIMEOUT_SECONDS` | `30` | Timeout per provider request |
+| `GROQ_MAX_OUTPUT_TOKENS` | `2048` | Maximum completion tokens per generation/review call |
+| `RAG_MAX_RETRIEVED_CHUNKS` | `8` | Cap on requested retrieval count; never exceeds retrieval's hard limit of 20 |
+| `RAG_MAX_CONTEXT_CHARS` | `8000` | Maximum serialized evidence-array characters, including IDs and source kinds |
+| `RAG_MAX_PROMPT_CHARS` | `24000` | Maximum combined system and serialized payload characters per call |
+
+The default model was selected from Groq's current
+[production model list](https://console.groq.com/docs/models), considering its
+[deprecation notices](https://console.groq.com/docs/deprecations). Availability
+depends on the account and may change. The adapter retrieves the configured model
+from Groq before its first completion and caches a successful validation. It does
+not silently switch models. JSON-object mode supports a replaceable text model;
+local Pydantic checks enforce the expected schema. Truncated/malformed output
+causes abstention. SDK retries are disabled to bound repeated attempts; timeouts,
+rate limits, model/authentication failures, and connection failures produce safe
+errors without provider response bodies or credentials.
+
+### Conservative answer and citation contract
+
+The initial answer mode is deliberately **extractive**, not unrestricted prose
+generation. The model selects up to five meaningful source excerpts. The server:
+
+1. Retrieves relevant chunks using the configured retrieval similarity cutoff.
+   Request `top_k` defaults to 5 (valid range 1..20), capped by the RAG setting.
+2. Selects whole passages within the context budget, deduplicating identical or
+   contained text and quarantining obvious embedded instruction attacks. No whole
+   documents are sent. The question and passages are serialized as untrusted user
+   data, separate from trusted system instructions; no LLM tools are enabled.
+3. Assigns stable `E_<chunk UUID without hyphens>` evidence IDs. The model supplies
+   IDs and quotes only; it never supplies authoritative filenames, titles, or pages.
+4. Requires every cited ID to belong to the selected context and every quote to
+   occur verbatim after whitespace normalization. Invented prose, extra output
+   fields, unknown IDs, altered claims, and incomplete outputs fail closed.
+5. Makes a second model call to review all quotes in their evidence context for
+   support, relevance, and misleading omissions. Any failed/uncertain verdict or
+   mismatched ID set causes abstention. This is a second check by the **same
+   model**, not an independent factual verifier.
+6. Renders only validated quotes with database-derived citations and local source
+   labels. Policy text is labeled as a policy source, not automatically a binding
+   requirement; NIST/framework passages are guidance. The known synthetic casebook
+   is explicitly labeled **not a real event**. Unknown source types remain unverified.
+
+Citation objects contain document/chunk UUIDs, filename, nullable stored title,
+PDF page number, chunk index, evidence ID, exact supporting quote, source kind,
+and display label. Only used excerpts become citations. Printed page labels may
+differ from physical PDF page positions. Missing titles use the exact filename.
+
+**ID validity and quote membership are mechanical checks, not proof of factual
+entailment, relevance, truth, or completeness.** A source can itself be wrong;
+quotes can omit context; the relevance model can be wrong or manipulated. The
+instruction-pattern filter is defense in depth and can miss attacks or reject
+legitimate discussions of them. Source-kind classification uses local metadata
+and content cues, not independent provenance verification. This conservative mode
+trades prose synthesis and some answer coverage for tighter citation integrity.
+The existing permissive 0.2 similarity cutoff is not a sufficient relevance gate;
+neither its scores nor the review verdict are calibrated correctness probabilities.
+
+Budgets are character limits on serialized input, not exact tokenizer counts.
+Output token limits are enforced by the provider. Up to three provider requests
+may occur on first use (model validation, selection, review); subsequent answered
+requests normally use two. Each has its own timeout; the setting is not an
+end-to-end request deadline. Source passages are sent to Groq when generation is
+used; credentials and database connection details are not part of prompts.
+
+### Ask endpoint
+
+With the API running, send:
+
+```powershell
+$body = @{ question = 'How does NIST CSF 2.0 address incident response?'; top_k = 5 } | ConvertTo-Json
+Invoke-RestMethod -Method Post -Uri http://127.0.0.1:8000/api/v1/rag/ask -ContentType application/json -Body $body
+```
+
+An illustrative grounded response (shape example, **not a live Groq result**;
+IDs below refer to the existing NIST chunk):
+
+```json
+{
+  "question": "How does NIST CSF 2.0 address incident response?",
+  "answer": "Framework guidance: \"The incident response plan is executed in coordination with relevant third parties once an incident is declared\" [NIST.CSWP.29.pdf, p. 27] (E_45eebff5cd2b40b6879df1161f0d7452)",
+  "status": "answered",
+  "citations": [{
+    "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+    "chunk_id": "45eebff5-cd2b-40b6-879d-f1161f0d7452",
+    "document_title": null,
+    "filename": "NIST.CSWP.29.pdf",
+    "page_number": 27,
+    "chunk_index": 76,
+    "evidence_id": "E_45eebff5cd2b40b6879df1161f0d7452",
+    "quote": "The incident response plan is executed in coordination with relevant third parties once an incident is declared",
+    "source_kind": "framework",
+    "display_title": "NIST.CSWP.29.pdf",
+    "title_source": "filename",
+    "label": "[NIST.CSWP.29.pdf, p. 27]"
+  }],
+  "retrieved_evidence_count": 5,
+  "selected_evidence_count": 5,
+  "model": "openai/gpt-oss-120b",
+  "grounding_mode": "verified_excerpts",
+  "abstention_reason": null
+}
+```
+
+No evidence, unusable/budget-exceeding context, model abstention, rejected
+citations/quotes, or a negative relevance verdict return HTTP 200 with
+`status: "insufficient_evidence"`, a fixed explanation, `citations: []`, and a
+safe `abstention_reason`. No-evidence responses do not call Groq and have a null
+model. Missing/invalid credentials and unavailable providers are operational
+failures: HTTP 503, **not** an insufficient-evidence result. Provider timeouts
+return 504. Invalid questions/top-k return 422, using the same strict bounds as
+retrieval. Partial answers are not returned after a validation failure.
+
+From `backend/`, run the live smoke check when a key is available:
+
+```powershell
+.\.venv\Scripts\python.exe test_rag_manual.py
+```
+
+The script asks the three corpus questions and an unanswerable malware-hash
+question, checks source quotes against cited raw PDF pages, and records answers
+for manual relevance review. It prints `skipped_missing_credentials` without
+making provider calls when no key is configured. Automated tests always mock
+external model calls. See [Milestone 6 validation](docs/milestone6-validation.md).
 
 ## Milestone 4 validation (2026-11-12)
 

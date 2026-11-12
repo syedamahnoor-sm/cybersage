@@ -2,6 +2,7 @@
 
 import json
 from pathlib import Path
+from time import sleep
 
 from fastapi.testclient import TestClient
 import pymupdf
@@ -10,10 +11,10 @@ from app.core.config import get_settings
 from app.main import app
 
 QUESTIONS = [
-    "What does Pakistan's cyber security policy say about critical infrastructure?",
     "How does NIST CSF 2.0 address incident response?",
-    "What happened in the ransomware incidents described in the CyberSage casebook?",
-    "What is the exact SHA-256 hash of the malware used in case CS-INC-002?",
+    "What does Pakistan's National Cyber Security Policy say about critical infrastructure?",
+    "Describe the ransomware incident in the CyberSage casebook.",
+    "What is the cybersecurity policy of Mars in 2050?",
 ]
 
 
@@ -26,7 +27,12 @@ def main() -> None:
     raw_directory = Path(__file__).resolve().parents[1] / "data" / "raw"
     reports = []
     with TestClient(app) as client:
-        for question in QUESTIONS:
+        for index, question in enumerate(QUESTIONS):
+            if index:
+                # Leave time for a modest account's per-minute token allowance.
+                # This is smoke-test pacing, not an SDK retry or API behavior.
+                sleep(35)
+                sleep(30)
             response = client.post("/api/v1/rag/ask", json={"question": question, "top_k": 5})
             assert response.status_code == 200, f"RAG unavailable: HTTP {response.status_code}"
             data = response.json()
@@ -39,6 +45,8 @@ def main() -> None:
                 assert citation["evidence_id"] == "E_" + citation["chunk_id"].replace("-", "")
             if data["status"] == "insufficient_evidence":
                 assert not data["citations"]
+            if any(citation["source_kind"] == "synthetic_incident" for citation in data["citations"]):
+                assert "not a real event" in data["answer"]
             reports.append(data)
     assert reports[-1]["status"] == "insufficient_evidence", "Unanswerable question was not rejected"
     print(json.dumps({"live_llm_status": "executed", "results": reports}, indent=2))

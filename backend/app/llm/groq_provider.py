@@ -31,8 +31,11 @@ class GroqProvider:
                     max_retries=0,  # Bound latency; callers may retry explicitly.
                 )
             if not self._validated:
-                model = self._client.models.retrieve(self.model)
-                if model.id != self.model or getattr(model, "active", True) is False:
+                # Namespaced IDs may return 404 on the single-model route even
+                # when active. The account's model list is authoritative.
+                models = self._client.models.list().data
+                if not any(model.id == self.model and getattr(model, "active", True) is not False
+                           for model in models):
                     raise LLMUnavailableError("model")
                 self._validated = True
             return self._client

@@ -15,7 +15,9 @@ from app.llm import groq_provider
 def provider(monkeypatch):
     settings = Settings(_env_file=None, GROQ_API_KEY=SecretStr("test-only-placeholder"))
     client = Mock()
-    client.models.retrieve.return_value = SimpleNamespace(id=settings.GROQ_MODEL, active=True)
+    client.models.list.return_value = SimpleNamespace(data=[
+        SimpleNamespace(id=settings.GROQ_MODEL, active=True)
+    ])
     client.chat.completions.create.return_value = SimpleNamespace(choices=[
         SimpleNamespace(finish_reason="stop", message=SimpleNamespace(content='{"ok":true}'))
     ])
@@ -32,7 +34,8 @@ def test_groq_parameters_lazy_validation_and_client_reuse(provider):
     factory.assert_called_once()
     assert factory.call_args.kwargs["max_retries"] == 0
     assert factory.call_args.kwargs["timeout"] == 30
-    client.models.retrieve.assert_called_once_with(adapter.model)
+    client.models.list.assert_called_once_with()
+    client.models.retrieve.assert_not_called()
     parameters = client.chat.completions.create.call_args.kwargs
     assert parameters["temperature"] == 0
     assert parameters["max_completion_tokens"] == 2048
@@ -56,7 +59,16 @@ def test_missing_credentials_fail_without_sdk_call(monkeypatch):
 @pytest.mark.parametrize("active,model_id", [(False, "openai/gpt-oss-120b"), (True, "wrong-model")])
 def test_unavailable_model_is_rejected(active, model_id, provider):
     adapter, client, _ = provider
-    client.models.retrieve.return_value = SimpleNamespace(id=model_id, active=active)
+    client.models.list.return_value = SimpleNamespace(data=[SimpleNamespace(id=model_id, active=active)])
+    with pytest.raises(LLMUnavailableError) as captured:
+        adapter.generate_json("rules", "{}")
+    assert captured.value.kind == "model"
+    client.chat.completions.create.assert_not_called()
+
+
+def test_model_missing_from_account_list_is_rejected(provider):
+    adapter, client, _ = provider
+    client.models.list.return_value = SimpleNamespace(data=[])
     with pytest.raises(LLMUnavailableError) as captured:
         adapter.generate_json("rules", "{}")
     assert captured.value.kind == "model"
@@ -76,7 +88,7 @@ def test_errors_are_sanitized(kind, phase, provider):
         "provider": APIStatusError("sensitive provider details", response=response, body={}),
         "connection": APIConnectionError(request=request),
     }
-    target = client.models.retrieve if phase == "validation" else client.chat.completions.create
+    target = client.models.list if phase == "validation" else client.chat.completions.create
     target.side_effect = errors[kind]
     with pytest.raises(LLMUnavailableError) as captured:
         adapter.generate_json("rules", "{}")

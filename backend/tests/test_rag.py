@@ -104,6 +104,17 @@ def test_invented_or_negation_reversed_claim_rejected(rag):
     assert response.abstention_reason == "unsupported_evidence"
 
 
+def test_cut_off_source_quote_is_rejected_even_if_verbatim(rag):
+    service, retrieval, provider = rag
+    text = TEXT + " Actions during an investigation are recorded, and the records\u2019"
+    retrieval.search.return_value.results = [evidence(text)]
+    provider.generate_json.side_effect = [draft(text)]
+    response = service.ask("Incident response?")
+    assert response.status == "insufficient_evidence" and response.citations == []
+    assert response.abstention_reason == "unsupported_evidence"
+    assert provider.generate_json.call_count == 1
+
+
 @pytest.mark.parametrize("supported,relevant", [(False, True), (True, False), (False, False)])
 def test_id_match_and_quote_match_are_not_enough(supported, relevant, rag):
     service, _, provider = rag

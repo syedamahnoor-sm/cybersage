@@ -10,6 +10,10 @@ synthetic cases are NOT real events. Do not infer requirements from descriptions
 Select at most five verbatim excerpts that directly address the question, not
 merely the topic. Each quote must be a complete, meaningful excerpt (20..1200
 characters), retain negation and qualifiers, and match one evidence text exactly.
+Prefer one or two directly relevant complete sentences or complete list items.
+Passages may end mid-sentence: do NOT copy a cut-off trailing item or unfinished
+heading. Stop before incomplete text; never end an excerpt on a possessive,
+hyphen, comma, or colon. Do not copy an entire chunk just because it is relevant.
 Do not splice, paraphrase, invent conclusions, or claim the evidence is complete.
 An ID match alone does not establish support. Covers/headings alone are inadequate.
 If evidence does not answer the question, return

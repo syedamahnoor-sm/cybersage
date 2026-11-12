@@ -239,7 +239,7 @@ The default model was selected from Groq's current
 [production model list](https://console.groq.com/docs/models), considering its
 [deprecation notices](https://console.groq.com/docs/deprecations). Availability
 depends on the account and may change. The adapter retrieves the configured model
-from Groq before its first completion and caches a successful validation. It does
+from the account's active model list before its first completion and caches a successful validation. It does
 not silently switch models. JSON-object mode supports a replaceable text model;
 local Pydantic checks enforce the expected schema. Truncated/malformed output
 causes abstention. SDK retries are disabled to bound repeated attempts; timeouts,
@@ -347,11 +347,14 @@ From `backend/`, run the live smoke check when a key is available:
 .\.venv\Scripts\python.exe test_rag_manual.py
 ```
 
-The script asks the three corpus questions and an unanswerable malware-hash
+The script asks the three corpus questions and an unanswerable Mars-policy
 question, checks source quotes against cited raw PDF pages, and records answers
 for manual relevance review. It prints `skipped_missing_credentials` without
 making provider calls when no key is configured. Automated tests always mock
-external model calls. See [Milestone 6 validation](docs/milestone6-validation.md).
+external model calls. The live script spaces questions 65 seconds apart to reduce
+per-minute token throttling; it normally takes several minutes. Production API
+calls still fail safely on rate limits without automatic retries. See
+[Milestone 6 validation](docs/milestone6-validation.md).
 
 ## Milestone 4 validation (2026-11-12)
 

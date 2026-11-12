@@ -79,7 +79,8 @@ class RAGService:
                 quote = normalize(claim.quote)
                 if item is None:
                     return abstain("invalid_citations")
-                if len(quote) < 20 or quote not in item.text or INSTRUCTION_ATTACK.search(quote):
+                if (len(quote) < 20 or quote not in item.text or INSTRUCTION_ATTACK.search(quote)
+                        or quote.endswith(("\u2019", "'", "-", "\u2013", "\u2014", ",", ":"))):
                     return abstain("unsupported_evidence")
                 if (claim.evidence_id, quote) in seen:
                     continue

@@ -23,6 +23,8 @@ class Settings(BaseSettings):
     RAG_MAX_RETRIEVED_CHUNKS: int = Field(default=8, ge=1, le=20)
     RAG_MAX_CONTEXT_CHARS: int = Field(default=8000, ge=256, le=50000)
     RAG_MAX_PROMPT_CHARS: int = Field(default=24000, ge=1000, le=100000)
+    MEMORY_HISTORY_TURNS: int = Field(default=6, ge=1, le=20)
+    MEMORY_HISTORY_CHARS: int = Field(default=8000, ge=256, le=40000)
 
     model_config = SettingsConfigDict(
         env_file=(

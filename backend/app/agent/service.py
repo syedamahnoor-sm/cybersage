@@ -14,6 +14,7 @@ from app.llm.base import LLMUnavailableError
 from app.rag.schemas import AskResponse
 from app.rag.service import RAGService
 from app.retrieval.service import RetrievalUnavailableError
+from app.memory.context import ContextTurn, resolve
 
 MAX_GRAPH_STEPS = 8
 
@@ -28,6 +29,9 @@ class AgentState(TypedDict, total=False):
     assessment: RiskAssessment
     problem: AgentProblem
     response: AgentResponse
+    history: list[ContextTurn]
+    resolved_message: str
+    context_used: bool
 
 
 def problem(status: str, code: str, message: str, **extra) -> dict:
@@ -40,12 +44,15 @@ class AgentService:
         builder = StateGraph(AgentState)
         builder.add_node("validate", self._validate)
         builder.add_node("select", self._select)
+        builder.add_node("resolve", self._resolve)
         builder.add_node("rag", self._rag)
         builder.add_node("risk", self._risk)
         builder.add_node("error", self._error)
         builder.add_node("format", self._format)
         builder.add_edge(START, "validate")
-        builder.add_conditional_edges("validate", lambda s: "error" if s.get("problem") else "select",
+        builder.add_conditional_edges("validate", lambda s: "error" if s.get("problem") else "resolve",
+                                      {"error": "error", "resolve": "resolve"})
+        builder.add_conditional_edges("resolve", lambda s: "error" if s.get("problem") else "select",
                                       {"error": "error", "select": "select"})
         builder.add_conditional_edges("select", lambda s: "error" if s.get("problem") else s["capability"],
                                       {"error": "error", "knowledge": "rag", "risk": "risk"})
@@ -54,7 +61,7 @@ class AgentService:
                                           {"error": "error", "format": "format"})
         builder.add_edge("error", "format")
         builder.add_edge("format", END)
-        # No checkpointer, persistent store, tool dispatcher, or looping edges.
+        # Durable conversation turns are external; graph checkpoints and loops are not used.
         self._graph = builder.compile()
 
     def _validate(self, state: AgentState) -> dict:
@@ -66,8 +73,16 @@ class AgentService:
                 "invalid_input", "invalid_request", "Provide a nonblank message up to 2000 characters, "
                 "top_k 1..20, and optional integer likelihood/impact 1..5.")}
 
+    def _resolve(self, state: AgentState) -> dict:
+        message, used, clarify = resolve(state["request"], state.get("history", []))
+        result = {"resolved_message": message, "context_used": used}
+        if clarify:
+            return {**result, **problem("needs_clarification", "ambiguous_reference",
+                "Name the document or topic you mean; recent context does not identify one source reliably.")}
+        return result
+
     def _select(self, state: AgentState) -> dict:
-        request = state["request"]
+        request = state["request"].model_copy(update={"message": state["resolved_message"]})
         capability = select_capability(request)
         if capability in ("mixed", "ambiguous"):
             return {"capability": "none", **problem(
@@ -93,7 +108,7 @@ class AgentService:
     def _rag(self, state: AgentState) -> dict:
         try:
             request = state["request"]
-            result = self._rag_factory().ask(request.message, request.top_k)
+            result = self._rag_factory().ask(state["resolved_message"], request.top_k)
             return {"rag_result": result, "status": result.status}
         except LLMUnavailableError as error:
             code = "generation_timeout" if error.kind == "timeout" else "generation_unavailable"
@@ -128,12 +143,14 @@ class AgentService:
                 selected_evidence_count=result.selected_evidence_count,
                 abstention_reason=result.abstention_reason,
             )
-        return {"response": response}
+        return {"response": response.model_copy(update={
+            "resolved_message": state.get("resolved_message"), "context_used": state.get("context_used", False)})}
 
-    def invoke(self, request: AgentRequest | dict) -> AgentResponse:
+    def invoke(self, request: AgentRequest | dict, history: list[ContextTurn] | None = None) -> AgentResponse:
         raw = request.model_dump() if isinstance(request, AgentRequest) else request
         try:
-            result = self._graph.invoke({"raw_request": raw}, config={"recursion_limit": MAX_GRAPH_STEPS})
+            result = self._graph.invoke({"raw_request": raw, "history": history or []},
+                                      config={"recursion_limit": MAX_GRAPH_STEPS})
             return result["response"]
         except GraphRecursionError:
             return AgentResponse(capability="none", status="error", error=AgentProblem(

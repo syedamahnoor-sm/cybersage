@@ -14,8 +14,10 @@ explicit typed state and the following acyclic transitions:
 ```mermaid
 flowchart TD
     START --> validate
-    validate -->|valid|select
+    validate -->|valid|resolve
     validate -->|invalid|error
+    resolve -->|resolved or standalone|select
+    resolve -->|ambiguous reference|error
     select -->|knowledge|rag
     select -->|risk with complete inputs|risk
     select -->|ambiguous, missing, conflicting, invalid|error
@@ -27,10 +29,10 @@ flowchart TD
     format --> END
 ```
 
-The normal path executes four nodes; a service failure executes five. Every path
+The normal path executes five nodes; a service failure executes six. Every path
 ends at `END`, with an additional fixed **eight-step recursion guard**. There are
-no loop edges, tool-call feedback loops, checkpointers, conversation memory, or
-multi-agent components. Only the formatted response is returned, never graph
+no loop edges, tool-call feedback loops, graph checkpointers, or multi-agent
+components. PostgreSQL conversation memory is described below. Only the formatted response is returned, never graph
 state or raw exceptions. The execution guard bounds graph steps, not total
 wall-clock latency; existing Groq per-request timeouts still apply to RAG calls.
 
@@ -67,8 +69,8 @@ This is an **illustrative qualitative scoring matrix, not a validated prediction
 of real-world cyber risk**. It does not estimate probabilities, losses, compliance,
 or a calibrated asset risk level. The pure Python tool calculates the score and
 category. No LLM calculates, changes, or overrides them, and risk responses have
-no PDF citations or model identifier. Pure risk requests initialize neither the
-database nor the provider and work without their credentials.
+no PDF citations or model identifier. The pure risk tool requires no database or
+provider; the agent API now requires PostgreSQL to persist its conversation turns.
 
 ### Agent API examples
 
@@ -80,7 +82,7 @@ $body = @{ message = 'Calculate risk'; likelihood = 4; impact = 5 } | ConvertTo-
 Invoke-RestMethod -Method Post -Uri http://127.0.0.1:8000/api/v1/agent/invoke -ContentType application/json -Body $body
 ```
 
-Risk response:
+Risk response (core fields; conversation metadata is described below):
 
 ```json
 {
@@ -116,12 +118,13 @@ numbers parsed from otherwise valid text return 422 with `status: "invalid_input
 and the agent response schema. Knowledge provider/retrieval failures retain safe
 503 responses and provider timeouts 504; unexpected/step-limit failures return
 safe 500 responses. Failures do not fall back to a guessed score or fabricated
-answer. The risk path never opens a database/provider connection.
+answer. The risk tool never queries documents or calls a provider; conversation
+storage still uses the database.
 
 No shell, filesystem, arbitrary network, user-defined tools, or dynamic execution
 tools are exposed. User text only selects among fixed capabilities; retrieved
 text remains untrusted within the existing RAG service. No authentication,
-frontend, external automation, persistence, or deployment was added.
+frontend, external automation, user profiling, or deployment is included.
 
 From `backend/`, run the optional real smoke check:
 
@@ -135,6 +138,122 @@ It checks all four risk categories, invalid/missing/ambiguous requests, and (whe
 Groq credentials exist) one real grounded question and a Mars abstention, with
 65-second pacing. Citations are checked against both PostgreSQL and raw PDF pages.
 See [Milestone 7 validation](docs/milestone7-validation.md) for actual results.
+
+## Persistent conversation memory
+
+Milestone 8 adds conversation-scoped PostgreSQL history around the existing
+agent. Requests without a conversation ID still work and now receive a new
+`conversation_id` and `request_id`. Send the returned conversation ID for a
+follow-up. The response also includes `resolved_message` and `context_used` so
+the fresh retrieval question can be inspected without exposing graph state.
+
+```powershell
+$first = Invoke-RestMethod -Method Post -Uri http://127.0.0.1:8000/api/v1/agent/invoke -ContentType application/json -Body (@{
+    message = 'What does NIST CSF 2.0 say about incident response?'
+    request_id = [guid]::NewGuid().ToString()
+} | ConvertTo-Json)
+$followup = Invoke-RestMethod -Method Post -Uri http://127.0.0.1:8000/api/v1/agent/invoke -ContentType application/json -Body (@{
+    message = 'What about recovery?'
+    conversation_id = $first.conversation_id
+    request_id = [guid]::NewGuid().ToString()
+} | ConvertTo-Json)
+$followup.resolved_message  # What does NIST CSF 2.0 say about recovery?
+```
+
+The `resolve` graph node runs before capability routing and RAG retrieval. It
+uses only bounded recent user questions and server-recorded resolved questions,
+capabilities, and statuses. It **never uses prior assistant answer prose, scores,
+or citations as factual evidence** and never adds history to the RAG prompt.
+Every new knowledge turn retrieves document evidence afresh. Retries with a
+committed request ID replay the original response instead of calling RAG again.
+
+Deterministic source aliases currently cover NIST/CSF, Pakistan's named policy,
+and the CyberSage casebook. `What about recovery?` can use the immediately recent
+NIST source; `What response measures does it describe?` can substitute the recent
+Pakistan policy. Explicit standalone source questions do not need resolution.
+Multiple possible sources, a missing source, unsupported deictic references, or
+a preceding risk/clarification turn require clarification. No resolution LLM is
+called. This conservative resolver does not claim general co-reference handling.
+Risk calculations always require current-turn numbers; previous likelihood or
+impact values are never inherited.
+
+`MEMORY_HISTORY_TURNS=6` and `MEMORY_HISTORY_CHARS=8000` bound the internal history
+projection. Whole recent turns are retained until either limit is met. Assistant
+answer bodies are not loaded into this context projection. Stored history is
+durable and is not automatically expired; these limits bound context, not disk
+retention. A bounded projection that cannot identify a source safely abstains
+from resolution and requests clarification.
+
+### Storage and consistency
+
+Migration `002_conversational_memory.sql` adds only:
+
+- `conversations`: UUID, revision, creation/update timestamps.
+- `conversation_turns`: globally unique request UUID, conversation FK, monotonic
+  turn number, SHA-256 request fingerprint, timestamp, per-conversation uniqueness.
+- `conversation_messages`: UUID, conversation/request composite FK, user/assistant
+  role, original validated message or public assistant output, JSONB public
+  response metadata, timestamp, one message per request/role.
+
+Original user text is stored as validated/trimmed by the existing API, **not** as
+its contextual rewrite. Assistant metadata retains citations, assessment/status,
+model ID, resolved question, and context-use flag. Internal system prompts,
+provider diagnostics, API credentials, and graph state are not stored. Messages
+containing a configured credential or obvious Groq API-key pattern are rejected
+before inference or storage; responses with detected credentials are not stored.
+This is not a general sensitive-data detector: do not enter personal secrets or
+confidential incident details into an unauthenticated demo.
+
+Each completed response (including honest clarification, missing-input responses,
+and insufficient evidence) is saved with its user message in one transaction.
+Provider/graph errors and invalid requests save neither message. New conversation
+rows are created only when a turn commits; a failed new request has no conversation
+ID. Failure in the final database transaction withholds the generated answer and
+returns safe 503 rather than reporting an unsaved success. Documents/chunks remain
+unchanged. Application startup never silently creates or alters tables.
+
+For retry safety, generate a `request_id` once per logical turn and reuse it with
+the exact same message, risk inputs, top-k, and conversation ID. If the initial
+new-conversation response is lost, retrying the same request ID without a
+conversation ID recovers the committed response/ID. Changed inputs or another
+conversation produce 409, never another conversation's answer. If no client
+request ID was supplied and its generated value is lost, automatic deduplication
+cannot be guaranteed. Repeated questions with new request IDs are legitimate new
+turns. Corrected messages after a committed clarification need a new request ID.
+
+The history snapshot uses a short shared row lock. No database transaction remains
+open during model calls. Final writes compare the conversation revision: one of
+two concurrent turns wins; the other returns 409 without saving its generated
+answer. The client may retry against fresh history. Concurrent retries of the
+same request ID replay one committed result. Duplicate model work can still occur
+before the write race is detected; requests within one conversation should be
+sent sequentially. A concurrent document ingestion is independent of turn storage.
+
+### Bounded history endpoint and privacy
+
+```powershell
+Invoke-RestMethod -Uri "http://127.0.0.1:8000/api/v1/conversations/$($first.conversation_id)/messages?limit=10"
+```
+
+`GET /api/v1/conversations/{uuid}/messages` returns the latest `limit` **turns**
+(default 10, maximum 20; two messages per turn), in chronological order. It returns
+`has_more` and `next_before_turn`; supply `before_turn` to page backward. Unknown
+UUIDs return 404 and malformed IDs return 422. There is no endpoint to enumerate
+conversations. Conversation/storage failures return safe 404/409/503 errors.
+
+**There is no authentication or ownership check.** Anyone with a conversation ID
+can read and continue it. A request ID also acts as a replay capability for its
+original request. Treat these high-entropy identifiers as access secrets; URLs
+may appear in access logs. This is suitable only for a local demonstration until
+authentication/authorization and a retention policy are implemented. Conversation
+IDs scope queries and prevent accidental cross-conversation context mixing; they
+do not establish user identity or authorization.
+
+For the restart smoke check, start the API on localhost:8001 and run
+`python test_memory_manual.py --phase start` from `backend/`. Restart the API and
+run `--phase resume`. The script paces Groq calls, records IDs in ignored `.cache/`,
+checks original messages and citations, and verifies history/replay after restart.
+See [Milestone 8 validation](docs/milestone8-validation.md) for measured results.
 
 ## Local setup (PowerShell)
 
@@ -161,7 +280,12 @@ For a **new** database, apply the existing migration once from the repository ro
 
 ```powershell
 Get-Content -Raw backend/migrations/001_initial_schema.sql | docker compose exec -T db sh -c 'psql -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" -d "$POSTGRES_DB"'
+Get-Content -Raw backend/migrations/002_conversational_memory.sql | docker compose exec -T db sh -c 'psql -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" -d "$POSTGRES_DB"'
 ```
+
+For an existing Milestone 7 database, apply **only 002** once. Its explicit
+transaction installs three new tables without changing documents/chunks. A repeat
+application fails rather than silently replacing an existing memory schema.
 
 The ingestion command never creates or changes schema. Check an existing database
 from `backend/`:

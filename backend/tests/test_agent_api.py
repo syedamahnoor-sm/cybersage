@@ -1,4 +1,5 @@
 from unittest.mock import Mock
+from uuid import uuid4
 
 from fastapi.testclient import TestClient
 import pytest
@@ -7,9 +8,21 @@ from app.agent import api
 from app.agent.service import AgentService
 from app.llm.base import LLMUnavailableError
 from app.main import app
+from app.memory.api import get_conversation_repository
 
 
-def test_risk_api_needs_no_database_or_provider(monkeypatch):
+@pytest.fixture(autouse=True)
+def isolated_memory():
+    repository = Mock()
+    repository.snapshot.side_effect = lambda cid, *args: (cid or uuid4(), None, [])
+    repository.replay.return_value = None
+    repository.commit_turn.side_effect = lambda *args: args[-1]
+    app.dependency_overrides[get_conversation_repository] = lambda: repository
+    yield
+    app.dependency_overrides.clear()
+
+
+def test_risk_execution_does_not_initialize_rag(monkeypatch):
     factory = Mock(side_effect=AssertionError("Risk must not initialize RAG"))
     monkeypatch.setattr(api, "get_retrieval_service", factory)
     with TestClient(app) as client:

@@ -137,7 +137,7 @@ def test_graph_nodes_and_explicit_terminal_path(agent):
     updates = list(assistant._graph.stream({"raw_request": {
         "message": "Calculate risk", "likelihood": 4, "impact": 5,
     }}, config={"recursion_limit": graph_module.MAX_GRAPH_STEPS}))
-    assert [next(iter(update)) for update in updates] == ["validate", "select", "risk", "format"]
+    assert [next(iter(update)) for update in updates] == ["validate", "resolve", "select", "risk", "format"]
     nodes = assistant._graph.get_graph().nodes
     assert {"validate", "select", "rag", "risk", "format", "error", "__end__"} <= set(nodes)
     assert assistant._graph.checkpointer is None
@@ -147,7 +147,7 @@ def test_error_node_is_used_before_termination(agent):
     assistant, _, rag = agent
     rag.ask.side_effect = LLMUnavailableError("timeout")
     updates = list(assistant._graph.stream({"raw_request": {"message": "What does NIST say?"}}))
-    assert [next(iter(update)) for update in updates] == ["validate", "select", "rag", "error", "format"]
+    assert [next(iter(update)) for update in updates] == ["validate", "resolve", "select", "rag", "error", "format"]
 
 
 def test_recursion_guard_fails_safely(monkeypatch, agent):

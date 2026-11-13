@@ -43,3 +43,14 @@ def database():
                 transaction.rollback()
     finally:
         engine.dispose()
+
+
+@pytest.fixture
+def memory_database(database):
+    engine, connection = database
+    schema = (Path(__file__).resolve().parents[1] / "migrations" /
+              "002_conversational_memory.sql").read_text()
+    schema = schema.replace("BEGIN;", "").replace("COMMIT;", "")
+    schema = schema.replace("CREATE TABLE ", "CREATE TEMP TABLE ")
+    connection.exec_driver_sql(schema)
+    return engine, connection

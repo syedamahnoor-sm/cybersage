@@ -1,4 +1,5 @@
 from typing import Annotated, Literal
+from uuid import UUID
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
@@ -17,6 +18,8 @@ class AgentRequest(BaseModel):
     likelihood: RiskValue | None = None
     impact: RiskValue | None = None
     top_k: int = Field(default=5, strict=True, ge=1, le=MAX_TOP_K)
+    conversation_id: UUID | None = None
+    request_id: UUID | None = None
 
     @field_validator("message", mode="before")
     @classmethod
@@ -54,3 +57,7 @@ class AgentResponse(BaseModel):
     retrieved_evidence_count: int = Field(default=0, ge=0)
     selected_evidence_count: int = Field(default=0, ge=0)
     abstention_reason: str | None = None
+    conversation_id: UUID | None = None
+    request_id: UUID | None = None
+    resolved_message: str | None = None
+    context_used: bool = False

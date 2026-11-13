@@ -611,6 +611,46 @@ per-minute token throttling; it normally takes several minutes. Production API
 calls still fail safely on rate limits without automatic retries. See
 [Milestone 6 validation](docs/milestone6-validation.md).
 
+## Milestone 9: evaluation and assignment evidence
+
+The evaluation dataset contains exactly eight answerable questions across all
+three PDFs and two unanswerable questions. Ground-truth criteria and PDF pages
+are verified against the local source files before a run. The runner uses the
+existing agent API with independent conversations, records actual answers and
+diagnostic retrieval, and spaces questions 65 seconds apart.
+
+With the existing API running on port 8001, from `backend/`:
+
+```powershell
+.\.venv\Scripts\python.exe -m evaluation --output evaluation/results/new-run.json
+.\.venv\Scripts\python.exe -m evaluation.extra --output evaluation/results/new-supplementary.json
+```
+
+Choose a new output path rather than overwrite recorded evidence. `--resume`
+only fills unexecuted questions. Missing credentials/provider errors make a run
+incomplete. The separate supplementary command exercises risk categories,
+invalid inputs and a real two-turn memory conversation. It stores private access
+IDs only under ignored `.cache/`; public artifacts redact them.
+
+After manually reviewing a new run against the dataset, create a matching review
+file following `evaluation/reviews.json` (including each `response_sha256` from
+`evaluation.report.response_hash`). Render it with:
+
+```powershell
+.\.venv\Scripts\python.exe -m evaluation.report --results evaluation/results/new-run.json --reviews evaluation/new-reviews.json --output ../docs/new-results.md
+$env:CYBERSAGE_TEST_POSTGRES = '1'
+.\.venv\Scripts\python.exe -m pytest tests -q -p no:cacheprovider --basetemp=.cache/pytest-evaluation
+.\.venv\Scripts\python.exe -m pip check
+```
+
+The recorded live run produced six answers, two correct abstentions, two
+incorrect abstentions, and one incomplete answer among the six answers. All 12
+returned citations had valid database/PDF provenance; reviewed coverage was
+15/21 criteria. Provenance is evaluated separately from factual support and
+completeness. See [Milestone 9 evaluation and failure analysis](docs/milestone9-evaluation.md)
+and [all ten recorded answers](docs/milestone9-results.md), including actual
+limitations and assignment screenshot instructions. No screenshot is claimed.
+
 ## Milestone 4 validation (2026-11-12)
 
 Validated locally with PostgreSQL 17.11, pgvector 0.8.7, SQLAlchemy 2.1.8,

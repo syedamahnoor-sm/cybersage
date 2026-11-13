@@ -1,0 +1,424 @@
+{
+  "version": 1,
+  "top_k": 5,
+  "questions": [
+    {
+      "id": "P01",
+      "question": "How does Pakistan's National Cyber Security Policy 2021 treat cyber-attacks on critical infrastructure and respond to them?",
+      "answerable": true,
+      "expected_source": "2021-National-Cyber-Security-Policy-Final.pdf",
+      "expected_pages": [
+        11
+      ],
+      "criteria": [
+        {
+          "id": "sovereignty",
+          "description": "Treats CI/CII cyber-attacks as aggression against national sovereignty",
+          "page": 11,
+          "source_excerpt": "Will regard a cyber-attack on Pakistan CI/ CII as an act of aggression against national sovereignty",
+          "groups": [
+            [
+              "aggression"
+            ],
+            [
+              "sovereignty"
+            ]
+          ]
+        },
+        {
+          "id": "response",
+          "description": "Defends itself with appropriate response measures",
+          "page": 11,
+          "source_excerpt": "will defend itself with appropriate response measures.",
+          "groups": [
+            [
+              "defend"
+            ],
+            [
+              "response measures"
+            ]
+          ]
+        }
+      ],
+      "rationale": "Tests a specific national-policy statement, not an invented list of defensive actions."
+    },
+    {
+      "id": "P02",
+      "question": "What is the vision of Pakistan's National Cyber Security Policy 2021?",
+      "answerable": true,
+      "expected_source": "2021-National-Cyber-Security-Policy-Final.pdf",
+      "expected_pages": [
+        9
+      ],
+      "criteria": [
+        {
+          "id": "ecosystem",
+          "description": "Secure, robust, continually improving nationwide digital ecosystem",
+          "page": 9,
+          "source_excerpt": "The vision is for Pakistan to have a secure, robust, and continually improving nationwide digital ecosystem",
+          "groups": [
+            [
+              "secure"
+            ],
+            [
+              "robust"
+            ],
+            [
+              "ecosystem"
+            ]
+          ]
+        },
+        {
+          "id": "cia",
+          "description": "Confidentiality, integrity, and availability of digital assets",
+          "page": 9,
+          "source_excerpt": "ensuring accountable confidentiality, integrity, and availability of digital assets",
+          "groups": [
+            [
+              "confidentiality"
+            ],
+            [
+              "integrity"
+            ],
+            [
+              "availability"
+            ]
+          ]
+        },
+        {
+          "id": "development",
+          "description": "Socio-economic development and national security",
+          "page": 9,
+          "source_excerpt": "leading to socio-economic development and national security.",
+          "groups": [
+            [
+              "development"
+            ],
+            [
+              "national security"
+            ]
+          ]
+        }
+      ],
+      "rationale": "Tests vision coverage rather than treating a related governance passage as a complete answer."
+    },
+    {
+      "id": "P03",
+      "question": "What oversight and policy-formulation functions does Pakistan's Cyber Governance Policy Committee (CGPC) have?",
+      "answerable": true,
+      "expected_source": "2021-National-Cyber-Security-Policy-Final.pdf",
+      "expected_pages": [
+        11
+      ],
+      "criteria": [
+        {
+          "id": "oversight",
+          "description": "Strategic oversight over national cybersecurity issues",
+          "page": 11,
+          "source_excerpt": "Cyber Governance Policy Committee is responsible for strategic oversight over national Cyber Security issues.",
+          "groups": [
+            [
+              "strategic oversight"
+            ]
+          ]
+        },
+        {
+          "id": "formulation",
+          "description": "Formulate, guide, and recommend approval of policy and Act",
+          "page": 11,
+          "source_excerpt": "Formulate, guide, and recommend for the approval of the National Cyber Security Policy and Cyber Security Act.",
+          "groups": [
+            [
+              "formulate"
+            ],
+            [
+              "act"
+            ]
+          ]
+        },
+        {
+          "id": "reviews",
+          "description": "Guide updates and periodic reviews for emerging cyberspace requirements",
+          "page": 11,
+          "source_excerpt": "Guide to align policy with emerging cyberspace requirements through updates and periodic reviews.",
+          "groups": [
+            [
+              "updates"
+            ],
+            [
+              "reviews"
+            ]
+          ]
+        }
+      ],
+      "rationale": "Tests coverage of separate governance functions in a single verified source page."
+    },
+    {
+      "id": "N01",
+      "question": "How does NIST CSF 2.0 address incident response plan execution, incident triage, and prioritization?",
+      "answerable": true,
+      "expected_source": "NIST.CSWP.29.pdf",
+      "expected_pages": [
+        27
+      ],
+      "criteria": [
+        {
+          "id": "plan",
+          "description": "Execute the plan with relevant third parties after declaration",
+          "page": 27,
+          "source_excerpt": "The incident response plan is executed in coordination with relevant third parties once an incident is declared",
+          "groups": [
+            [
+              "response plan"
+            ],
+            [
+              "third parties"
+            ]
+          ]
+        },
+        {
+          "id": "triage",
+          "description": "Triage and validate reports",
+          "page": 27,
+          "source_excerpt": "Incident reports are triaged and validated",
+          "groups": [
+            [
+              "triaged"
+            ],
+            [
+              "validated"
+            ]
+          ]
+        },
+        {
+          "id": "priority",
+          "description": "Categorize and prioritize incidents",
+          "page": 27,
+          "source_excerpt": "Incidents are categorized and prioritized",
+          "groups": [
+            [
+              "categorized"
+            ],
+            [
+              "prioritized"
+            ]
+          ]
+        }
+      ],
+      "rationale": "Tests three explicit RS.MA outcomes; matching the RESPOND heading alone is incomplete."
+    },
+    {
+      "id": "N02",
+      "question": "What does NIST CSF 2.0 say about verifying backup and restored-system integrity during recovery?",
+      "answerable": true,
+      "expected_source": "NIST.CSWP.29.pdf",
+      "expected_pages": [
+        28
+      ],
+      "criteria": [
+        {
+          "id": "backups",
+          "description": "Verify backups/restoration assets before use",
+          "page": 28,
+          "source_excerpt": "The integrity of backups and other restoration assets is verified before using them for restoration",
+          "groups": [
+            [
+              "integrity"
+            ],
+            [
+              "backups",
+              "restoration assets"
+            ],
+            [
+              "before"
+            ]
+          ]
+        },
+        {
+          "id": "restored",
+          "description": "Verify restored assets and confirm normal operations",
+          "page": 28,
+          "source_excerpt": "The integrity of restored assets is verified, systems and services are restored, and normal operating status is confirmed",
+          "groups": [
+            [
+              "integrity"
+            ],
+            [
+              "restored assets"
+            ],
+            [
+              "normal operating"
+            ]
+          ]
+        }
+      ],
+      "rationale": "Tests recovery controls, including the distinction between checking backups and restored systems."
+    },
+    {
+      "id": "N03",
+      "question": "Under NIST CSF 2.0 DE.AE-08, when are incidents declared?",
+      "answerable": true,
+      "expected_source": "NIST.CSWP.29.pdf",
+      "expected_pages": [
+        26
+      ],
+      "criteria": [
+        {
+          "id": "criteria",
+          "description": "Declare incidents when adverse events meet defined incident criteria",
+          "page": 26,
+          "source_excerpt": "Incidents are declared when adverse events meet the defined incident criteria",
+          "groups": [
+            [
+              "adverse events"
+            ],
+            [
+              "defined incident criteria"
+            ]
+          ]
+        }
+      ],
+      "rationale": "Tests a precise DETECT outcome; no real incident or numerical score should be invented."
+    },
+    {
+      "id": "C01",
+      "question": "In the CyberSage synthetic casebook CS-INC-002, how was ransomware detected, contained, and recovered from, and was a ransom paid?",
+      "answerable": true,
+      "expected_source": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+      "expected_pages": [
+        3
+      ],
+      "criteria": [
+        {
+          "id": "detect",
+          "description": "Rapid renaming and unsigned encryption process",
+          "page": 3,
+          "source_excerpt": "Endpoint telemetry detected rapid file renaming and an unsigned encryption process on a shared drive.",
+          "groups": [
+            [
+              "rapid file renaming"
+            ],
+            [
+              "unsigned encryption"
+            ]
+          ]
+        },
+        {
+          "id": "contain",
+          "description": "Workstation isolated and compromised credentials disabled",
+          "page": 3,
+          "source_excerpt": "Isolated the workstation, disabled compromised credentials, restored affected files from a verified offline backup.",
+          "groups": [
+            [
+              "isolated"
+            ],
+            [
+              "credentials"
+            ]
+          ]
+        },
+        {
+          "id": "restore",
+          "description": "Restore affected files from verified offline backup",
+          "page": 3,
+          "source_excerpt": "restored affected files from a verified offline backup.",
+          "groups": [
+            [
+              "offline backup"
+            ],
+            [
+              "restored"
+            ]
+          ]
+        },
+        {
+          "id": "ransom",
+          "description": "Recovery completed without ransom payment",
+          "page": 3,
+          "source_excerpt": "Files on one departmental share were encrypted; recovery completed without ransom payment.",
+          "groups": [
+            [
+              "without ransom payment"
+            ]
+          ]
+        }
+      ],
+      "rationale": "Tests multi-chunk incident coverage and explicit synthetic/fictional labeling; triage labels are not evidence of outcome."
+    },
+    {
+      "id": "C02",
+      "question": "In the CyberSage synthetic casebook CS-INC-017, what happened to the five backup deletion requests and what containment controls were applied?",
+      "answerable": true,
+      "expected_source": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+      "expected_pages": [
+        18
+      ],
+      "criteria": [
+        {
+          "id": "outcome",
+          "description": "All five requests failed and restore points remained available",
+          "page": 18,
+          "source_excerpt": "All five deletion requests failed; restore points remained available.",
+          "groups": [
+            [
+              "five"
+            ],
+            [
+              "failed"
+            ],
+            [
+              "remained available"
+            ]
+          ]
+        },
+        {
+          "id": "token",
+          "description": "Disable service token",
+          "page": 18,
+          "source_excerpt": "Disabled the service token, enforced immutable backups, and restricted delete permissions to a break-glass role.",
+          "groups": [
+            [
+              "disabled"
+            ],
+            [
+              "service token"
+            ]
+          ]
+        },
+        {
+          "id": "controls",
+          "description": "Immutable backups and restricted break-glass deletion permissions",
+          "page": 18,
+          "source_excerpt": "enforced immutable backups, and restricted delete permissions to a break-glass role.",
+          "groups": [
+            [
+              "immutable backups"
+            ],
+            [
+              "break-glass"
+            ]
+          ]
+        }
+      ],
+      "rationale": "Tests confirmed outcome versus a mere attempted deletion, with synthetic incident labeling."
+    },
+    {
+      "id": "U01",
+      "question": "What is the cybersecurity policy of Mars in 2050?",
+      "answerable": false,
+      "expected_source": null,
+      "expected_pages": [],
+      "criteria": [],
+      "rationale": "No indexed PDF documents a Martian cybersecurity policy. Require explicit insufficient evidence with no citations."
+    },
+    {
+      "id": "U02",
+      "question": "What is the exact SHA-256 hash of the malware used in CyberSage casebook incident CS-INC-002?",
+      "answerable": false,
+      "expected_source": null,
+      "expected_pages": [],
+      "criteria": [],
+      "rationale": "The case record describes ransomware but supplies no malware SHA-256. Require abstention rather than an invented hash."
+    }
+  ]
+}

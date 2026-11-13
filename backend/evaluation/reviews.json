@@ -1,0 +1,104 @@
+{
+  "review_method": "Implementation assistant compared actual answers with verified PDF excerpts and returned source quotes; not independent expert grading. Lexical signals were individually inspected, not accepted as factual proof.",
+  "reviews": {
+    "P01": {
+      "response_sha256": "795b1fc28ee1838aa7adefec80bdce09cf314805496c296afbd639f711c1bb81",
+      "grade": "pass",
+      "support": "supported",
+      "criteria_met": {
+        "sovereignty": true,
+        "response": true
+      },
+      "notes": "Pass. The quoted policy p. 11 explicitly treats CI/CII attacks as aggression against national sovereignty and promises appropriate response measures. The additional reciprocal-sovereignty passage is supported but not required."
+    },
+    "P02": {
+      "response_sha256": "913f176509765ac717da800755a722ea6e473eb27cc96eb278534372d1874aae",
+      "grade": "pass",
+      "support": "supported",
+      "criteria_met": {
+        "ecosystem": true,
+        "cia": true,
+        "development": true
+      },
+      "notes": "Pass. The p. 9 vision quote covers secure, robust and continually improving nationwide digital infrastructure; accountable confidentiality, integrity and availability; socioeconomic development and national security."
+    },
+    "P03": {
+      "response_sha256": "fda1d9c79e3ab9471b56e48473087078b26eb218c8e6e0afaf88b80ff134bb4c",
+      "grade": "partial",
+      "support": "supported",
+      "criteria_met": {
+        "oversight": true,
+        "formulation": true,
+        "reviews": false
+      },
+      "notes": "Partial. The p. 11 quotes support strategic oversight and formulation/recommendation of policy and legislation. They omit the requested updates/periodic-review responsibility, verified in the next database chunk (index 25), which is absent from the diagnostic top five."
+    },
+    "N01": {
+      "response_sha256": "7baf59fdb4b61a9ff60b29062ee6eec5be7427f1d92548f124033d23c7499188",
+      "grade": "pass",
+      "support": "supported",
+      "criteria_met": {
+        "plan": true,
+        "triage": true,
+        "priority": true
+      },
+      "notes": "Pass. The p. 27 RS.MA-01, RS.MA-02 and RS.MA-03 quotes cover coordinated plan execution, triage/validation, and categorization/prioritization. Physical PDF p. 27 is the printed body page 22."
+    },
+    "N02": {
+      "response_sha256": "41d0b1e3d12c899e18b97063fa894300c679419edf6561595e4744a7446d953d",
+      "grade": "pass",
+      "support": "supported",
+      "criteria_met": {
+        "backups": true,
+        "restored": true
+      },
+      "notes": "Pass. The p. 28 RC.RP-03 and RC.RP-05 excerpts distinguish checking restoration assets before use from checking restored assets, restoring services, and confirming normal operation."
+    },
+    "N03": {
+      "response_sha256": "2a96c1a54e96b5410add35edfb7fa17d5f1fd39fc818172705a86b72fa83e1df",
+      "grade": "fail",
+      "support": "not_applicable",
+      "criteria_met": {
+        "criteria": false
+      },
+      "notes": "Fail: incorrect abstention. DE.AE-08 is explicit on PDF p. 26, database chunk 75. The diagnostic retrieval returned NIST chunks 76, 57, 77, 79 and 26, omitting chunk 75. Production reported model_abstained; do not call this a citation validation failure."
+    },
+    "C01": {
+      "response_sha256": "906ace7d86564dc31b476039e13e050191230839cde9bea2f5323d9290d38828",
+      "grade": "fail",
+      "support": "not_applicable",
+      "criteria_met": {
+        "detect": false,
+        "contain": false,
+        "restore": false,
+        "ransom": false
+      },
+      "notes": "Fail: incorrect abstention. PDF p. 3 contains all four criteria. Diagnostic rank one (chunk 4) contains the incident header/detection only; chunk 5 containing containment, backup recovery and no-ransom outcome is missing. Production reported model_abstained. No synthetic narrative was falsely presented as real."
+    },
+    "C02": {
+      "response_sha256": "fcb5968640d069cf8f2ef885be5b0ed26933e0b05f7b0a74d8e3f30b35e06041",
+      "grade": "pass",
+      "support": "supported",
+      "criteria_met": {
+        "outcome": true,
+        "token": true,
+        "controls": true
+      },
+      "notes": "Pass. Both p. 18 quotes are supported: all five deletion attempts failed, restore points remained, and the service token was disabled with immutable backups and break-glass deletion controls. Both excerpts explicitly say synthetic incident example (not a real event)."
+    },
+    "U01": {
+      "response_sha256": "4a89377d8bacb3a48bfcce21fd25d8fed4fe678d0c1595b96709dee197257cc6",
+      "grade": "pass",
+      "support": "not_applicable",
+      "criteria_met": {},
+      "notes": "Pass: correct abstention, fixed insufficient-evidence answer and zero citations. None of these PDFs documents a Mars policy in 2050."
+    },
+    "U02": {
+      "response_sha256": "c06cd2acb16aa368ea4a4e5430781dad7a8875ad49f9900f0ab941b55eafa6c9",
+      "grade": "pass",
+      "support": "not_applicable",
+      "criteria_met": {},
+      "notes": "Pass: correct abstention with zero citations. The casebook supplies no malware SHA-256; the source excerpt check confirms no 64-character hash on the relevant page."
+    }
+  }
+}

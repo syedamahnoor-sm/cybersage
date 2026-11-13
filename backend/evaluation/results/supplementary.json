@@ -1,0 +1,381 @@
+{
+  "risk_tool_results": [
+    {
+      "inputs": {
+        "likelihood": 1,
+        "impact": 2
+      },
+      "expected_score": 2,
+      "expected_category": "Low",
+      "http_status": 200,
+      "response": {
+        "capability": "risk",
+        "status": "assessed",
+        "answer": null,
+        "assessment": {
+          "likelihood": 1,
+          "impact": 2,
+          "score": 2,
+          "category": "Low",
+          "interpretation": "Likelihood 1/5 and impact 2/5 produce 2/25, classified as Low in this illustrative matrix.",
+          "disclaimer": "Illustrative qualitative matrix; not a validated prediction of real-world cyber risk."
+        },
+        "citations": [],
+        "error": null,
+        "model": null,
+        "retrieved_evidence_count": 0,
+        "selected_evidence_count": 0,
+        "abstention_reason": null,
+        "conversation_id": "[PRIVATE]",
+        "request_id": "[PRIVATE]",
+        "resolved_message": "Calculate risk",
+        "context_used": false
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "likelihood": 2,
+        "impact": 4
+      },
+      "expected_score": 8,
+      "expected_category": "Medium",
+      "http_status": 200,
+      "response": {
+        "capability": "risk",
+        "status": "assessed",
+        "answer": null,
+        "assessment": {
+          "likelihood": 2,
+          "impact": 4,
+          "score": 8,
+          "category": "Medium",
+          "interpretation": "Likelihood 2/5 and impact 4/5 produce 8/25, classified as Medium in this illustrative matrix.",
+          "disclaimer": "Illustrative qualitative matrix; not a validated prediction of real-world cyber risk."
+        },
+        "citations": [],
+        "error": null,
+        "model": null,
+        "retrieved_evidence_count": 0,
+        "selected_evidence_count": 0,
+        "abstention_reason": null,
+        "conversation_id": "[PRIVATE]",
+        "request_id": "[PRIVATE]",
+        "resolved_message": "Calculate risk",
+        "context_used": false
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "likelihood": 3,
+        "impact": 5
+      },
+      "expected_score": 15,
+      "expected_category": "High",
+      "http_status": 200,
+      "response": {
+        "capability": "risk",
+        "status": "assessed",
+        "answer": null,
+        "assessment": {
+          "likelihood": 3,
+          "impact": 5,
+          "score": 15,
+          "category": "High",
+          "interpretation": "Likelihood 3/5 and impact 5/5 produce 15/25, classified as High in this illustrative matrix.",
+          "disclaimer": "Illustrative qualitative matrix; not a validated prediction of real-world cyber risk."
+        },
+        "citations": [],
+        "error": null,
+        "model": null,
+        "retrieved_evidence_count": 0,
+        "selected_evidence_count": 0,
+        "abstention_reason": null,
+        "conversation_id": "[PRIVATE]",
+        "request_id": "[PRIVATE]",
+        "resolved_message": "Calculate risk",
+        "context_used": false
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "likelihood": 4,
+        "impact": 5
+      },
+      "expected_score": 20,
+      "expected_category": "Critical",
+      "http_status": 200,
+      "response": {
+        "capability": "risk",
+        "status": "assessed",
+        "answer": null,
+        "assessment": {
+          "likelihood": 4,
+          "impact": 5,
+          "score": 20,
+          "category": "Critical",
+          "interpretation": "Likelihood 4/5 and impact 5/5 produce 20/25, classified as Critical in this illustrative matrix.",
+          "disclaimer": "Illustrative qualitative matrix; not a validated prediction of real-world cyber risk."
+        },
+        "citations": [],
+        "error": null,
+        "model": null,
+        "retrieved_evidence_count": 0,
+        "selected_evidence_count": 0,
+        "abstention_reason": null,
+        "conversation_id": "[PRIVATE]",
+        "request_id": "[PRIVATE]",
+        "resolved_message": "Calculate risk",
+        "context_used": false
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "likelihood": 0,
+        "impact": 5
+      },
+      "expected_http_status": 422,
+      "http_status": 422,
+      "response": {
+        "detail": [
+          {
+            "type": "greater_than_equal",
+            "loc": [
+              "body",
+              "likelihood"
+            ],
+            "msg": "Input should be greater than or equal to 1",
+            "input": 0,
+            "ctx": {
+              "ge": 1
+            }
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "likelihood": true,
+        "impact": 5
+      },
+      "expected_http_status": 422,
+      "http_status": 422,
+      "response": {
+        "detail": [
+          {
+            "type": "int_type",
+            "loc": [
+              "body",
+              "likelihood"
+            ],
+            "msg": "Input should be a valid integer",
+            "input": true
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "inputs": {
+        "likelihood": "4",
+        "impact": 5
+      },
+      "expected_http_status": 422,
+      "http_status": 422,
+      "response": {
+        "detail": [
+          {
+            "type": "int_type",
+            "loc": [
+              "body",
+              "likelihood"
+            ],
+            "msg": "Input should be a valid integer",
+            "input": "4"
+          }
+        ]
+      },
+      "passed": true
+    }
+  ],
+  "memory_demonstration": {
+    "conversation_id": "[PRIVATE]",
+    "conversation_id_sha256": "672e2e3a19b20cc3ae8c7d1c7f44de4ea778e6bc3991359fa6352d3eca13c8fd",
+    "records": [
+      {
+        "question": "What does NIST CSF 2.0 say about incident response?",
+        "http_status": 200,
+        "duration_seconds": 5.7194,
+        "response": {
+          "capability": "knowledge",
+          "status": "answered",
+          "answer": "Framework guidance: \"RESPOND (RS): Actions regarding a detected cybersecurity incident are taken\" [NIST.CSWP.29.pdf, p. 27] (E_45eebff5cd2b40b6879df1161f0d7452)\n\nFramework guidance: \"\u2022 Incident Management (RS.MA): Responses to detected cybersecurity incidents are managed\" [NIST.CSWP.29.pdf, p. 27] (E_45eebff5cd2b40b6879df1161f0d7452)\n\nFramework guidance: \"RS.MA-01: The incident response plan is executed in coordination with relevant third parties once an incident is declared\" [NIST.CSWP.29.pdf, p. 27] (E_45eebff5cd2b40b6879df1161f0d7452)\n\nFramework guidance: \"RS.MA-05: The criteria for initiating incident recovery are applied\" [NIST.CSWP.29.pdf, p. 27] (E_45eebff5cd2b40b6879df1161f0d7452)\n\nFramework guidance: \"\u2022 Incident Analysis (RS.AN): Investigations are conducted to ensure effective response and support forensics and recovery activities\" [NIST.CSWP.29.pdf, p. 27] (E_45eebff5cd2b40b6879df1161f0d7452)",
+          "assessment": null,
+          "citations": [
+            {
+              "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+              "document_title": null,
+              "filename": "NIST.CSWP.29.pdf",
+              "page_number": 27,
+              "display_title": "NIST.CSWP.29.pdf",
+              "title_source": "filename",
+              "label": "[NIST.CSWP.29.pdf, p. 27]",
+              "evidence_id": "E_45eebff5cd2b40b6879df1161f0d7452",
+              "chunk_id": "45eebff5-cd2b-40b6-879d-f1161f0d7452",
+              "chunk_index": 76,
+              "quote": "RESPOND (RS): Actions regarding a detected cybersecurity incident are taken",
+              "source_kind": "framework"
+            },
+            {
+              "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+              "document_title": null,
+              "filename": "NIST.CSWP.29.pdf",
+              "page_number": 27,
+              "display_title": "NIST.CSWP.29.pdf",
+              "title_source": "filename",
+              "label": "[NIST.CSWP.29.pdf, p. 27]",
+              "evidence_id": "E_45eebff5cd2b40b6879df1161f0d7452",
+              "chunk_id": "45eebff5-cd2b-40b6-879d-f1161f0d7452",
+              "chunk_index": 76,
+              "quote": "\u2022 Incident Management (RS.MA): Responses to detected cybersecurity incidents are managed",
+              "source_kind": "framework"
+            },
+            {
+              "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+              "document_title": null,
+              "filename": "NIST.CSWP.29.pdf",
+              "page_number": 27,
+              "display_title": "NIST.CSWP.29.pdf",
+              "title_source": "filename",
+              "label": "[NIST.CSWP.29.pdf, p. 27]",
+              "evidence_id": "E_45eebff5cd2b40b6879df1161f0d7452",
+              "chunk_id": "45eebff5-cd2b-40b6-879d-f1161f0d7452",
+              "chunk_index": 76,
+              "quote": "RS.MA-01: The incident response plan is executed in coordination with relevant third parties once an incident is declared",
+              "source_kind": "framework"
+            },
+            {
+              "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+              "document_title": null,
+              "filename": "NIST.CSWP.29.pdf",
+              "page_number": 27,
+              "display_title": "NIST.CSWP.29.pdf",
+              "title_source": "filename",
+              "label": "[NIST.CSWP.29.pdf, p. 27]",
+              "evidence_id": "E_45eebff5cd2b40b6879df1161f0d7452",
+              "chunk_id": "45eebff5-cd2b-40b6-879d-f1161f0d7452",
+              "chunk_index": 76,
+              "quote": "RS.MA-05: The criteria for initiating incident recovery are applied",
+              "source_kind": "framework"
+            },
+            {
+              "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+              "document_title": null,
+              "filename": "NIST.CSWP.29.pdf",
+              "page_number": 27,
+              "display_title": "NIST.CSWP.29.pdf",
+              "title_source": "filename",
+              "label": "[NIST.CSWP.29.pdf, p. 27]",
+              "evidence_id": "E_45eebff5cd2b40b6879df1161f0d7452",
+              "chunk_id": "45eebff5-cd2b-40b6-879d-f1161f0d7452",
+              "chunk_index": 76,
+              "quote": "\u2022 Incident Analysis (RS.AN): Investigations are conducted to ensure effective response and support forensics and recovery activities",
+              "source_kind": "framework"
+            }
+          ],
+          "error": null,
+          "model": "openai/gpt-oss-120b",
+          "retrieved_evidence_count": 1,
+          "selected_evidence_count": 1,
+          "abstention_reason": null,
+          "conversation_id": "[PRIVATE]",
+          "request_id": "[PRIVATE]",
+          "resolved_message": "What does NIST CSF 2.0 say about incident response?",
+          "context_used": false
+        },
+        "citation_checks": [
+          {
+            "evidence_id": "E_45eebff5cd2b40b6879df1161f0d7452",
+            "metadata_valid": true,
+            "quote_in_chunk": true,
+            "quote_in_pdf": true,
+            "provenance_valid": true,
+            "source_relevant": true,
+            "expected_page": true
+          },
+          {
+            "evidence_id": "E_45eebff5cd2b40b6879df1161f0d7452",
+            "metadata_valid": true,
+            "quote_in_chunk": true,
+            "quote_in_pdf": true,
+            "provenance_valid": true,
+            "source_relevant": true,
+            "expected_page": true
+          },
+          {
+            "evidence_id": "E_45eebff5cd2b40b6879df1161f0d7452",
+            "metadata_valid": true,
+            "quote_in_chunk": true,
+            "quote_in_pdf": true,
+            "provenance_valid": true,
+            "source_relevant": true,
+            "expected_page": true
+          },
+          {
+            "evidence_id": "E_45eebff5cd2b40b6879df1161f0d7452",
+            "metadata_valid": true,
+            "quote_in_chunk": true,
+            "quote_in_pdf": true,
+            "provenance_valid": true,
+            "source_relevant": true,
+            "expected_page": true
+          },
+          {
+            "evidence_id": "E_45eebff5cd2b40b6879df1161f0d7452",
+            "metadata_valid": true,
+            "quote_in_chunk": true,
+            "quote_in_pdf": true,
+            "provenance_valid": true,
+            "source_relevant": true,
+            "expected_page": true
+          }
+        ]
+      },
+      {
+        "question": "What about recovery?",
+        "http_status": 200,
+        "duration_seconds": 3.7511,
+        "response": {
+          "capability": "knowledge",
+          "status": "insufficient_evidence",
+          "answer": "The available source evidence is insufficient to answer this question reliably.",
+          "assessment": null,
+          "citations": [],
+          "error": null,
+          "model": "openai/gpt-oss-120b",
+          "retrieved_evidence_count": 1,
+          "selected_evidence_count": 1,
+          "abstention_reason": "unsupported_evidence",
+          "conversation_id": "[PRIVATE]",
+          "request_id": "[PRIVATE]",
+          "resolved_message": "What does NIST CSF 2.0 say about recovery?",
+          "context_used": true
+        },
+        "citation_checks": []
+      }
+    ],
+    "history_persisted": true,
+    "persistence_verified_after_restart": true,
+    "resolved_correctly": true,
+    "restart_verification": {
+      "previous_api_pid": 8944,
+      "restarted_api_pid": 18320,
+      "actual_process_restart_performed": true,
+      "method": "complete GET history equals locally retained pre-restart snapshot"
+    }
+  }
+}

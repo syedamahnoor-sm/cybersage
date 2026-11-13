@@ -1,0 +1,1761 @@
+{
+  "schema_version": 1,
+  "dataset_sha256": "a9ac5ca1e6cd857924f713f2994b3bf428fae34f5db8d9985a128e0aa4d93674",
+  "started_at": "2026-11-13T11:18:49.113951+00:00",
+  "overall_status": "complete",
+  "parameters": {
+    "top_k": 5,
+    "pause_seconds": 65,
+    "independent_requests": true,
+    "base": "http://127.0.0.1:8001"
+  },
+  "results": [
+    {
+      "question_id": "P01",
+      "execution": "executed",
+      "error": null,
+      "retrieval_diagnostic": {
+        "query": "How does Pakistan's National Cyber Security Policy 2021 treat cyber-attacks on critical infrastructure and respond to them?",
+        "results": [
+          {
+            "chunk_id": "2c5f145a-b2d9-412a-a8bc-076468de76e9",
+            "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+            "document_title": null,
+            "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+            "page_number": 1,
+            "chunk_index": 0,
+            "content": "National Cyber Security Policy 2021                                                                                    \n \n \n \n \n \n \nNATIONAL CYBER SECURITY POLICY 2021 \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \nJULY, 2021 \nMINISTRY OF INFORMATION TECHNOLOGY & TELECOMMUNICATION \nGovernment of Pakistan",
+            "cosine_distance": 0.2185181845117683,
+            "similarity_score": 0.7814818154882317,
+            "citation": {
+              "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+              "document_title": null,
+              "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "page_number": 1,
+              "display_title": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "title_source": "filename",
+              "label": "[2021-National-Cyber-Security-Policy-Final.pdf, p. 1]"
+            }
+          },
+          {
+            "chunk_id": "25a57286-33a0-4d78-928c-5daeaaf524c9",
+            "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+            "document_title": null,
+            "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+            "page_number": 11,
+            "chunk_index": 24,
+            "content": "National Cyber Security Policy 2021 \n8 \n\u2022 \nWill regard a cyber-attack on Pakistan CI/ CII as an act of aggression \nagainst national sovereignty and will defend itself with appropriate \nresponse measures.  \n\u2022 \nWill act per national and international Cyber Security frameworks, \nstandards and best practices and expect reciprocal respect of our \nnational digital sovereignty. \n \n \nPolicy Deliverables \n3.1 \nCYBER SECURITY GOVERNANCE \n3.1.1 POLICY FORMULATION AND OVERSIGHT: CYBER GOVERNANCE \nPOLICY COMMITTEE (CGPC) \nA Cyber Governance Policy Committee (CGPC) has been constituted \nto assert national level ownership to policy initiatives related to cyber-\ngovernance and security. Cyber Governance Policy Committee is responsible \nfor strategic oversight over national Cyber Security issues.  \n\u2022 \nCore Functions: \no \nFormulate, guide, and recommend for the approval of the \nNational Cyber Security Policy and Cyber Security Act.  \no \nAssist in addressing requirements of organizational structures,",
+            "cosine_distance": 0.2564958028202292,
+            "similarity_score": 0.7435041971797708,
+            "citation": {
+              "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+              "document_title": null,
+              "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "page_number": 11,
+              "display_title": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "title_source": "filename",
+              "label": "[2021-National-Cyber-Security-Policy-Final.pdf, p. 11]"
+            }
+          },
+          {
+            "chunk_id": "b369a204-bc43-48e4-a709-cb08da6798c5",
+            "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+            "document_title": null,
+            "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+            "page_number": 8,
+            "chunk_index": 19,
+            "content": "standards and regulations under a policy and legislative framework. \nIn this regard, the Government of Pakistan constituted Cyber \nGovernance Policy Committee (CGPC). Noting the strategic importance of \nCyber Security, the present Government has prioritized the formulation of the \nfirst National Cyber Security Policy \u2013 2021. This initiative is in conformity with the \nnational cyber vision.",
+            "cosine_distance": 0.271492405444835,
+            "similarity_score": 0.728507594555165,
+            "citation": {
+              "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+              "document_title": null,
+              "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "page_number": 8,
+              "display_title": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "title_source": "filename",
+              "label": "[2021-National-Cyber-Security-Policy-Final.pdf, p. 8]"
+            }
+          },
+          {
+            "chunk_id": "89ae0d15-5c75-42ff-be21-52fa620b6fa6",
+            "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+            "document_title": null,
+            "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+            "page_number": 9,
+            "chunk_index": 20,
+            "content": "National Cyber Security Policy 2021 \n6 \n \nVision, Scope & Objectives \n2.1 \nVISION \n \nThe vision is for Pakistan to have a secure, robust, and continually \nimproving nationwide digital ecosystem ensuring accountable confidentiality, \nintegrity, and availability of digital assets leading to socio-economic \ndevelopment and national security. \n2.2 \nSCOPE \n \nThis policy framework is envisaged to secure the entire cyberspace of \nPakistan including all digital assets of Pakistan, data processed, managed, \nstored, transmitted or any other activity carried out in public and private \nsectors, and the information and communication systems used by the citizens \nof Pakistan. \n2.3 \nOBJECTIVES \n\u2022 \nTo establish governance and institutional framework for a secure cyber \necosystem. \n\u2022 \nTo enhance the security of national information systems and \ninfrastructure.  \n\u2022 \nTo create a protection and information sharing mechanism at all tiers \ncapable to monitor, detect, protect and respond against threats to",
+            "cosine_distance": 0.2728794487858476,
+            "similarity_score": 0.7271205512141524,
+            "citation": {
+              "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+              "document_title": null,
+              "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "page_number": 9,
+              "display_title": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "title_source": "filename",
+              "label": "[2021-National-Cyber-Security-Policy-Final.pdf, p. 9]"
+            }
+          },
+          {
+            "chunk_id": "1e0cc7ec-f660-4d9c-bc09-9fe0ad2412c2",
+            "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+            "document_title": null,
+            "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+            "page_number": 22,
+            "chunk_index": 51,
+            "content": "National Cyber Security Policy 2021 \n19 \n \nTo achieve the short term, medium, and long-term objectives sectoral \nbodies such as banking, telecom, education, and provincial institutions will be \nempowered to strengthen the national Cyber Security posture. In short term, \ncapacity building of relevant stakeholders around stated policies, standards, \nand procedures will be prioritized and planned to achieve within the first year \nof the policy. \n \nPolicy Review and Implementation \nThe National Cyber Security Policy 2021 is subject to inclusive review after \nevery three years and as when required, depending on the emerging global \ncyber trends and technological advancements by the relevant organization \nin consultation with all stakeholders.",
+            "cosine_distance": 0.31665245791360863,
+            "similarity_score": 0.6833475420863914,
+            "citation": {
+              "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+              "document_title": null,
+              "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "page_number": 22,
+              "display_title": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "title_source": "filename",
+              "label": "[2021-National-Cyber-Security-Policy-Final.pdf, p. 22]"
+            }
+          }
+        ],
+        "result_count": 5,
+        "min_similarity": 0.2
+      },
+      "http_status": 200,
+      "duration_seconds": 3.9961,
+      "response": {
+        "capability": "knowledge",
+        "status": "answered",
+        "answer": "Policy source: \"Will regard a cyber-attack on Pakistan CI/ CII as an act of aggression against national sovereignty and will defend itself with appropriate response measures.\" [2021-National-Cyber-Security-Policy-Final.pdf, p. 11] (E_25a5728633a04d78928c5daeaaf524c9)\n\nPolicy source: \"Will act per national and international Cyber Security frameworks, standards and best practices and expect reciprocal respect of our national digital sovereignty.\" [2021-National-Cyber-Security-Policy-Final.pdf, p. 11] (E_25a5728633a04d78928c5daeaaf524c9)",
+        "assessment": null,
+        "citations": [
+          {
+            "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+            "document_title": null,
+            "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+            "page_number": 11,
+            "display_title": "2021-National-Cyber-Security-Policy-Final.pdf",
+            "title_source": "filename",
+            "label": "[2021-National-Cyber-Security-Policy-Final.pdf, p. 11]",
+            "evidence_id": "E_25a5728633a04d78928c5daeaaf524c9",
+            "chunk_id": "25a57286-33a0-4d78-928c-5daeaaf524c9",
+            "chunk_index": 24,
+            "quote": "Will regard a cyber-attack on Pakistan CI/ CII as an act of aggression against national sovereignty and will defend itself with appropriate response measures.",
+            "source_kind": "policy"
+          },
+          {
+            "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+            "document_title": null,
+            "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+            "page_number": 11,
+            "display_title": "2021-National-Cyber-Security-Policy-Final.pdf",
+            "title_source": "filename",
+            "label": "[2021-National-Cyber-Security-Policy-Final.pdf, p. 11]",
+            "evidence_id": "E_25a5728633a04d78928c5daeaaf524c9",
+            "chunk_id": "25a57286-33a0-4d78-928c-5daeaaf524c9",
+            "chunk_index": 24,
+            "quote": "Will act per national and international Cyber Security frameworks, standards and best practices and expect reciprocal respect of our national digital sovereignty.",
+            "source_kind": "policy"
+          }
+        ],
+        "error": null,
+        "model": "openai/gpt-oss-120b",
+        "retrieved_evidence_count": 5,
+        "selected_evidence_count": 5,
+        "abstention_reason": null,
+        "conversation_id": "[PRIVATE]",
+        "request_id": "[PRIVATE]",
+        "resolved_message": "How does Pakistan's National Cyber Security Policy 2021 treat cyber-attacks on critical infrastructure and respond to them?",
+        "context_used": false
+      },
+      "conversation_independence_verified": true,
+      "citation_checks": [
+        {
+          "evidence_id": "E_25a5728633a04d78928c5daeaaf524c9",
+          "metadata_valid": true,
+          "quote_in_chunk": true,
+          "quote_in_pdf": true,
+          "provenance_valid": true,
+          "source_relevant": true,
+          "expected_page": true
+        },
+        {
+          "evidence_id": "E_25a5728633a04d78928c5daeaaf524c9",
+          "metadata_valid": true,
+          "quote_in_chunk": true,
+          "quote_in_pdf": true,
+          "provenance_valid": true,
+          "source_relevant": true,
+          "expected_page": true
+        }
+      ],
+      "lexical_coverage": {
+        "sovereignty": true,
+        "response": true
+      },
+      "failure_classification": null
+    },
+    {
+      "question_id": "P02",
+      "execution": "executed",
+      "error": null,
+      "retrieval_diagnostic": {
+        "query": "What is the vision of Pakistan's National Cyber Security Policy 2021?",
+        "results": [
+          {
+            "chunk_id": "2c5f145a-b2d9-412a-a8bc-076468de76e9",
+            "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+            "document_title": null,
+            "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+            "page_number": 1,
+            "chunk_index": 0,
+            "content": "National Cyber Security Policy 2021                                                                                    \n \n \n \n \n \n \nNATIONAL CYBER SECURITY POLICY 2021 \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \nJULY, 2021 \nMINISTRY OF INFORMATION TECHNOLOGY & TELECOMMUNICATION \nGovernment of Pakistan",
+            "cosine_distance": 0.1579221487045288,
+            "similarity_score": 0.8420778512954712,
+            "citation": {
+              "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+              "document_title": null,
+              "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "page_number": 1,
+              "display_title": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "title_source": "filename",
+              "label": "[2021-National-Cyber-Security-Policy-Final.pdf, p. 1]"
+            }
+          },
+          {
+            "chunk_id": "89ae0d15-5c75-42ff-be21-52fa620b6fa6",
+            "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+            "document_title": null,
+            "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+            "page_number": 9,
+            "chunk_index": 20,
+            "content": "National Cyber Security Policy 2021 \n6 \n \nVision, Scope & Objectives \n2.1 \nVISION \n \nThe vision is for Pakistan to have a secure, robust, and continually \nimproving nationwide digital ecosystem ensuring accountable confidentiality, \nintegrity, and availability of digital assets leading to socio-economic \ndevelopment and national security. \n2.2 \nSCOPE \n \nThis policy framework is envisaged to secure the entire cyberspace of \nPakistan including all digital assets of Pakistan, data processed, managed, \nstored, transmitted or any other activity carried out in public and private \nsectors, and the information and communication systems used by the citizens \nof Pakistan. \n2.3 \nOBJECTIVES \n\u2022 \nTo establish governance and institutional framework for a secure cyber \necosystem. \n\u2022 \nTo enhance the security of national information systems and \ninfrastructure.  \n\u2022 \nTo create a protection and information sharing mechanism at all tiers \ncapable to monitor, detect, protect and respond against threats to",
+            "cosine_distance": 0.18029444335136013,
+            "similarity_score": 0.8197055566486399,
+            "citation": {
+              "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+              "document_title": null,
+              "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "page_number": 9,
+              "display_title": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "title_source": "filename",
+              "label": "[2021-National-Cyber-Security-Policy-Final.pdf, p. 9]"
+            }
+          },
+          {
+            "chunk_id": "b369a204-bc43-48e4-a709-cb08da6798c5",
+            "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+            "document_title": null,
+            "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+            "page_number": 8,
+            "chunk_index": 19,
+            "content": "standards and regulations under a policy and legislative framework. \nIn this regard, the Government of Pakistan constituted Cyber \nGovernance Policy Committee (CGPC). Noting the strategic importance of \nCyber Security, the present Government has prioritized the formulation of the \nfirst National Cyber Security Policy \u2013 2021. This initiative is in conformity with the \nnational cyber vision.",
+            "cosine_distance": 0.20943820476531982,
+            "similarity_score": 0.7905617952346802,
+            "citation": {
+              "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+              "document_title": null,
+              "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "page_number": 8,
+              "display_title": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "title_source": "filename",
+              "label": "[2021-National-Cyber-Security-Policy-Final.pdf, p. 8]"
+            }
+          },
+          {
+            "chunk_id": "25a57286-33a0-4d78-928c-5daeaaf524c9",
+            "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+            "document_title": null,
+            "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+            "page_number": 11,
+            "chunk_index": 24,
+            "content": "National Cyber Security Policy 2021 \n8 \n\u2022 \nWill regard a cyber-attack on Pakistan CI/ CII as an act of aggression \nagainst national sovereignty and will defend itself with appropriate \nresponse measures.  \n\u2022 \nWill act per national and international Cyber Security frameworks, \nstandards and best practices and expect reciprocal respect of our \nnational digital sovereignty. \n \n \nPolicy Deliverables \n3.1 \nCYBER SECURITY GOVERNANCE \n3.1.1 POLICY FORMULATION AND OVERSIGHT: CYBER GOVERNANCE \nPOLICY COMMITTEE (CGPC) \nA Cyber Governance Policy Committee (CGPC) has been constituted \nto assert national level ownership to policy initiatives related to cyber-\ngovernance and security. Cyber Governance Policy Committee is responsible \nfor strategic oversight over national Cyber Security issues.  \n\u2022 \nCore Functions: \no \nFormulate, guide, and recommend for the approval of the \nNational Cyber Security Policy and Cyber Security Act.  \no \nAssist in addressing requirements of organizational structures,",
+            "cosine_distance": 0.22397892332202518,
+            "similarity_score": 0.7760210766779748,
+            "citation": {
+              "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+              "document_title": null,
+              "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "page_number": 11,
+              "display_title": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "title_source": "filename",
+              "label": "[2021-National-Cyber-Security-Policy-Final.pdf, p. 11]"
+            }
+          },
+          {
+            "chunk_id": "ee81b419-ce95-4f55-8008-ab6f8540e562",
+            "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+            "document_title": null,
+            "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+            "page_number": 8,
+            "chunk_index": 18,
+            "content": "infrastructure. This Policy will drive the fundamental demand in the local IT \nindustry to ensure quality delivery of its products and services. This will provide \nan opportunity for local & international entrepreneurs and firms to offer core \ncompetencies, services, and solutions and offer an opportunity to local \nindustry to become better positioned to compete and prosper on the \ninternational stage. The focus will also be on promoting online businesses \nenabling the smooth running of digital payments within and outside Pakistan. \nMoreover, to mitigate cyber threats, the country faces today and to \nimprove the national Cyber Security outlook, it is imperative to undertake the \nstrengthening of national Cyber Security capabilities through the development \nof essential and well-coordinated mechanisms, implementation of security \nstandards and regulations under a policy and legislative framework. \nIn this regard, the Government of Pakistan constituted Cyber",
+            "cosine_distance": 0.27990166664709515,
+            "similarity_score": 0.7200983333529049,
+            "citation": {
+              "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+              "document_title": null,
+              "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "page_number": 8,
+              "display_title": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "title_source": "filename",
+              "label": "[2021-National-Cyber-Security-Policy-Final.pdf, p. 8]"
+            }
+          }
+        ],
+        "result_count": 5,
+        "min_similarity": 0.2
+      },
+      "http_status": 200,
+      "duration_seconds": 2.5834,
+      "response": {
+        "capability": "knowledge",
+        "status": "answered",
+        "answer": "Policy source: \"The vision is for Pakistan to have a secure, robust, and continually improving nationwide digital ecosystem ensuring accountable confidentiality, integrity, and availability of digital assets leading to socio-economic development and national security.\" [2021-National-Cyber-Security-Policy-Final.pdf, p. 9] (E_89ae0d155c7542ffbe2152fa620b6fa6)",
+        "assessment": null,
+        "citations": [
+          {
+            "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+            "document_title": null,
+            "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+            "page_number": 9,
+            "display_title": "2021-National-Cyber-Security-Policy-Final.pdf",
+            "title_source": "filename",
+            "label": "[2021-National-Cyber-Security-Policy-Final.pdf, p. 9]",
+            "evidence_id": "E_89ae0d155c7542ffbe2152fa620b6fa6",
+            "chunk_id": "89ae0d15-5c75-42ff-be21-52fa620b6fa6",
+            "chunk_index": 20,
+            "quote": "The vision is for Pakistan to have a secure, robust, and continually improving nationwide digital ecosystem ensuring accountable confidentiality, integrity, and availability of digital assets leading to socio-economic development and national security.",
+            "source_kind": "policy"
+          }
+        ],
+        "error": null,
+        "model": "openai/gpt-oss-120b",
+        "retrieved_evidence_count": 5,
+        "selected_evidence_count": 5,
+        "abstention_reason": null,
+        "conversation_id": "[PRIVATE]",
+        "request_id": "[PRIVATE]",
+        "resolved_message": "What is the vision of Pakistan's National Cyber Security Policy 2021?",
+        "context_used": false
+      },
+      "conversation_independence_verified": true,
+      "citation_checks": [
+        {
+          "evidence_id": "E_89ae0d155c7542ffbe2152fa620b6fa6",
+          "metadata_valid": true,
+          "quote_in_chunk": true,
+          "quote_in_pdf": true,
+          "provenance_valid": true,
+          "source_relevant": true,
+          "expected_page": true
+        }
+      ],
+      "lexical_coverage": {
+        "ecosystem": true,
+        "cia": true,
+        "development": true
+      },
+      "failure_classification": null
+    },
+    {
+      "question_id": "P03",
+      "execution": "executed",
+      "error": null,
+      "retrieval_diagnostic": {
+        "query": "What oversight and policy-formulation functions does Pakistan's Cyber Governance Policy Committee (CGPC) have?",
+        "results": [
+          {
+            "chunk_id": "b369a204-bc43-48e4-a709-cb08da6798c5",
+            "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+            "document_title": null,
+            "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+            "page_number": 8,
+            "chunk_index": 19,
+            "content": "standards and regulations under a policy and legislative framework. \nIn this regard, the Government of Pakistan constituted Cyber \nGovernance Policy Committee (CGPC). Noting the strategic importance of \nCyber Security, the present Government has prioritized the formulation of the \nfirst National Cyber Security Policy \u2013 2021. This initiative is in conformity with the \nnational cyber vision.",
+            "cosine_distance": 0.12536394596099854,
+            "similarity_score": 0.8746360540390015,
+            "citation": {
+              "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+              "document_title": null,
+              "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "page_number": 8,
+              "display_title": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "title_source": "filename",
+              "label": "[2021-National-Cyber-Security-Policy-Final.pdf, p. 8]"
+            }
+          },
+          {
+            "chunk_id": "25a57286-33a0-4d78-928c-5daeaaf524c9",
+            "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+            "document_title": null,
+            "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+            "page_number": 11,
+            "chunk_index": 24,
+            "content": "National Cyber Security Policy 2021 \n8 \n\u2022 \nWill regard a cyber-attack on Pakistan CI/ CII as an act of aggression \nagainst national sovereignty and will defend itself with appropriate \nresponse measures.  \n\u2022 \nWill act per national and international Cyber Security frameworks, \nstandards and best practices and expect reciprocal respect of our \nnational digital sovereignty. \n \n \nPolicy Deliverables \n3.1 \nCYBER SECURITY GOVERNANCE \n3.1.1 POLICY FORMULATION AND OVERSIGHT: CYBER GOVERNANCE \nPOLICY COMMITTEE (CGPC) \nA Cyber Governance Policy Committee (CGPC) has been constituted \nto assert national level ownership to policy initiatives related to cyber-\ngovernance and security. Cyber Governance Policy Committee is responsible \nfor strategic oversight over national Cyber Security issues.  \n\u2022 \nCore Functions: \no \nFormulate, guide, and recommend for the approval of the \nNational Cyber Security Policy and Cyber Security Act.  \no \nAssist in addressing requirements of organizational structures,",
+            "cosine_distance": 0.16224645601233956,
+            "similarity_score": 0.8377535439876604,
+            "citation": {
+              "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+              "document_title": null,
+              "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "page_number": 11,
+              "display_title": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "title_source": "filename",
+              "label": "[2021-National-Cyber-Security-Policy-Final.pdf, p. 11]"
+            }
+          },
+          {
+            "chunk_id": "6aa955e2-70b9-49c6-8ea5-d3acd11ee7ee",
+            "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+            "document_title": null,
+            "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+            "page_number": 12,
+            "chunk_index": 26,
+            "content": "National Cyber Security Policy 2021 \n9 \n\u2022 \nThe policy recommendations of CGPC will be approved/endorsed by \nthe Federal Cabinet.  \n3.1.2 INSTITUTIONAL STRUCTURE FOR IMPLEMENTATION \nTo achieve the objectives, an implementation framework shall be \ndeveloped by a designated organization of the Federal Government, dealing \nwith the subject of Cyber Security. This organization shall also act as the Central \nEntity at the federal level for coordination and implementing all Cyber Security \nrelated matters on the below levels:  \ni. \nNational Level: The Central Entity along with its National Computer \nEmergency Response Team (nCERT) and National Security Operation \nCenter (nSOC). \nii. \nSectoral Level: Sectoral Regulator(s)/ CERTs (including but not limited to \nDefense, Telecom, Banking and finance, Power, Federal, and Provincial \npublic sector). \niii. \nOrganizational Level: Enterprises, entities, and individual users. \n3.2 \nACTIVE DEFENCE",
+            "cosine_distance": 0.2774846388408744,
+            "similarity_score": 0.7225153611591256,
+            "citation": {
+              "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+              "document_title": null,
+              "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "page_number": 12,
+              "display_title": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "title_source": "filename",
+              "label": "[2021-National-Cyber-Security-Policy-Final.pdf, p. 12]"
+            }
+          },
+          {
+            "chunk_id": "560db1a5-2dbe-4c95-aac1-ba9a3b9206f8",
+            "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+            "document_title": null,
+            "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+            "page_number": 6,
+            "chunk_index": 12,
+            "content": "Security requires administrative support due to its sensitive nature, challenging \ndomain, and cross-sectoral application.  \n1.3.2 Governance and Implementation challenges of Cyber Security \nPolicy and Strategy  \nIn the absence of a centralized policy and strategy for Cyber Security, \nattempts at securing the digital assets of the country are liable to be random \nand uncoordinated.  \ni. \nWEAK ENFORCEMENT OF STATUTES  \nThe existing legislation related to Cyber Security does not provide effective \nlegal protection of Pakistan\u2019s digital assets. The existing legislation related to \nCyber Security is not sufficient to provide an adequate mechanism and there \nis a dire need to transform it in such a manner that it should keep the interest \nof the nation in letter and spirit without fail. For that matter, an appropriate \nlegislative structure could help to comply against a centralized and robust \ncompliance framework. \nii. \nASSESSMENT AND CONTINUAL IMPROVEMENT",
+            "cosine_distance": 0.34402950477247907,
+            "similarity_score": 0.6559704952275209,
+            "citation": {
+              "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+              "document_title": null,
+              "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "page_number": 6,
+              "display_title": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "title_source": "filename",
+              "label": "[2021-National-Cyber-Security-Policy-Final.pdf, p. 6]"
+            }
+          },
+          {
+            "chunk_id": "89ae0d15-5c75-42ff-be21-52fa620b6fa6",
+            "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+            "document_title": null,
+            "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+            "page_number": 9,
+            "chunk_index": 20,
+            "content": "National Cyber Security Policy 2021 \n6 \n \nVision, Scope & Objectives \n2.1 \nVISION \n \nThe vision is for Pakistan to have a secure, robust, and continually \nimproving nationwide digital ecosystem ensuring accountable confidentiality, \nintegrity, and availability of digital assets leading to socio-economic \ndevelopment and national security. \n2.2 \nSCOPE \n \nThis policy framework is envisaged to secure the entire cyberspace of \nPakistan including all digital assets of Pakistan, data processed, managed, \nstored, transmitted or any other activity carried out in public and private \nsectors, and the information and communication systems used by the citizens \nof Pakistan. \n2.3 \nOBJECTIVES \n\u2022 \nTo establish governance and institutional framework for a secure cyber \necosystem. \n\u2022 \nTo enhance the security of national information systems and \ninfrastructure.  \n\u2022 \nTo create a protection and information sharing mechanism at all tiers \ncapable to monitor, detect, protect and respond against threats to",
+            "cosine_distance": 0.36403767084850724,
+            "similarity_score": 0.6359623291514928,
+            "citation": {
+              "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+              "document_title": null,
+              "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "page_number": 9,
+              "display_title": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "title_source": "filename",
+              "label": "[2021-National-Cyber-Security-Policy-Final.pdf, p. 9]"
+            }
+          }
+        ],
+        "result_count": 5,
+        "min_similarity": 0.2
+      },
+      "http_status": 200,
+      "duration_seconds": 3.3845,
+      "response": {
+        "capability": "knowledge",
+        "status": "answered",
+        "answer": "Policy source: \"Cyber Governance Policy Committee is responsible for strategic oversight over national Cyber Security issues.\" [2021-National-Cyber-Security-Policy-Final.pdf, p. 11] (E_25a5728633a04d78928c5daeaaf524c9)\n\nPolicy source: \"Formulate, guide, and recommend for the approval of the National Cyber Security Policy and Cyber Security Act.\" [2021-National-Cyber-Security-Policy-Final.pdf, p. 11] (E_25a5728633a04d78928c5daeaaf524c9)",
+        "assessment": null,
+        "citations": [
+          {
+            "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+            "document_title": null,
+            "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+            "page_number": 11,
+            "display_title": "2021-National-Cyber-Security-Policy-Final.pdf",
+            "title_source": "filename",
+            "label": "[2021-National-Cyber-Security-Policy-Final.pdf, p. 11]",
+            "evidence_id": "E_25a5728633a04d78928c5daeaaf524c9",
+            "chunk_id": "25a57286-33a0-4d78-928c-5daeaaf524c9",
+            "chunk_index": 24,
+            "quote": "Cyber Governance Policy Committee is responsible for strategic oversight over national Cyber Security issues.",
+            "source_kind": "policy"
+          },
+          {
+            "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+            "document_title": null,
+            "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+            "page_number": 11,
+            "display_title": "2021-National-Cyber-Security-Policy-Final.pdf",
+            "title_source": "filename",
+            "label": "[2021-National-Cyber-Security-Policy-Final.pdf, p. 11]",
+            "evidence_id": "E_25a5728633a04d78928c5daeaaf524c9",
+            "chunk_id": "25a57286-33a0-4d78-928c-5daeaaf524c9",
+            "chunk_index": 24,
+            "quote": "Formulate, guide, and recommend for the approval of the National Cyber Security Policy and Cyber Security Act.",
+            "source_kind": "policy"
+          }
+        ],
+        "error": null,
+        "model": "openai/gpt-oss-120b",
+        "retrieved_evidence_count": 5,
+        "selected_evidence_count": 5,
+        "abstention_reason": null,
+        "conversation_id": "[PRIVATE]",
+        "request_id": "[PRIVATE]",
+        "resolved_message": "What oversight and policy-formulation functions does Pakistan's Cyber Governance Policy Committee (CGPC) have?",
+        "context_used": false
+      },
+      "conversation_independence_verified": true,
+      "citation_checks": [
+        {
+          "evidence_id": "E_25a5728633a04d78928c5daeaaf524c9",
+          "metadata_valid": true,
+          "quote_in_chunk": true,
+          "quote_in_pdf": true,
+          "provenance_valid": true,
+          "source_relevant": true,
+          "expected_page": true
+        },
+        {
+          "evidence_id": "E_25a5728633a04d78928c5daeaaf524c9",
+          "metadata_valid": true,
+          "quote_in_chunk": true,
+          "quote_in_pdf": true,
+          "provenance_valid": true,
+          "source_relevant": true,
+          "expected_page": true
+        }
+      ],
+      "lexical_coverage": {
+        "oversight": true,
+        "formulation": true,
+        "reviews": false
+      },
+      "failure_classification": "incomplete_answer"
+    },
+    {
+      "question_id": "N01",
+      "execution": "executed",
+      "error": null,
+      "retrieval_diagnostic": {
+        "query": "How does NIST CSF 2.0 address incident response plan execution, incident triage, and prioritization?",
+        "results": [
+          {
+            "chunk_id": "45eebff5-cd2b-40b6-879d-f1161f0d7452",
+            "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+            "document_title": null,
+            "filename": "NIST.CSWP.29.pdf",
+            "page_number": 27,
+            "chunk_index": 76,
+            "content": "NIST CSWP 29 \n \nThe NIST Cybersecurity Framework (CSF) 2.0 \nFebruary 26, 2024 \n \n \n \n22\nRESPOND (RS): Actions regarding a detected cybersecurity incident are taken \n\u2022 Incident Management (RS.MA): Responses to detected cybersecurity incidents are \nmanaged \no RS.MA-01: The incident response plan is executed in coordination with relevant third \nparties once an incident is declared  \no RS.MA-02: Incident reports are triaged and validated \no RS.MA-03: Incidents are categorized and prioritized \no RS.MA-04: Incidents are escalated or elevated as needed \no RS.MA-05: The criteria for initiating incident recovery are applied \n\u2022 Incident Analysis (RS.AN): Investigations are conducted to ensure effective response and \nsupport forensics and recovery activities \no RS.AN-03: Analysis is performed to establish what has taken place during an incident \nand the root cause of the incident \no RS.AN-06: Actions performed during an investigation are recorded, and the records\u2019",
+            "cosine_distance": 0.33588357736067564,
+            "similarity_score": 0.6641164226393244,
+            "citation": {
+              "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+              "document_title": null,
+              "filename": "NIST.CSWP.29.pdf",
+              "page_number": 27,
+              "display_title": "NIST.CSWP.29.pdf",
+              "title_source": "filename",
+              "label": "[NIST.CSWP.29.pdf, p. 27]"
+            }
+          },
+          {
+            "chunk_id": "50c15008-5f9c-4f35-99fe-d18b1f318703",
+            "document_id": "114762b2-d981-4d8a-b3fe-746d27ead5fe",
+            "document_title": null,
+            "filename": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+            "page_number": 2,
+            "chunk_index": 3,
+            "content": "triage priority: High. These case-specific values represent an internal illustrative assessment, not an official NIST\nscore.\nResidual exposure and follow-up\nThe security owner was assigned to verify that preventive controls remain effective and to retain investigation\nartifacts according to organizational policy. Further claims about attacker identity, undiscovered activity, or\ndownstream harm were not established by this case record.",
+            "cosine_distance": 0.38636012239931117,
+            "similarity_score": 0.6136398776006888,
+            "citation": {
+              "document_id": "114762b2-d981-4d8a-b3fe-746d27ead5fe",
+              "document_title": null,
+              "filename": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+              "page_number": 2,
+              "display_title": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+              "title_source": "filename",
+              "label": "[CyberSage_Security_Incident_Casebook_RAG_v2.pdf, p. 2]"
+            }
+          },
+          {
+            "chunk_id": "39d732c8-4c21-4f92-bbe6-ecc2df2d4625",
+            "document_id": "114762b2-d981-4d8a-b3fe-746d27ead5fe",
+            "document_title": null,
+            "filename": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+            "page_number": 8,
+            "chunk_index": 21,
+            "content": "triage priority: High. These case-specific values represent an internal illustrative assessment, not an official NIST\nscore.\nResidual exposure and follow-up\nThe security owner was assigned to verify that preventive controls remain effective and to retain investigation\nartifacts according to organizational policy. Further claims about attacker identity, undiscovered activity, or\ndownstream harm were not established by this case record.",
+            "cosine_distance": 0.38636012239931117,
+            "similarity_score": 0.6136398776006888,
+            "citation": {
+              "document_id": "114762b2-d981-4d8a-b3fe-746d27ead5fe",
+              "document_title": null,
+              "filename": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+              "page_number": 8,
+              "display_title": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+              "title_source": "filename",
+              "label": "[CyberSage_Security_Incident_Casebook_RAG_v2.pdf, p. 8]"
+            }
+          },
+          {
+            "chunk_id": "6eaa05ca-168f-43da-a325-6e3fdc8fe14a",
+            "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+            "document_title": null,
+            "filename": "NIST.CSWP.29.pdf",
+            "page_number": 10,
+            "chunk_index": 26,
+            "content": "NIST CSWP 29 \n \nThe NIST Cybersecurity Framework (CSF) 2.0 \nFebruary 26, 2024 \n \n \n5 \n \nFig. 2. CSF Functions \nThe Functions should be addressed concurrently. Actions that support GOVERN, IDENTIFY, PROTECT, \nand DETECT should all happen continuously, and actions that support RESPOND and RECOVER \nshould be ready at all times and happen when cybersecurity incidents occur. All Functions have \nvital roles related to cybersecurity incidents. GOVERN, IDENTIFY, and PROTECT outcomes help \nprevent and prepare for incidents, while GOVERN, DETECT, RESPOND, and RECOVER outcomes help \ndiscover and manage incidents. \nEach Function is named after a verb that summarizes its contents. Each Function is divided into \nCategories, which are related cybersecurity outcomes that collectively comprise the Function. \nSubcategories further divide each Category into more specific outcomes of technical and \nmanagement activities. The Subcategories are not exhaustive, but they describe detailed",
+            "cosine_distance": 0.3869354398404503,
+            "similarity_score": 0.6130645601595497,
+            "citation": {
+              "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+              "document_title": null,
+              "filename": "NIST.CSWP.29.pdf",
+              "page_number": 10,
+              "display_title": "NIST.CSWP.29.pdf",
+              "title_source": "filename",
+              "label": "[NIST.CSWP.29.pdf, p. 10]"
+            }
+          },
+          {
+            "chunk_id": "0b5c044f-ad46-4735-99aa-684b5f1505b2",
+            "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+            "document_title": null,
+            "filename": "NIST.CSWP.29.pdf",
+            "page_number": 8,
+            "chunk_index": 19,
+            "content": "NIST CSWP 29 \n \nThe NIST Cybersecurity Framework (CSF) 2.0 \nFebruary 26, 2024 \n \n \n3 \n2. Introduction to the CSF Core  \nAppendix A is the CSF Core \u2014 a set of cybersecurity outcomes arranged by Function, then \nCategory, and finally Subcategory, as depicted in Fig. 1. These outcomes are not a checklist of \nactions to perform; specific actions taken to achieve an outcome will vary by organization and \nuse case, as will the individual responsible for those actions. Additionally, the order and size of \nFunctions, Categories, and Subcategories in the Core does not imply the sequence or \nimportance of achieving them. The structure of the Core is intended to resonate most with \nthose charged with operationalizing risk management within an organization. \n \nFig. 1. CSF Core structure \nThe CSF Core Functions \u2014 GOVERN, IDENTIFY, PROTECT, DETECT, RESPOND, and RECOVER \u2014 organize \ncybersecurity outcomes at their highest level.",
+            "cosine_distance": 0.3887257476939403,
+            "similarity_score": 0.6112742523060597,
+            "citation": {
+              "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+              "document_title": null,
+              "filename": "NIST.CSWP.29.pdf",
+              "page_number": 8,
+              "display_title": "NIST.CSWP.29.pdf",
+              "title_source": "filename",
+              "label": "[NIST.CSWP.29.pdf, p. 8]"
+            }
+          }
+        ],
+        "result_count": 5,
+        "min_similarity": 0.2
+      },
+      "http_status": 200,
+      "duration_seconds": 4.885,
+      "response": {
+        "capability": "knowledge",
+        "status": "answered",
+        "answer": "Framework guidance: \"RS.MA-01: The incident response plan is executed in coordination with relevant third parties once an incident is declared\" [NIST.CSWP.29.pdf, p. 27] (E_45eebff5cd2b40b6879df1161f0d7452)\n\nFramework guidance: \"RS.MA-02: Incident reports are triaged and validated\" [NIST.CSWP.29.pdf, p. 27] (E_45eebff5cd2b40b6879df1161f0d7452)\n\nFramework guidance: \"RS.MA-03: Incidents are categorized and prioritized\" [NIST.CSWP.29.pdf, p. 27] (E_45eebff5cd2b40b6879df1161f0d7452)",
+        "assessment": null,
+        "citations": [
+          {
+            "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+            "document_title": null,
+            "filename": "NIST.CSWP.29.pdf",
+            "page_number": 27,
+            "display_title": "NIST.CSWP.29.pdf",
+            "title_source": "filename",
+            "label": "[NIST.CSWP.29.pdf, p. 27]",
+            "evidence_id": "E_45eebff5cd2b40b6879df1161f0d7452",
+            "chunk_id": "45eebff5-cd2b-40b6-879d-f1161f0d7452",
+            "chunk_index": 76,
+            "quote": "RS.MA-01: The incident response plan is executed in coordination with relevant third parties once an incident is declared",
+            "source_kind": "framework"
+          },
+          {
+            "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+            "document_title": null,
+            "filename": "NIST.CSWP.29.pdf",
+            "page_number": 27,
+            "display_title": "NIST.CSWP.29.pdf",
+            "title_source": "filename",
+            "label": "[NIST.CSWP.29.pdf, p. 27]",
+            "evidence_id": "E_45eebff5cd2b40b6879df1161f0d7452",
+            "chunk_id": "45eebff5-cd2b-40b6-879d-f1161f0d7452",
+            "chunk_index": 76,
+            "quote": "RS.MA-02: Incident reports are triaged and validated",
+            "source_kind": "framework"
+          },
+          {
+            "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+            "document_title": null,
+            "filename": "NIST.CSWP.29.pdf",
+            "page_number": 27,
+            "display_title": "NIST.CSWP.29.pdf",
+            "title_source": "filename",
+            "label": "[NIST.CSWP.29.pdf, p. 27]",
+            "evidence_id": "E_45eebff5cd2b40b6879df1161f0d7452",
+            "chunk_id": "45eebff5-cd2b-40b6-879d-f1161f0d7452",
+            "chunk_index": 76,
+            "quote": "RS.MA-03: Incidents are categorized and prioritized",
+            "source_kind": "framework"
+          }
+        ],
+        "error": null,
+        "model": "openai/gpt-oss-120b",
+        "retrieved_evidence_count": 5,
+        "selected_evidence_count": 4,
+        "abstention_reason": null,
+        "conversation_id": "[PRIVATE]",
+        "request_id": "[PRIVATE]",
+        "resolved_message": "How does NIST CSF 2.0 address incident response plan execution, incident triage, and prioritization?",
+        "context_used": false
+      },
+      "conversation_independence_verified": true,
+      "citation_checks": [
+        {
+          "evidence_id": "E_45eebff5cd2b40b6879df1161f0d7452",
+          "metadata_valid": true,
+          "quote_in_chunk": true,
+          "quote_in_pdf": true,
+          "provenance_valid": true,
+          "source_relevant": true,
+          "expected_page": true
+        },
+        {
+          "evidence_id": "E_45eebff5cd2b40b6879df1161f0d7452",
+          "metadata_valid": true,
+          "quote_in_chunk": true,
+          "quote_in_pdf": true,
+          "provenance_valid": true,
+          "source_relevant": true,
+          "expected_page": true
+        },
+        {
+          "evidence_id": "E_45eebff5cd2b40b6879df1161f0d7452",
+          "metadata_valid": true,
+          "quote_in_chunk": true,
+          "quote_in_pdf": true,
+          "provenance_valid": true,
+          "source_relevant": true,
+          "expected_page": true
+        }
+      ],
+      "lexical_coverage": {
+        "plan": true,
+        "triage": true,
+        "priority": true
+      },
+      "failure_classification": null
+    },
+    {
+      "question_id": "N02",
+      "execution": "executed",
+      "error": null,
+      "retrieval_diagnostic": {
+        "query": "What does NIST CSF 2.0 say about verifying backup and restored-system integrity during recovery?",
+        "results": [
+          {
+            "chunk_id": "b4fe26f3-294d-4a62-abac-caa24ef67707",
+            "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+            "document_title": null,
+            "filename": "NIST.CSWP.29.pdf",
+            "page_number": 28,
+            "chunk_index": 79,
+            "content": "NIST CSWP 29 \n \nThe NIST Cybersecurity Framework (CSF) 2.0 \nFebruary 26, 2024 \n \n \n \n23\no RC.RP-02: Recovery actions are selected, scoped, prioritized, and performed \no RC.RP-03: The integrity of backups and other restoration assets is verified before using \nthem for restoration \no RC.RP-04: Critical mission functions and cybersecurity risk management are considered \nto establish post-incident operational norms \no RC.RP-05: The integrity of restored assets is verified, systems and services are restored, \nand normal operating status is confirmed \no RC.RP-06: The end of incident recovery is declared based on criteria, and incident-\nrelated documentation is completed \n\u2022 Incident Recovery Communication (RC.CO): Restoration activities are coordinated with \ninternal and external parties \no RC.CO-03: Recovery activities and progress in restoring operational capabilities are \ncommunicated to designated internal and external stakeholders",
+            "cosine_distance": 0.3133354187011719,
+            "similarity_score": 0.6866645812988281,
+            "citation": {
+              "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+              "document_title": null,
+              "filename": "NIST.CSWP.29.pdf",
+              "page_number": 28,
+              "display_title": "NIST.CSWP.29.pdf",
+              "title_source": "filename",
+              "label": "[NIST.CSWP.29.pdf, p. 28]"
+            }
+          },
+          {
+            "chunk_id": "ae8b2438-4160-4efd-98cc-9a957605c7c9",
+            "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+            "document_title": null,
+            "filename": "NIST.CSWP.29.pdf",
+            "page_number": 3,
+            "chunk_index": 4,
+            "content": "NIST CSWP 29 \n \nThe NIST Cybersecurity Framework (CSF) 2.0 \nFebruary 26, 2024 \n ii\nAcknowledgments \nThe CSF is the result of a multi-year collaborative effort across industry, academia, and \ngovernment in the United States and around the world. NIST acknowledges and thanks all of \nthose who have contributed to this revised CSF. Information on the CSF development process \ncan be found on the NIST CSF website. Lessons learned about the use of the CSF can always be \nshared with NIST at cyberframework@nist.gov.",
+            "cosine_distance": 0.5066238935813958,
+            "similarity_score": 0.4933761064186042,
+            "citation": {
+              "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+              "document_title": null,
+              "filename": "NIST.CSWP.29.pdf",
+              "page_number": 3,
+              "display_title": "NIST.CSWP.29.pdf",
+              "title_source": "filename",
+              "label": "[NIST.CSWP.29.pdf, p. 3]"
+            }
+          },
+          {
+            "chunk_id": "5aa3d4db-8f72-4ea8-adae-5fe451ba2ff2",
+            "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+            "document_title": null,
+            "filename": "NIST.CSWP.29.pdf",
+            "page_number": 2,
+            "chunk_index": 3,
+            "content": "CSF, including Quick Start Guides and Community Profiles. All resources are made publicly \navailable on the NIST CSF website. Suggestions for additional resources to reference on the \nNIST CSF website can always be shared with NIST at cyberframework@nist.gov. \nNote to Readers \nUnless otherwise noted, documents cited, referenced, or excerpted in this publication are not \nwholly incorporated into this publication. \nBefore version 2.0, the Cybersecurity Framework was called the \u201cFramework for Improving \nCritical Infrastructure Cybersecurity.\u201d This title is not used for CSF 2.0.",
+            "cosine_distance": 0.5132290430801527,
+            "similarity_score": 0.4867709569198473,
+            "citation": {
+              "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+              "document_title": null,
+              "filename": "NIST.CSWP.29.pdf",
+              "page_number": 2,
+              "display_title": "NIST.CSWP.29.pdf",
+              "title_source": "filename",
+              "label": "[NIST.CSWP.29.pdf, p. 2]"
+            }
+          },
+          {
+            "chunk_id": "45eebff5-cd2b-40b6-879d-f1161f0d7452",
+            "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+            "document_title": null,
+            "filename": "NIST.CSWP.29.pdf",
+            "page_number": 27,
+            "chunk_index": 76,
+            "content": "NIST CSWP 29 \n \nThe NIST Cybersecurity Framework (CSF) 2.0 \nFebruary 26, 2024 \n \n \n \n22\nRESPOND (RS): Actions regarding a detected cybersecurity incident are taken \n\u2022 Incident Management (RS.MA): Responses to detected cybersecurity incidents are \nmanaged \no RS.MA-01: The incident response plan is executed in coordination with relevant third \nparties once an incident is declared  \no RS.MA-02: Incident reports are triaged and validated \no RS.MA-03: Incidents are categorized and prioritized \no RS.MA-04: Incidents are escalated or elevated as needed \no RS.MA-05: The criteria for initiating incident recovery are applied \n\u2022 Incident Analysis (RS.AN): Investigations are conducted to ensure effective response and \nsupport forensics and recovery activities \no RS.AN-03: Analysis is performed to establish what has taken place during an incident \nand the root cause of the incident \no RS.AN-06: Actions performed during an investigation are recorded, and the records\u2019",
+            "cosine_distance": 0.5196141004562378,
+            "similarity_score": 0.4803858995437622,
+            "citation": {
+              "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+              "document_title": null,
+              "filename": "NIST.CSWP.29.pdf",
+              "page_number": 27,
+              "display_title": "NIST.CSWP.29.pdf",
+              "title_source": "filename",
+              "label": "[NIST.CSWP.29.pdf, p. 27]"
+            }
+          },
+          {
+            "chunk_id": "59d26a37-3cfd-4788-ab0f-028a425cf2c2",
+            "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+            "document_title": null,
+            "filename": "NIST.CSWP.29.pdf",
+            "page_number": 32,
+            "chunk_index": 91,
+            "content": "NIST CSWP 29 \n \nThe NIST Cybersecurity Framework (CSF) 2.0 \nFebruary 26, 2024 \n \n \n \n27\nCertain commercial equipment, instruments, software, or materials, commercial or non-commercial, are identified \nin this paper in order to specify the experimental procedure adequately. Such identification does not imply \nrecommendation or endorsement of any product or service by NIST, nor does it imply that the materials or \nequipment identified are necessarily the best available for the purpose. \nNIST Technical Series Policies \nCopyright, Use, and Licensing Statements \nNIST Technical Series Publication Identifier Syntax \nHow to Cite this NIST Technical Series Publication:  \nNational Institute of Standards and Technology (2024) The NIST Cybersecurity Framework (CSF) 2.0. (National \nInstitute of Standards and Technology, Gaithersburg, MD), NIST Cybersecurity White Paper (CSWP) NIST CSWP 29. \nhttps://doi.org/10.6028/NIST.CSWP.29  \nContact Information \ncyberframework@nist.gov",
+            "cosine_distance": 0.5217984616756439,
+            "similarity_score": 0.4782015383243561,
+            "citation": {
+              "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+              "document_title": null,
+              "filename": "NIST.CSWP.29.pdf",
+              "page_number": 32,
+              "display_title": "NIST.CSWP.29.pdf",
+              "title_source": "filename",
+              "label": "[NIST.CSWP.29.pdf, p. 32]"
+            }
+          }
+        ],
+        "result_count": 5,
+        "min_similarity": 0.2
+      },
+      "http_status": 200,
+      "duration_seconds": 3.2145,
+      "response": {
+        "capability": "knowledge",
+        "status": "answered",
+        "answer": "Framework guidance: \"RC.RP-03: The integrity of backups and other restoration assets is verified before using them for restoration\" [NIST.CSWP.29.pdf, p. 28] (E_b4fe26f3294d4a62abaccaa24ef67707)\n\nFramework guidance: \"RC.RP-05: The integrity of restored assets is verified, systems and services are restored, and normal operating status is confirmed\" [NIST.CSWP.29.pdf, p. 28] (E_b4fe26f3294d4a62abaccaa24ef67707)",
+        "assessment": null,
+        "citations": [
+          {
+            "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+            "document_title": null,
+            "filename": "NIST.CSWP.29.pdf",
+            "page_number": 28,
+            "display_title": "NIST.CSWP.29.pdf",
+            "title_source": "filename",
+            "label": "[NIST.CSWP.29.pdf, p. 28]",
+            "evidence_id": "E_b4fe26f3294d4a62abaccaa24ef67707",
+            "chunk_id": "b4fe26f3-294d-4a62-abac-caa24ef67707",
+            "chunk_index": 79,
+            "quote": "RC.RP-03: The integrity of backups and other restoration assets is verified before using them for restoration",
+            "source_kind": "framework"
+          },
+          {
+            "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+            "document_title": null,
+            "filename": "NIST.CSWP.29.pdf",
+            "page_number": 28,
+            "display_title": "NIST.CSWP.29.pdf",
+            "title_source": "filename",
+            "label": "[NIST.CSWP.29.pdf, p. 28]",
+            "evidence_id": "E_b4fe26f3294d4a62abaccaa24ef67707",
+            "chunk_id": "b4fe26f3-294d-4a62-abac-caa24ef67707",
+            "chunk_index": 79,
+            "quote": "RC.RP-05: The integrity of restored assets is verified, systems and services are restored, and normal operating status is confirmed",
+            "source_kind": "framework"
+          }
+        ],
+        "error": null,
+        "model": "openai/gpt-oss-120b",
+        "retrieved_evidence_count": 5,
+        "selected_evidence_count": 5,
+        "abstention_reason": null,
+        "conversation_id": "[PRIVATE]",
+        "request_id": "[PRIVATE]",
+        "resolved_message": "What does NIST CSF 2.0 say about verifying backup and restored-system integrity during recovery?",
+        "context_used": false
+      },
+      "conversation_independence_verified": true,
+      "citation_checks": [
+        {
+          "evidence_id": "E_b4fe26f3294d4a62abaccaa24ef67707",
+          "metadata_valid": true,
+          "quote_in_chunk": true,
+          "quote_in_pdf": true,
+          "provenance_valid": true,
+          "source_relevant": true,
+          "expected_page": true
+        },
+        {
+          "evidence_id": "E_b4fe26f3294d4a62abaccaa24ef67707",
+          "metadata_valid": true,
+          "quote_in_chunk": true,
+          "quote_in_pdf": true,
+          "provenance_valid": true,
+          "source_relevant": true,
+          "expected_page": true
+        }
+      ],
+      "lexical_coverage": {
+        "backups": true,
+        "restored": true
+      },
+      "failure_classification": null
+    },
+    {
+      "question_id": "N03",
+      "execution": "executed",
+      "error": null,
+      "retrieval_diagnostic": {
+        "query": "Under NIST CSF 2.0 DE.AE-08, when are incidents declared?",
+        "results": [
+          {
+            "chunk_id": "45eebff5-cd2b-40b6-879d-f1161f0d7452",
+            "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+            "document_title": null,
+            "filename": "NIST.CSWP.29.pdf",
+            "page_number": 27,
+            "chunk_index": 76,
+            "content": "NIST CSWP 29 \n \nThe NIST Cybersecurity Framework (CSF) 2.0 \nFebruary 26, 2024 \n \n \n \n22\nRESPOND (RS): Actions regarding a detected cybersecurity incident are taken \n\u2022 Incident Management (RS.MA): Responses to detected cybersecurity incidents are \nmanaged \no RS.MA-01: The incident response plan is executed in coordination with relevant third \nparties once an incident is declared  \no RS.MA-02: Incident reports are triaged and validated \no RS.MA-03: Incidents are categorized and prioritized \no RS.MA-04: Incidents are escalated or elevated as needed \no RS.MA-05: The criteria for initiating incident recovery are applied \n\u2022 Incident Analysis (RS.AN): Investigations are conducted to ensure effective response and \nsupport forensics and recovery activities \no RS.AN-03: Analysis is performed to establish what has taken place during an incident \nand the root cause of the incident \no RS.AN-06: Actions performed during an investigation are recorded, and the records\u2019",
+            "cosine_distance": 0.30985931695346014,
+            "similarity_score": 0.6901406830465399,
+            "citation": {
+              "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+              "document_title": null,
+              "filename": "NIST.CSWP.29.pdf",
+              "page_number": 27,
+              "display_title": "NIST.CSWP.29.pdf",
+              "title_source": "filename",
+              "label": "[NIST.CSWP.29.pdf, p. 27]"
+            }
+          },
+          {
+            "chunk_id": "f3133d5b-2078-4768-86c7-d474187c6f75",
+            "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+            "document_title": null,
+            "filename": "NIST.CSWP.29.pdf",
+            "page_number": 20,
+            "chunk_index": 57,
+            "content": "2.0 website and through the CSF 2.0 Reference Tool, which allows users to explore them and \nexport them in human- and machine-readable formats. The CSF 2.0 Core is also available in a \nlegacy format similar to that of CSF 1.1. \n \n \nFunction \nCategory \nCategory Identifier \nGovern (GV) \nOrganizational Context \nGV.OC \n \nRisk Management Strategy \nGV.RM \n \nRoles, Responsibilities, and Authorities \nGV.RR \n \nPolicy \nGV.PO \n \nOversight \nGV.OV \n \nCybersecurity Supply Chain Risk Management \nGV.SC \nIdentify (ID) \nAsset Management \nID.AM \n \nRisk Assessment \nID.RA \n \nImprovement \nID.IM \nProtect (PR) \nIdentity Management, Authentication, and Access Control \nPR.AA \n \nAwareness and Training \nPR.AT \n \nData Security \nPR.DS \n \nPlatform Security \nPR.PS \n \nTechnology Infrastructure Resilience \nPR.IR \nDetect (DE) \nContinuous Monitoring  \nDE.CM  \n \nAdverse Event Analysis  \nDE.AE  \nRespond (RS) \nIncident Management \nRS.MA \n \nIncident Analysis \nRS.AN \n \nIncident Response Reporting and Communication \nRS.CO",
+            "cosine_distance": 0.4301577550078767,
+            "similarity_score": 0.5698422449921233,
+            "citation": {
+              "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+              "document_title": null,
+              "filename": "NIST.CSWP.29.pdf",
+              "page_number": 20,
+              "display_title": "NIST.CSWP.29.pdf",
+              "title_source": "filename",
+              "label": "[NIST.CSWP.29.pdf, p. 20]"
+            }
+          },
+          {
+            "chunk_id": "b5e260b9-0dc5-4a78-887f-0ac831c98375",
+            "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+            "document_title": null,
+            "filename": "NIST.CSWP.29.pdf",
+            "page_number": 27,
+            "chunk_index": 77,
+            "content": "and the root cause of the incident \no RS.AN-06: Actions performed during an investigation are recorded, and the records\u2019 \nintegrity and provenance are preserved \no RS.AN-07: Incident data and metadata are collected, and their integrity and provenance \nare preserved \no RS.AN-08: An incident\u2019s magnitude is estimated and validated \n\u2022 Incident Response Reporting and Communication (RS.CO): Response activities are \ncoordinated with internal and external stakeholders as required by laws, regulations, or \npolicies \no RS.CO-02: Internal and external stakeholders are notified of incidents \no RS.CO-03: Information is shared with designated internal and external stakeholders \n\u2022 Incident Mitigation (RS.MI): Activities are performed to prevent expansion of an event and \nmitigate its effects \no RS.MI-01: Incidents are contained \no RS.MI-02: Incidents are eradicated \n \nRECOVER (RC): Assets and operations affected by a cybersecurity incident are restored",
+            "cosine_distance": 0.4352285602552547,
+            "similarity_score": 0.5647714397447453,
+            "citation": {
+              "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+              "document_title": null,
+              "filename": "NIST.CSWP.29.pdf",
+              "page_number": 27,
+              "display_title": "NIST.CSWP.29.pdf",
+              "title_source": "filename",
+              "label": "[NIST.CSWP.29.pdf, p. 27]"
+            }
+          },
+          {
+            "chunk_id": "b4fe26f3-294d-4a62-abac-caa24ef67707",
+            "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+            "document_title": null,
+            "filename": "NIST.CSWP.29.pdf",
+            "page_number": 28,
+            "chunk_index": 79,
+            "content": "NIST CSWP 29 \n \nThe NIST Cybersecurity Framework (CSF) 2.0 \nFebruary 26, 2024 \n \n \n \n23\no RC.RP-02: Recovery actions are selected, scoped, prioritized, and performed \no RC.RP-03: The integrity of backups and other restoration assets is verified before using \nthem for restoration \no RC.RP-04: Critical mission functions and cybersecurity risk management are considered \nto establish post-incident operational norms \no RC.RP-05: The integrity of restored assets is verified, systems and services are restored, \nand normal operating status is confirmed \no RC.RP-06: The end of incident recovery is declared based on criteria, and incident-\nrelated documentation is completed \n\u2022 Incident Recovery Communication (RC.CO): Restoration activities are coordinated with \ninternal and external parties \no RC.CO-03: Recovery activities and progress in restoring operational capabilities are \ncommunicated to designated internal and external stakeholders",
+            "cosine_distance": 0.4658007940172666,
+            "similarity_score": 0.5341992059827334,
+            "citation": {
+              "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+              "document_title": null,
+              "filename": "NIST.CSWP.29.pdf",
+              "page_number": 28,
+              "display_title": "NIST.CSWP.29.pdf",
+              "title_source": "filename",
+              "label": "[NIST.CSWP.29.pdf, p. 28]"
+            }
+          },
+          {
+            "chunk_id": "6eaa05ca-168f-43da-a325-6e3fdc8fe14a",
+            "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+            "document_title": null,
+            "filename": "NIST.CSWP.29.pdf",
+            "page_number": 10,
+            "chunk_index": 26,
+            "content": "NIST CSWP 29 \n \nThe NIST Cybersecurity Framework (CSF) 2.0 \nFebruary 26, 2024 \n \n \n5 \n \nFig. 2. CSF Functions \nThe Functions should be addressed concurrently. Actions that support GOVERN, IDENTIFY, PROTECT, \nand DETECT should all happen continuously, and actions that support RESPOND and RECOVER \nshould be ready at all times and happen when cybersecurity incidents occur. All Functions have \nvital roles related to cybersecurity incidents. GOVERN, IDENTIFY, and PROTECT outcomes help \nprevent and prepare for incidents, while GOVERN, DETECT, RESPOND, and RECOVER outcomes help \ndiscover and manage incidents. \nEach Function is named after a verb that summarizes its contents. Each Function is divided into \nCategories, which are related cybersecurity outcomes that collectively comprise the Function. \nSubcategories further divide each Category into more specific outcomes of technical and \nmanagement activities. The Subcategories are not exhaustive, but they describe detailed",
+            "cosine_distance": 0.47579190567876506,
+            "similarity_score": 0.5242080943212349,
+            "citation": {
+              "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+              "document_title": null,
+              "filename": "NIST.CSWP.29.pdf",
+              "page_number": 10,
+              "display_title": "NIST.CSWP.29.pdf",
+              "title_source": "filename",
+              "label": "[NIST.CSWP.29.pdf, p. 10]"
+            }
+          }
+        ],
+        "result_count": 5,
+        "min_similarity": 0.2
+      },
+      "http_status": 200,
+      "duration_seconds": 1.2439,
+      "response": {
+        "capability": "knowledge",
+        "status": "insufficient_evidence",
+        "answer": "The available source evidence is insufficient to answer this question reliably.",
+        "assessment": null,
+        "citations": [],
+        "error": null,
+        "model": "openai/gpt-oss-120b",
+        "retrieved_evidence_count": 5,
+        "selected_evidence_count": 5,
+        "abstention_reason": "model_abstained",
+        "conversation_id": "[PRIVATE]",
+        "request_id": "[PRIVATE]",
+        "resolved_message": "Under NIST CSF 2.0 DE.AE-08, when are incidents declared?",
+        "context_used": false
+      },
+      "conversation_independence_verified": true,
+      "citation_checks": [],
+      "lexical_coverage": {
+        "criteria": false
+      },
+      "failure_classification": "incorrect_abstention"
+    },
+    {
+      "question_id": "C01",
+      "execution": "executed",
+      "error": null,
+      "retrieval_diagnostic": {
+        "query": "In the CyberSage synthetic casebook CS-INC-002, how was ransomware detected, contained, and recovered from, and was a ransom paid?",
+        "results": [
+          {
+            "chunk_id": "415d0d6b-f150-45d0-838d-e4645ef3586f",
+            "document_id": "114762b2-d981-4d8a-b3fe-746d27ead5fe",
+            "document_title": null,
+            "filename": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+            "page_number": 3,
+            "chunk_index": 4,
+            "content": "CyberSage  |  Synthetic security incident records  |  v2.0\nPage 3\nCS-INC-002 | Ransomware containment in a file services\nsegment\nIncident reference\nCS-INC-002\nRecorded date\n21 February 2026\nOperating location\nIslamabad, Pakistan\nOrganization sector\nProfessional services\nPrimary affected service\nWindows file server and backup infrastructure\nAsset reference\nPK-ISL-002\nInitial triage priority\nCritical\nCase status\nClosed - monitoring and follow-up controls in progress\nIncident overview\nThe professional services organization operating in Islamabad recorded a security event affecting its windows file\nserver and backup infrastructure. The case was opened after a security monitoring or staff escalation signal. The\ninvestigation was limited to the evidence available during the documented review.\nDetection and observed evidence\nEndpoint telemetry detected rapid file renaming and an unsigned encryption process on a shared drive.\nRecorded event chronology",
+            "cosine_distance": 0.42257107227193036,
+            "similarity_score": 0.5774289277280696,
+            "citation": {
+              "document_id": "114762b2-d981-4d8a-b3fe-746d27ead5fe",
+              "document_title": null,
+              "filename": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+              "page_number": 3,
+              "display_title": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+              "title_source": "filename",
+              "label": "[CyberSage_Security_Incident_Casebook_RAG_v2.pdf, p. 3]"
+            }
+          },
+          {
+            "chunk_id": "dbab77ce-1cde-4ef3-8961-ecca1842c620",
+            "document_id": "114762b2-d981-4d8a-b3fe-746d27ead5fe",
+            "document_title": null,
+            "filename": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+            "page_number": 1,
+            "chunk_index": 0,
+            "content": "CyberSage  |  Synthetic security incident records  |  v2.0\nPage 1\nCyberSage\nSecurity Incident Casebook\nSynthetic incident records | Pakistan-focused organizations\nReference collection \u2022 Volume 1 \u2022 Version 2.0 \u2022 November 2026\nThis casebook contains fictional, internally consistent incident records created for security analysis and reference.\nNames, entities, identifiers, events, and measurements are synthetic. These records do not describe actual\norganizations or incidents.",
+            "cosine_distance": 0.56035315990448,
+            "similarity_score": 0.43964684009552,
+            "citation": {
+              "document_id": "114762b2-d981-4d8a-b3fe-746d27ead5fe",
+              "document_title": null,
+              "filename": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+              "page_number": 1,
+              "display_title": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+              "title_source": "filename",
+              "label": "[CyberSage_Security_Incident_Casebook_RAG_v2.pdf, p. 1]"
+            }
+          },
+          {
+            "chunk_id": "dab92616-edf8-464b-82b7-e3d98ece751c",
+            "document_id": "114762b2-d981-4d8a-b3fe-746d27ead5fe",
+            "document_title": null,
+            "filename": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+            "page_number": 12,
+            "chunk_index": 31,
+            "content": "CyberSage  |  Synthetic security incident records  |  v2.0\nPage 12\nCS-INC-011 | Endpoint malware via removable media\nIncident reference\nCS-INC-011\nRecorded date\n13 May 2026\nOperating location\nGujranwala, Pakistan\nOrganization sector\nWholesale distribution\nPrimary affected service\nWarehouse inventory workstation\nAsset reference\nPK-GUJ-011\nInitial triage priority\nMedium\nCase status\nClosed - monitoring and follow-up controls in progress\nIncident overview\nThe wholesale distribution organization operating in Gujranwala recorded a security event affecting its warehouse\ninventory workstation. The case was opened after a security monitoring or staff escalation signal. The investigation\nwas limited to the evidence available during the documented review.\nDetection and observed evidence\nEndpoint protection flagged an executable launched from removable media and a new scheduled task.\nRecorded event chronology",
+            "cosine_distance": 0.5628037918449577,
+            "similarity_score": 0.43719620815504234,
+            "citation": {
+              "document_id": "114762b2-d981-4d8a-b3fe-746d27ead5fe",
+              "document_title": null,
+              "filename": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+              "page_number": 12,
+              "display_title": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+              "title_source": "filename",
+              "label": "[CyberSage_Security_Incident_Casebook_RAG_v2.pdf, p. 12]"
+            }
+          },
+          {
+            "chunk_id": "374323b6-22e2-4b71-b489-3e9210c654f0",
+            "document_id": "114762b2-d981-4d8a-b3fe-746d27ead5fe",
+            "document_title": null,
+            "filename": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+            "page_number": 18,
+            "chunk_index": 49,
+            "content": "CyberSage  |  Synthetic security incident records  |  v2.0\nPage 18\nCS-INC-017 | Backup deletion attempt\nIncident reference\nCS-INC-017\nRecorded date\n06 July 2026\nOperating location\nMultan, Pakistan\nOrganization sector\nHealthcare IT\nPrimary affected service\nBackup management console\nAsset reference\nPK-MUL-017\nInitial triage priority\nCritical\nCase status\nClosed - monitoring and follow-up controls in progress\nIncident overview\nThe healthcare it organization operating in Multan recorded a security event affecting its backup management\nconsole. The case was opened after a security monitoring or staff escalation signal. The investigation was limited to\nthe evidence available during the documented review.\nDetection and observed evidence\nAn alert showed a service identity attempting to remove five recovery points outside its normal schedule.\nRecorded event chronology\n06 July 2026 at 11:12 PKT: the first alert or suspicious activity was recorded. At 12:05 PKT, the security team began",
+            "cosine_distance": 0.5699501931667328,
+            "similarity_score": 0.4300498068332672,
+            "citation": {
+              "document_id": "114762b2-d981-4d8a-b3fe-746d27ead5fe",
+              "document_title": null,
+              "filename": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+              "page_number": 18,
+              "display_title": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+              "title_source": "filename",
+              "label": "[CyberSage_Security_Incident_Casebook_RAG_v2.pdf, p. 18]"
+            }
+          },
+          {
+            "chunk_id": "d896f980-e2e0-4ed5-a00c-0dbdd93e99f8",
+            "document_id": "114762b2-d981-4d8a-b3fe-746d27ead5fe",
+            "document_title": null,
+            "filename": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+            "page_number": 4,
+            "chunk_index": 7,
+            "content": "CyberSage  |  Synthetic security incident records  |  v2.0\nPage 4\nCS-INC-003 | Public cloud object storage exposure\nIncident reference\nCS-INC-003\nRecorded date\n02 March 2026\nOperating location\nKarachi, Pakistan\nOrganization sector\nSoftware services\nPrimary affected service\nCloud object storage bucket\nAsset reference\nPK-KAR-003\nInitial triage priority\nHigh\nCase status\nClosed - monitoring and follow-up controls in progress\nIncident overview\nThe software services organization operating in Karachi recorded a security event affecting its cloud object storage\nbucket. The case was opened after a security monitoring or staff escalation signal. The investigation was limited to\nthe evidence available during the documented review.\nDetection and observed evidence\nA configuration audit found anonymous read access on a storage container holding 240 synthetic test profiles.\nRecorded event chronology",
+            "cosine_distance": 0.5735594034194946,
+            "similarity_score": 0.42644059658050537,
+            "citation": {
+              "document_id": "114762b2-d981-4d8a-b3fe-746d27ead5fe",
+              "document_title": null,
+              "filename": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+              "page_number": 4,
+              "display_title": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+              "title_source": "filename",
+              "label": "[CyberSage_Security_Incident_Casebook_RAG_v2.pdf, p. 4]"
+            }
+          }
+        ],
+        "result_count": 5,
+        "min_similarity": 0.2
+      },
+      "http_status": 200,
+      "duration_seconds": 1.4718,
+      "response": {
+        "capability": "knowledge",
+        "status": "insufficient_evidence",
+        "answer": "The available source evidence is insufficient to answer this question reliably.",
+        "assessment": null,
+        "citations": [],
+        "error": null,
+        "model": "openai/gpt-oss-120b",
+        "retrieved_evidence_count": 5,
+        "selected_evidence_count": 5,
+        "abstention_reason": "model_abstained",
+        "conversation_id": "[PRIVATE]",
+        "request_id": "[PRIVATE]",
+        "resolved_message": "In the CyberSage synthetic casebook CS-INC-002, how was ransomware detected, contained, and recovered from, and was a ransom paid?",
+        "context_used": false
+      },
+      "conversation_independence_verified": true,
+      "citation_checks": [],
+      "lexical_coverage": {
+        "detect": false,
+        "contain": false,
+        "restore": false,
+        "ransom": false
+      },
+      "failure_classification": "incorrect_abstention"
+    },
+    {
+      "question_id": "C02",
+      "execution": "executed",
+      "error": null,
+      "retrieval_diagnostic": {
+        "query": "In the CyberSage synthetic casebook CS-INC-017, what happened to the five backup deletion requests and what containment controls were applied?",
+        "results": [
+          {
+            "chunk_id": "374323b6-22e2-4b71-b489-3e9210c654f0",
+            "document_id": "114762b2-d981-4d8a-b3fe-746d27ead5fe",
+            "document_title": null,
+            "filename": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+            "page_number": 18,
+            "chunk_index": 49,
+            "content": "CyberSage  |  Synthetic security incident records  |  v2.0\nPage 18\nCS-INC-017 | Backup deletion attempt\nIncident reference\nCS-INC-017\nRecorded date\n06 July 2026\nOperating location\nMultan, Pakistan\nOrganization sector\nHealthcare IT\nPrimary affected service\nBackup management console\nAsset reference\nPK-MUL-017\nInitial triage priority\nCritical\nCase status\nClosed - monitoring and follow-up controls in progress\nIncident overview\nThe healthcare it organization operating in Multan recorded a security event affecting its backup management\nconsole. The case was opened after a security monitoring or staff escalation signal. The investigation was limited to\nthe evidence available during the documented review.\nDetection and observed evidence\nAn alert showed a service identity attempting to remove five recovery points outside its normal schedule.\nRecorded event chronology\n06 July 2026 at 11:12 PKT: the first alert or suspicious activity was recorded. At 12:05 PKT, the security team began",
+            "cosine_distance": 0.40612761396549957,
+            "similarity_score": 0.5938723860345004,
+            "citation": {
+              "document_id": "114762b2-d981-4d8a-b3fe-746d27ead5fe",
+              "document_title": null,
+              "filename": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+              "page_number": 18,
+              "display_title": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+              "title_source": "filename",
+              "label": "[CyberSage_Security_Incident_Casebook_RAG_v2.pdf, p. 18]"
+            }
+          },
+          {
+            "chunk_id": "b4fe26f3-294d-4a62-abac-caa24ef67707",
+            "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+            "document_title": null,
+            "filename": "NIST.CSWP.29.pdf",
+            "page_number": 28,
+            "chunk_index": 79,
+            "content": "NIST CSWP 29 \n \nThe NIST Cybersecurity Framework (CSF) 2.0 \nFebruary 26, 2024 \n \n \n \n23\no RC.RP-02: Recovery actions are selected, scoped, prioritized, and performed \no RC.RP-03: The integrity of backups and other restoration assets is verified before using \nthem for restoration \no RC.RP-04: Critical mission functions and cybersecurity risk management are considered \nto establish post-incident operational norms \no RC.RP-05: The integrity of restored assets is verified, systems and services are restored, \nand normal operating status is confirmed \no RC.RP-06: The end of incident recovery is declared based on criteria, and incident-\nrelated documentation is completed \n\u2022 Incident Recovery Communication (RC.CO): Restoration activities are coordinated with \ninternal and external parties \no RC.CO-03: Recovery activities and progress in restoring operational capabilities are \ncommunicated to designated internal and external stakeholders",
+            "cosine_distance": 0.43816731685898624,
+            "similarity_score": 0.5618326831410138,
+            "citation": {
+              "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+              "document_title": null,
+              "filename": "NIST.CSWP.29.pdf",
+              "page_number": 28,
+              "display_title": "NIST.CSWP.29.pdf",
+              "title_source": "filename",
+              "label": "[NIST.CSWP.29.pdf, p. 28]"
+            }
+          },
+          {
+            "chunk_id": "d896f980-e2e0-4ed5-a00c-0dbdd93e99f8",
+            "document_id": "114762b2-d981-4d8a-b3fe-746d27ead5fe",
+            "document_title": null,
+            "filename": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+            "page_number": 4,
+            "chunk_index": 7,
+            "content": "CyberSage  |  Synthetic security incident records  |  v2.0\nPage 4\nCS-INC-003 | Public cloud object storage exposure\nIncident reference\nCS-INC-003\nRecorded date\n02 March 2026\nOperating location\nKarachi, Pakistan\nOrganization sector\nSoftware services\nPrimary affected service\nCloud object storage bucket\nAsset reference\nPK-KAR-003\nInitial triage priority\nHigh\nCase status\nClosed - monitoring and follow-up controls in progress\nIncident overview\nThe software services organization operating in Karachi recorded a security event affecting its cloud object storage\nbucket. The case was opened after a security monitoring or staff escalation signal. The investigation was limited to\nthe evidence available during the documented review.\nDetection and observed evidence\nA configuration audit found anonymous read access on a storage container holding 240 synthetic test profiles.\nRecorded event chronology",
+            "cosine_distance": 0.45959840594525336,
+            "similarity_score": 0.5404015940547466,
+            "citation": {
+              "document_id": "114762b2-d981-4d8a-b3fe-746d27ead5fe",
+              "document_title": null,
+              "filename": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+              "page_number": 4,
+              "display_title": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+              "title_source": "filename",
+              "label": "[CyberSage_Security_Incident_Casebook_RAG_v2.pdf, p. 4]"
+            }
+          },
+          {
+            "chunk_id": "d733973e-7284-436d-bb7e-91bdf7e313a9",
+            "document_id": "114762b2-d981-4d8a-b3fe-746d27ead5fe",
+            "document_title": null,
+            "filename": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+            "page_number": 18,
+            "chunk_index": 50,
+            "content": "Recorded event chronology\n06 July 2026 at 11:12 PKT: the first alert or suspicious activity was recorded. At 12:05 PKT, the security team began\ntriage and preserved available logs. At 14:40 PKT, containment or a protective configuration change was initiated.\nFollow-up review was recorded on 07 July 2026.\nInvestigation and contributing factors\nOverly broad service account permissions allowed deletion operations unrelated to backup execution.\nContainment and recovery\nDisabled the service token, enforced immutable backups, and restricted delete permissions to a break-glass role.\nConfirmed outcome and impact\nAll five deletion requests failed; restore points remained available.\nRisk assessment record\nAnalyst likelihood rating: 4 of 5. Analyst impact rating: 5 of 5. Recorded illustrative risk product: 20 of 25. Initial\ntriage priority: Critical. These case-specific values represent an internal illustrative assessment, not an official NIST\nscore.\nResidual exposure and follow-up",
+            "cosine_distance": 0.48288132301326414,
+            "similarity_score": 0.5171186769867359,
+            "citation": {
+              "document_id": "114762b2-d981-4d8a-b3fe-746d27ead5fe",
+              "document_title": null,
+              "filename": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+              "page_number": 18,
+              "display_title": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+              "title_source": "filename",
+              "label": "[CyberSage_Security_Incident_Casebook_RAG_v2.pdf, p. 18]"
+            }
+          },
+          {
+            "chunk_id": "415d0d6b-f150-45d0-838d-e4645ef3586f",
+            "document_id": "114762b2-d981-4d8a-b3fe-746d27ead5fe",
+            "document_title": null,
+            "filename": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+            "page_number": 3,
+            "chunk_index": 4,
+            "content": "CyberSage  |  Synthetic security incident records  |  v2.0\nPage 3\nCS-INC-002 | Ransomware containment in a file services\nsegment\nIncident reference\nCS-INC-002\nRecorded date\n21 February 2026\nOperating location\nIslamabad, Pakistan\nOrganization sector\nProfessional services\nPrimary affected service\nWindows file server and backup infrastructure\nAsset reference\nPK-ISL-002\nInitial triage priority\nCritical\nCase status\nClosed - monitoring and follow-up controls in progress\nIncident overview\nThe professional services organization operating in Islamabad recorded a security event affecting its windows file\nserver and backup infrastructure. The case was opened after a security monitoring or staff escalation signal. The\ninvestigation was limited to the evidence available during the documented review.\nDetection and observed evidence\nEndpoint telemetry detected rapid file renaming and an unsigned encryption process on a shared drive.\nRecorded event chronology",
+            "cosine_distance": 0.5111529966157922,
+            "similarity_score": 0.48884700338420783,
+            "citation": {
+              "document_id": "114762b2-d981-4d8a-b3fe-746d27ead5fe",
+              "document_title": null,
+              "filename": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+              "page_number": 3,
+              "display_title": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+              "title_source": "filename",
+              "label": "[CyberSage_Security_Incident_Casebook_RAG_v2.pdf, p. 3]"
+            }
+          }
+        ],
+        "result_count": 5,
+        "min_similarity": 0.2
+      },
+      "http_status": 200,
+      "duration_seconds": 3.1964,
+      "response": {
+        "capability": "knowledge",
+        "status": "answered",
+        "answer": "Synthetic incident example (not a real event): \"All five deletion requests failed; restore points remained available.\" [CyberSage_Security_Incident_Casebook_RAG_v2.pdf, p. 18] (E_d733973e7284436dbb7e91bdf7e313a9)\n\nSynthetic incident example (not a real event): \"Containment and recovery Disabled the service token, enforced immutable backups, and restricted delete permissions to a break-glass role.\" [CyberSage_Security_Incident_Casebook_RAG_v2.pdf, p. 18] (E_d733973e7284436dbb7e91bdf7e313a9)",
+        "assessment": null,
+        "citations": [
+          {
+            "document_id": "114762b2-d981-4d8a-b3fe-746d27ead5fe",
+            "document_title": null,
+            "filename": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+            "page_number": 18,
+            "display_title": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+            "title_source": "filename",
+            "label": "[CyberSage_Security_Incident_Casebook_RAG_v2.pdf, p. 18]",
+            "evidence_id": "E_d733973e7284436dbb7e91bdf7e313a9",
+            "chunk_id": "d733973e-7284-436d-bb7e-91bdf7e313a9",
+            "chunk_index": 50,
+            "quote": "All five deletion requests failed; restore points remained available.",
+            "source_kind": "synthetic_incident"
+          },
+          {
+            "document_id": "114762b2-d981-4d8a-b3fe-746d27ead5fe",
+            "document_title": null,
+            "filename": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+            "page_number": 18,
+            "display_title": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+            "title_source": "filename",
+            "label": "[CyberSage_Security_Incident_Casebook_RAG_v2.pdf, p. 18]",
+            "evidence_id": "E_d733973e7284436dbb7e91bdf7e313a9",
+            "chunk_id": "d733973e-7284-436d-bb7e-91bdf7e313a9",
+            "chunk_index": 50,
+            "quote": "Containment and recovery Disabled the service token, enforced immutable backups, and restricted delete permissions to a break-glass role.",
+            "source_kind": "synthetic_incident"
+          }
+        ],
+        "error": null,
+        "model": "openai/gpt-oss-120b",
+        "retrieved_evidence_count": 5,
+        "selected_evidence_count": 5,
+        "abstention_reason": null,
+        "conversation_id": "[PRIVATE]",
+        "request_id": "[PRIVATE]",
+        "resolved_message": "In the CyberSage synthetic casebook CS-INC-017, what happened to the five backup deletion requests and what containment controls were applied?",
+        "context_used": false
+      },
+      "conversation_independence_verified": true,
+      "citation_checks": [
+        {
+          "evidence_id": "E_d733973e7284436dbb7e91bdf7e313a9",
+          "metadata_valid": true,
+          "quote_in_chunk": true,
+          "quote_in_pdf": true,
+          "provenance_valid": true,
+          "source_relevant": true,
+          "expected_page": true
+        },
+        {
+          "evidence_id": "E_d733973e7284436dbb7e91bdf7e313a9",
+          "metadata_valid": true,
+          "quote_in_chunk": true,
+          "quote_in_pdf": true,
+          "provenance_valid": true,
+          "source_relevant": true,
+          "expected_page": true
+        }
+      ],
+      "lexical_coverage": {
+        "outcome": true,
+        "token": true,
+        "controls": true
+      },
+      "failure_classification": null
+    },
+    {
+      "question_id": "U01",
+      "execution": "executed",
+      "error": null,
+      "retrieval_diagnostic": {
+        "query": "What is the cybersecurity policy of Mars in 2050?",
+        "results": [
+          {
+            "chunk_id": "a7082688-e166-4fd1-aec4-dcb667859dd6",
+            "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+            "document_title": null,
+            "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+            "page_number": 7,
+            "chunk_index": 14,
+            "content": "National Cyber Security Policy 2021 \n4 \nimplementation with regards to the compliance framework of Cyber Security \npolicy needs to be constantly monitored, assessed, and improved.  \nFor that matter, a holistic approach and appropriate legal and technical \nstructures could help to identify the potential threats and consequences \nattached thereto, and properly it could investigate and no weak area be left \nto be exploited by the wrongdoers. \n1.3.3 Enforcement of Required Structures and Processes  \nThe assurance of Cyber Security requires proper structures and processes for \ngovernance, regulation, implementation, and enforcement. Any absence or \nweakness of the regulation structures poses a threat to Cyber Security.  \ni. \nInadequate and Poor Quality of Resources  \nCyber Security is a rapidly growing field that requires a continually updated set \nof relevant skills and resources as the inadequacy of the required skills shall lead",
+            "cosine_distance": 0.40630576572979793,
+            "similarity_score": 0.5936942342702021,
+            "citation": {
+              "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+              "document_title": null,
+              "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "page_number": 7,
+              "display_title": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "title_source": "filename",
+              "label": "[2021-National-Cyber-Security-Policy-Final.pdf, p. 7]"
+            }
+          },
+          {
+            "chunk_id": "2955436d-22d2-4c96-ad38-d2d5387b7bcc",
+            "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+            "document_title": null,
+            "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+            "page_number": 10,
+            "chunk_index": 22,
+            "content": "National Cyber Security Policy 2021 \n7 \nthat are dealing with citizens\u2019 data-related matters be more equipped \nand able to render their services, accordingly. \n\u2022 \nTo develop public-private partnerships and collaborative mechanisms \nthrough technical and operational cooperation. \n\u2022 \nTo create a country-wide culture of Cyber Security awareness through \nmass communication and education programs. \n\u2022 \nTo train skilled Cyber Security professionals through capacity building, \nskill development, and training programs. \n\u2022 \nTo encourage and support indigenization and development of Cyber \nSecurity solutions through R&D Programs involving both public and \nprivate sectors. \n\u2022 \nTo provide a framework on national-global cooperation and \ncollaborations on Cyber Security. \n\u2022 \nTo Identify and process legislative and regulatory actions under the \nmandates of relevant stakeholders assigned in the policy. \n\u2022 \nRisks related to Cyber Security need to be managed continuously.",
+            "cosine_distance": 0.40826002310156584,
+            "similarity_score": 0.5917399768984342,
+            "citation": {
+              "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+              "document_title": null,
+              "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "page_number": 10,
+              "display_title": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "title_source": "filename",
+              "label": "[2021-National-Cyber-Security-Policy-Final.pdf, p. 10]"
+            }
+          },
+          {
+            "chunk_id": "1e0cc7ec-f660-4d9c-bc09-9fe0ad2412c2",
+            "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+            "document_title": null,
+            "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+            "page_number": 22,
+            "chunk_index": 51,
+            "content": "National Cyber Security Policy 2021 \n19 \n \nTo achieve the short term, medium, and long-term objectives sectoral \nbodies such as banking, telecom, education, and provincial institutions will be \nempowered to strengthen the national Cyber Security posture. In short term, \ncapacity building of relevant stakeholders around stated policies, standards, \nand procedures will be prioritized and planned to achieve within the first year \nof the policy. \n \nPolicy Review and Implementation \nThe National Cyber Security Policy 2021 is subject to inclusive review after \nevery three years and as when required, depending on the emerging global \ncyber trends and technological advancements by the relevant organization \nin consultation with all stakeholders.",
+            "cosine_distance": 0.42073577642440796,
+            "similarity_score": 0.579264223575592,
+            "citation": {
+              "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+              "document_title": null,
+              "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "page_number": 22,
+              "display_title": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "title_source": "filename",
+              "label": "[2021-National-Cyber-Security-Policy-Final.pdf, p. 22]"
+            }
+          },
+          {
+            "chunk_id": "21c20e56-0f9b-4e8c-87a6-c2e64f7e2f5b",
+            "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+            "document_title": null,
+            "filename": "NIST.CSWP.29.pdf",
+            "page_number": 22,
+            "chunk_index": 62,
+            "content": "NIST CSWP 29 \n \nThe NIST Cybersecurity Framework (CSF) 2.0 \nFebruary 26, 2024 \n \n \n \n17\n\u2022 Roles, Responsibilities, and Authorities (GV.RR): Cybersecurity roles, responsibilities, and \nauthorities to foster accountability, performance assessment, and continuous improvement \nare established and communicated \no GV.RR-01: Organizational leadership is responsible and accountable for cybersecurity \nrisk and fosters a culture that is risk-aware, ethical, and continually improving \no GV.RR-02: Roles, responsibilities, and authorities related to cybersecurity risk \nmanagement are established, communicated, understood, and enforced \no GV.RR-03: Adequate resources are allocated commensurate with the cybersecurity risk \nstrategy, roles, responsibilities, and policies \no GV.RR-04: Cybersecurity is included in human resources practices \n\u2022 Policy (GV.PO): Organizational cybersecurity policy is established, communicated, and \nenforced",
+            "cosine_distance": 0.42235997781991985,
+            "similarity_score": 0.5776400221800801,
+            "citation": {
+              "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+              "document_title": null,
+              "filename": "NIST.CSWP.29.pdf",
+              "page_number": 22,
+              "display_title": "NIST.CSWP.29.pdf",
+              "title_source": "filename",
+              "label": "[NIST.CSWP.29.pdf, p. 22]"
+            }
+          },
+          {
+            "chunk_id": "25a57286-33a0-4d78-928c-5daeaaf524c9",
+            "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+            "document_title": null,
+            "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+            "page_number": 11,
+            "chunk_index": 24,
+            "content": "National Cyber Security Policy 2021 \n8 \n\u2022 \nWill regard a cyber-attack on Pakistan CI/ CII as an act of aggression \nagainst national sovereignty and will defend itself with appropriate \nresponse measures.  \n\u2022 \nWill act per national and international Cyber Security frameworks, \nstandards and best practices and expect reciprocal respect of our \nnational digital sovereignty. \n \n \nPolicy Deliverables \n3.1 \nCYBER SECURITY GOVERNANCE \n3.1.1 POLICY FORMULATION AND OVERSIGHT: CYBER GOVERNANCE \nPOLICY COMMITTEE (CGPC) \nA Cyber Governance Policy Committee (CGPC) has been constituted \nto assert national level ownership to policy initiatives related to cyber-\ngovernance and security. Cyber Governance Policy Committee is responsible \nfor strategic oversight over national Cyber Security issues.  \n\u2022 \nCore Functions: \no \nFormulate, guide, and recommend for the approval of the \nNational Cyber Security Policy and Cyber Security Act.  \no \nAssist in addressing requirements of organizational structures,",
+            "cosine_distance": 0.42281499965101377,
+            "similarity_score": 0.5771850003489862,
+            "citation": {
+              "document_id": "0da5f587-861b-47b4-a653-2a301888ef60",
+              "document_title": null,
+              "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "page_number": 11,
+              "display_title": "2021-National-Cyber-Security-Policy-Final.pdf",
+              "title_source": "filename",
+              "label": "[2021-National-Cyber-Security-Policy-Final.pdf, p. 11]"
+            }
+          }
+        ],
+        "result_count": 5,
+        "min_similarity": 0.2
+      },
+      "http_status": 200,
+      "duration_seconds": 1.2567,
+      "response": {
+        "capability": "knowledge",
+        "status": "insufficient_evidence",
+        "answer": "The available source evidence is insufficient to answer this question reliably.",
+        "assessment": null,
+        "citations": [],
+        "error": null,
+        "model": "openai/gpt-oss-120b",
+        "retrieved_evidence_count": 5,
+        "selected_evidence_count": 5,
+        "abstention_reason": "model_abstained",
+        "conversation_id": "[PRIVATE]",
+        "request_id": "[PRIVATE]",
+        "resolved_message": "What is the cybersecurity policy of Mars in 2050?",
+        "context_used": false
+      },
+      "conversation_independence_verified": true,
+      "citation_checks": [],
+      "lexical_coverage": {},
+      "failure_classification": null
+    },
+    {
+      "question_id": "U02",
+      "execution": "executed",
+      "error": null,
+      "retrieval_diagnostic": {
+        "query": "What is the exact SHA-256 hash of the malware used in CyberSage casebook incident CS-INC-002?",
+        "results": [
+          {
+            "chunk_id": "dab92616-edf8-464b-82b7-e3d98ece751c",
+            "document_id": "114762b2-d981-4d8a-b3fe-746d27ead5fe",
+            "document_title": null,
+            "filename": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+            "page_number": 12,
+            "chunk_index": 31,
+            "content": "CyberSage  |  Synthetic security incident records  |  v2.0\nPage 12\nCS-INC-011 | Endpoint malware via removable media\nIncident reference\nCS-INC-011\nRecorded date\n13 May 2026\nOperating location\nGujranwala, Pakistan\nOrganization sector\nWholesale distribution\nPrimary affected service\nWarehouse inventory workstation\nAsset reference\nPK-GUJ-011\nInitial triage priority\nMedium\nCase status\nClosed - monitoring and follow-up controls in progress\nIncident overview\nThe wholesale distribution organization operating in Gujranwala recorded a security event affecting its warehouse\ninventory workstation. The case was opened after a security monitoring or staff escalation signal. The investigation\nwas limited to the evidence available during the documented review.\nDetection and observed evidence\nEndpoint protection flagged an executable launched from removable media and a new scheduled task.\nRecorded event chronology",
+            "cosine_distance": 0.5127160999988345,
+            "similarity_score": 0.4872839000011655,
+            "citation": {
+              "document_id": "114762b2-d981-4d8a-b3fe-746d27ead5fe",
+              "document_title": null,
+              "filename": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+              "page_number": 12,
+              "display_title": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+              "title_source": "filename",
+              "label": "[CyberSage_Security_Incident_Casebook_RAG_v2.pdf, p. 12]"
+            }
+          },
+          {
+            "chunk_id": "d896f980-e2e0-4ed5-a00c-0dbdd93e99f8",
+            "document_id": "114762b2-d981-4d8a-b3fe-746d27ead5fe",
+            "document_title": null,
+            "filename": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+            "page_number": 4,
+            "chunk_index": 7,
+            "content": "CyberSage  |  Synthetic security incident records  |  v2.0\nPage 4\nCS-INC-003 | Public cloud object storage exposure\nIncident reference\nCS-INC-003\nRecorded date\n02 March 2026\nOperating location\nKarachi, Pakistan\nOrganization sector\nSoftware services\nPrimary affected service\nCloud object storage bucket\nAsset reference\nPK-KAR-003\nInitial triage priority\nHigh\nCase status\nClosed - monitoring and follow-up controls in progress\nIncident overview\nThe software services organization operating in Karachi recorded a security event affecting its cloud object storage\nbucket. The case was opened after a security monitoring or staff escalation signal. The investigation was limited to\nthe evidence available during the documented review.\nDetection and observed evidence\nA configuration audit found anonymous read access on a storage container holding 240 synthetic test profiles.\nRecorded event chronology",
+            "cosine_distance": 0.5663138031959534,
+            "similarity_score": 0.43368619680404663,
+            "citation": {
+              "document_id": "114762b2-d981-4d8a-b3fe-746d27ead5fe",
+              "document_title": null,
+              "filename": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+              "page_number": 4,
+              "display_title": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+              "title_source": "filename",
+              "label": "[CyberSage_Security_Incident_Casebook_RAG_v2.pdf, p. 4]"
+            }
+          },
+          {
+            "chunk_id": "415d0d6b-f150-45d0-838d-e4645ef3586f",
+            "document_id": "114762b2-d981-4d8a-b3fe-746d27ead5fe",
+            "document_title": null,
+            "filename": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+            "page_number": 3,
+            "chunk_index": 4,
+            "content": "CyberSage  |  Synthetic security incident records  |  v2.0\nPage 3\nCS-INC-002 | Ransomware containment in a file services\nsegment\nIncident reference\nCS-INC-002\nRecorded date\n21 February 2026\nOperating location\nIslamabad, Pakistan\nOrganization sector\nProfessional services\nPrimary affected service\nWindows file server and backup infrastructure\nAsset reference\nPK-ISL-002\nInitial triage priority\nCritical\nCase status\nClosed - monitoring and follow-up controls in progress\nIncident overview\nThe professional services organization operating in Islamabad recorded a security event affecting its windows file\nserver and backup infrastructure. The case was opened after a security monitoring or staff escalation signal. The\ninvestigation was limited to the evidence available during the documented review.\nDetection and observed evidence\nEndpoint telemetry detected rapid file renaming and an unsigned encryption process on a shared drive.\nRecorded event chronology",
+            "cosine_distance": 0.5688442505783705,
+            "similarity_score": 0.4311557494216295,
+            "citation": {
+              "document_id": "114762b2-d981-4d8a-b3fe-746d27ead5fe",
+              "document_title": null,
+              "filename": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+              "page_number": 3,
+              "display_title": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+              "title_source": "filename",
+              "label": "[CyberSage_Security_Incident_Casebook_RAG_v2.pdf, p. 3]"
+            }
+          },
+          {
+            "chunk_id": "ed4d95f8-8dbd-4098-8029-35d5384823e0",
+            "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+            "document_title": null,
+            "filename": "NIST.CSWP.29.pdf",
+            "page_number": 24,
+            "chunk_index": 69,
+            "content": "are established \no ID.RA-09: The authenticity and integrity of hardware and software are assessed prior to \nacquisition and use \no ID.RA-10: Critical suppliers are assessed prior to acquisition \n\u2022 Improvement (ID.IM): Improvements to organizational cybersecurity risk management \nprocesses, procedures and activities are identified across all CSF Functions \no ID.IM-01: Improvements are identified from evaluations \no ID.IM-02: Improvements are identified from security tests and exercises, including those \ndone in coordination with suppliers and relevant third parties \no ID.IM-03: Improvements are identified from execution of operational processes, \nprocedures, and activities \no ID.IM-04: Incident response plans and other cybersecurity plans that affect operations \nare established, communicated, maintained, and improved \n \nPROTECT (PR): Safeguards to manage the organization\u2019s cybersecurity risks are used",
+            "cosine_distance": 0.5790008902549744,
+            "similarity_score": 0.42099910974502563,
+            "citation": {
+              "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+              "document_title": null,
+              "filename": "NIST.CSWP.29.pdf",
+              "page_number": 24,
+              "display_title": "NIST.CSWP.29.pdf",
+              "title_source": "filename",
+              "label": "[NIST.CSWP.29.pdf, p. 24]"
+            }
+          },
+          {
+            "chunk_id": "84037879-bc93-4363-b11a-0ba51597b922",
+            "document_id": "114762b2-d981-4d8a-b3fe-746d27ead5fe",
+            "document_title": null,
+            "filename": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+            "page_number": 13,
+            "chunk_index": 34,
+            "content": "CyberSage  |  Synthetic security incident records  |  v2.0\nPage 13\nCS-INC-012 | API authorization bypass\nIncident reference\nCS-INC-012\nRecorded date\n22 May 2026\nOperating location\nKarachi, Pakistan\nOrganization sector\nDigital payments sandbox\nPrimary affected service\nPartner transaction API\nAsset reference\nPK-KAR-012\nInitial triage priority\nHigh\nCase status\nClosed - monitoring and follow-up controls in progress\nIncident overview\nThe digital payments sandbox organization operating in Karachi recorded a security event affecting its partner\ntransaction api. The case was opened after a security monitoring or staff escalation signal. The investigation was\nlimited to the evidence available during the documented review.\nDetection and observed evidence\nA security review found that changing a numeric object identifier returned another sandbox customer record.\nRecorded event chronology\n22 May 2026 at 13:12 PKT: the first alert or suspicious activity was recorded. At 14:05 PKT, the security team",
+            "cosine_distance": 0.5831169535587395,
+            "similarity_score": 0.4168830464412605,
+            "citation": {
+              "document_id": "114762b2-d981-4d8a-b3fe-746d27ead5fe",
+              "document_title": null,
+              "filename": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+              "page_number": 13,
+              "display_title": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+              "title_source": "filename",
+              "label": "[CyberSage_Security_Incident_Casebook_RAG_v2.pdf, p. 13]"
+            }
+          }
+        ],
+        "result_count": 5,
+        "min_similarity": 0.2
+      },
+      "http_status": 200,
+      "duration_seconds": 1.0734,
+      "response": {
+        "capability": "knowledge",
+        "status": "insufficient_evidence",
+        "answer": "The available source evidence is insufficient to answer this question reliably.",
+        "assessment": null,
+        "citations": [],
+        "error": null,
+        "model": "openai/gpt-oss-120b",
+        "retrieved_evidence_count": 5,
+        "selected_evidence_count": 5,
+        "abstention_reason": "model_abstained",
+        "conversation_id": "[PRIVATE]",
+        "request_id": "[PRIVATE]",
+        "resolved_message": "What is the exact SHA-256 hash of the malware used in CyberSage casebook incident CS-INC-002?",
+        "context_used": false
+      },
+      "conversation_independence_verified": true,
+      "citation_checks": [],
+      "lexical_coverage": {},
+      "failure_classification": null
+    }
+  ],
+  "metrics": {
+    "dataset_questions": 10,
+    "executed_count": 10,
+    "answered_count": 6,
+    "correct_abstention_count": 2,
+    "incorrect_abstention_count": 2,
+    "unsupported_answer_count": 0,
+    "unsupported_count_scope": "unanswerable answers + manually unsupported answers",
+    "citations_checked": 12,
+    "citation_metadata_valid_count": 12,
+    "citation_metadata_valid_rate": 1.0,
+    "citation_provenance_valid_count": 12,
+    "citation_provenance_valid_rate": 1.0,
+    "citation_source_relevant_count": 12,
+    "citation_source_relevant_rate": 1.0,
+    "lexical_criteria_met": 15,
+    "criteria_total": 21,
+    "lexical_coverage_rate": 0.7142857142857143,
+    "manually_reviewed_answerable_questions": 8,
+    "manual_criteria_met": 15,
+    "manual_criteria_total": 21,
+    "manual_coverage_rate": 0.7142857142857143,
+    "average_response_latency_seconds": 2.63057,
+    "failure_counts": {
+      "incomplete_answer": 1,
+      "incorrect_abstention": 2
+    }
+  },
+  "finished_at": "2026-11-13T11:29:23.560686+00:00",
+  "source_manifest": {
+    "2021-National-Cyber-Security-Policy-Final.pdf": {
+      "sha256": "68e65699709c81cfc6e4d28b509ffeddccfb72eb1436166d7f25309b12fb2a87",
+      "page_count": 22
+    },
+    "CyberSage_Security_Incident_Casebook_RAG_v2.pdf": {
+      "sha256": "2c1df33d05d97132b03d8e780ac1d651eb37b1205d862a1ea5bd39093ddf1fb7",
+      "page_count": 21
+    },
+    "NIST.CSWP.29.pdf": {
+      "sha256": "3c31f46fee98cac0c4323453e5109291a213b4de7fef8c058af9bf67f717433c",
+      "page_count": 32
+    }
+  },
+  "public_configuration": {
+    "GROQ_MODEL": "openai/gpt-oss-120b",
+    "GROQ_TEMPERATURE": 0.0,
+    "GROQ_TIMEOUT_SECONDS": 30.0,
+    "GROQ_MAX_OUTPUT_TOKENS": 2048,
+    "RETRIEVAL_MIN_SIMILARITY": 0.2,
+    "RAG_MAX_RETRIEVED_CHUNKS": 8,
+    "RAG_MAX_CONTEXT_CHARS": 8000,
+    "RAG_MAX_PROMPT_CHARS": 24000,
+    "MEMORY_HISTORY_TURNS": 6,
+    "MEMORY_HISTORY_CHARS": 8000
+  },
+  "package_versions": {
+    "groq": "1.7.0",
+    "langgraph": "1.2.21",
+    "sqlalchemy": "2.1.8",
+    "psycopg": "3.3.8",
+    "sentence-transformers": "6.3.0",
+    "fastapi": "0.162.2"
+  },
+  "implementation_base_commit": "55a426d5290c87fa6b1f67933a0690529e0a427b",
+  "configuration_capture_note": "Non-secret settings captured after the run; production configuration was unchanged during evaluation. Runner received later checkpoint/error-reporting hardening; no question was rerun.",
+  "diagnostic_source_checks": [
+    {
+      "filename": "2021-National-Cyber-Security-Policy-Final.pdf",
+      "page_number": 11,
+      "chunk_index": 25,
+      "content": "National Cyber Security Policy and Cyber Security Act.  \no \nAssist in addressing requirements of organizational structures, \ntechnical, procedural, and legal measures to support the policy \nmandate and implementation mechanisms.  \no \nHarmonize the working and operational reporting mechanism of \nall departments dealing with the subject. \no \nCarry out consultations on aspects related to cyber governance \non a regular and permanent basis. \no \nAssign roles to national institutions for international representation \nand collaboration with global and regional bodies and \norganizations. \no \nGuide to align policy with emerging cyberspace requirements \nthrough updates and periodic reviews."
+    },
+    {
+      "filename": "CyberSage_Security_Incident_Casebook_RAG_v2.pdf",
+      "page_number": 3,
+      "chunk_index": 5,
+      "content": "Endpoint telemetry detected rapid file renaming and an unsigned encryption process on a shared drive.\nRecorded event chronology\n21 February 2026 at 10:12 PKT: the first alert or suspicious activity was recorded. At 11:05 PKT, the security team\nbegan triage and preserved available logs. At 13:40 PKT, containment or a protective configuration change was\ninitiated. Follow-up review was recorded on 22 February 2026.\nInvestigation and contributing factors\nA malicious attachment executed under a standard user context and reached a writable share.\nContainment and recovery\nIsolated the workstation, disabled compromised credentials, restored affected files from a verified offline backup.\nConfirmed outcome and impact\nFiles on one departmental share were encrypted; recovery completed without ransom payment.\nRisk assessment record\nAnalyst likelihood rating: 4 of 5. Analyst impact rating: 5 of 5. Recorded illustrative risk product: 20 of 25. Initial"
+    },
+    {
+      "filename": "NIST.CSWP.29.pdf",
+      "page_number": 26,
+      "chunk_index": 75,
+      "content": "adverse events \no DE.CM-06: External service provider activities and services are monitored to find \npotentially adverse events \no DE.CM-09: Computing hardware and software, runtime environments, and their data \nare monitored to find potentially adverse events \n\u2022 Adverse Event Analysis (DE.AE): Anomalies, indicators of compromise, and other \npotentially adverse events are analyzed to characterize the events and detect cybersecurity \nincidents \no DE.AE-02: Potentially adverse events are analyzed to better understand associated \nactivities \no DE.AE-03: Information is correlated from multiple sources \no DE.AE-04: The estimated impact and scope of adverse events are understood \no DE.AE-06: Information on adverse events is provided to authorized staff and tools \no DE.AE-07: Cyber threat intelligence and other contextual information are integrated into \nthe analysis \no DE.AE-08: Incidents are declared when adverse events meet the defined incident \ncriteria"
+    }
+  ],
+  "corpus_after_evaluation": {
+    "documents": 3,
+    "chunks": 206,
+    "indexed_documents": 3
+  }
+}

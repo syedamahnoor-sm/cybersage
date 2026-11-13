@@ -2,8 +2,83 @@
 
 Cybersecurity RAG intelligence backend using Python 3.12, FastAPI, PostgreSQL 17,
 and pgvector. Local PDF ingestion and semantic evidence retrieval are implemented.
-Grounded extractive RAG answers are available through Groq. A frontend is not
-implemented yet.
+Grounded extractive RAG answers are available through Groq. A dedicated Next.js
+frontend now provides a responsive intelligence workspace, source catalog,
+assistant interface, and interactive risk matrix.
+
+## Frontend workspace (Milestone 10)
+
+`frontend/` uses Next.js App Router, strict TypeScript, Tailwind CSS, locally owned
+shadcn/ui components with Radix primitives, Lucide icons, and Motion for React.
+Manrope/Inter fonts are self-hosted through installed font packages. There are no
+remote font requests or bundled example AI answers.
+
+With Node.js 24 LTS and npm installed, from the repository root:
+
+```powershell
+cd frontend
+npm.cmd ci
+Copy-Item .env.example .env.local
+npm.cmd run dev -- --hostname 127.0.0.1
+```
+
+Open `http://127.0.0.1:3000`. If that port is occupied, add `--port 3100` to the
+development command. On other operating systems, use `npm` instead of `npm.cmd`.
+On this Windows machine, the `.cmd` executable avoids the disabled PowerShell
+script execution policy. Backend setup remains documented below; run FastAPI
+separately. The frontend never calls Groq directly.
+
+`frontend/.env.local` contains only the API location:
+
+```dotenv
+FASTAPI_BASE_URL=http://127.0.0.1:8000
+```
+
+The default client sends same-origin `/api/v1/*` requests; Next.js rewrites those
+requests to FastAPI. This is a transport proxy, not another application backend.
+Restart Next.js after changing the target (rebuild for a production build).
+No FastAPI CORS change is needed in this mode. Optional direct browser access
+through `NEXT_PUBLIC_API_BASE_URL` requires the backend to explicitly allow the
+frontend origin through CORS; that backend configuration is not added here.
+Never expose provider keys or database credentials in frontend environment
+variables, especially `NEXT_PUBLIC_*` values.
+
+| Page | Purpose |
+|---|---|
+| `/` | Overview, corpus snapshot, assistant and assessment entry points |
+| `/assistant` | Agent request UI, citations, history, retry and local recent shortcuts |
+| `/risk-analyzer` | Offline deterministic 5×5 illustrative risk assessment |
+| `/knowledge-base` | Searchable/filterable catalog of the three actual sources |
+| `/about` | Architecture, grounding, memory and limitations |
+
+Assistant/history requests and health checks are wired to the existing API with
+typed contracts and safe errors. Milestone 10 validates interface behavior using
+explicit test fixtures; full live browser-to-Groq/memory integration remains for
+Milestone 11. Health indicates FastAPI reachability only, not database/provider
+readiness. The catalog is a labeled Milestone 9 snapshot, not a live inventory.
+There are no source upload/delete/download controls or simulated answers.
+
+Conversation IDs grant access to history because authentication is not yet
+implemented. Recent IDs, titles and timestamps are stored locally in this
+browser (maximum eight); answers are fetched from PostgreSQL. Clearing shortcuts
+does not delete server history. Avoid sensitive questions on shared machines.
+
+Frontend validation, from `frontend/`:
+
+```powershell
+npm.cmd run build
+npm.cmd run typecheck
+npm.cmd run lint
+npm.cmd test
+$env:PLAYWRIGHT_BROWSERS_PATH = Join-Path (Get-Location) '.cache\playwright'
+npm.cmd exec -- playwright install chromium
+npm.cmd run test:e2e
+npm.cmd audit
+```
+
+Browser tests start the production app on port 3100 and stop it afterward. See
+[Milestone 10 frontend](docs/milestone10-frontend.md) for architecture, validation,
+design decisions, screenshots and the Milestone 11 checklist.
 
 ## Bounded LangGraph cybersecurity agent
 

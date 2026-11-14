@@ -1,5 +1,39 @@
 @import "tailwindcss";
 
+.server-assessment {
+  margin-top: 22px;
+  padding: 26px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 22px;
+}
+.server-assessment > div:first-child {
+  flex: 1;
+  min-width: 210px;
+}
+.server-assessment h2 {
+  font-size: 18px;
+  margin: 9px 0;
+}
+.server-assessment p {
+  font-size: 12px;
+}
+.server-result,
+.server-assessment > .form-error {
+  width: 100%;
+}
+.server-result {
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+}
+.server-result h3 {
+  margin: 12px 0 9px;
+}
+.server-result p + p {
+  margin-top: 8px;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

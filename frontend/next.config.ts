@@ -16,6 +16,8 @@ if (
 const config: NextConfig = {
   poweredByHeader: false,
   agentRules: false, // Keep development runs from generating repository instruction files.
+  // The default rewrite timeout (30s) can expire during cold embeddings + grounded generation.
+  experimental: { proxyTimeout: 125_000 }, // Client aborts at 120s; retries keep the request ID.
   async rewrites() {
     return [
       {

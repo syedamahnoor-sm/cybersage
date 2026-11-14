@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowDown,
   ArrowRight,
@@ -11,6 +11,8 @@ import { assessRisk, ratings } from "@/lib/risk";
 import { PageIntro } from "./page-intro";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
+import { api } from "@/lib/api";
+import type { AgentRequest, AgentResponse } from "@/lib/api-types";
 const likelihoodLabels = [
   "Rare",
   "Unlikely",
@@ -23,13 +25,67 @@ export function RiskWorkspace() {
   const [likelihood, setLikelihood] = useState(3);
   const [impact, setImpact] = useState(4);
   const result = assessRisk(likelihood, impact);
+  const [confirmed, setConfirmed] = useState<AgentResponse | null>(null);
+  const [pending, setPending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [retry, setRetry] = useState<AgentRequest | null>(null);
+  const lock = useRef(false);
+  const controller = useRef<AbortController | null>(null);
+  useEffect(() => () => controller.current?.abort(), []);
+  async function submit() {
+    if (lock.current) return;
+    const payload: AgentRequest =
+      retry && retry.likelihood === likelihood && retry.impact === impact
+        ? retry
+        : {
+            message: "Calculate risk",
+            likelihood,
+            impact,
+            request_id: crypto.randomUUID(),
+          };
+    controller.current = new AbortController();
+    lock.current = true;
+    setPending(true);
+    setError(null);
+    try {
+      const response = await api.invoke(payload, controller.current.signal);
+      if (
+        response.capability !== "risk" ||
+        response.status !== "assessed" ||
+        !response.assessment ||
+        response.assessment.likelihood !== payload.likelihood ||
+        response.assessment.impact !== payload.impact
+      )
+        throw new Error(
+          "The server did not confirm this assessment. Please try again.",
+        );
+      if (!controller.current.signal.aborted) {
+        setConfirmed(response);
+        setRetry(null);
+      }
+    } catch (e) {
+      if (!controller.current.signal.aborted) {
+        setError(
+          e instanceof Error
+            ? e.message
+            : "The server could not confirm the assessment.",
+        );
+        setRetry(payload);
+      }
+    } finally {
+      if (!controller.current.signal.aborted) {
+        lock.current = false;
+        setPending(false);
+      }
+    }
+  }
   return (
     <>
       <PageIntro
         eyebrow="ASSESSMENT / DETERMINISTIC BY DESIGN"
         title="Put risk into perspective."
         description="Explore a scenario. Adjust the inputs. See exactly how the score is calculated."
-        action={<Badge>Local calculation · No LLM</Badge>}
+        action={<Badge>Local preview + server confirmation · No LLM</Badge>}
       />
       <div className="risk-layout">
         <section className="card risk-inputs">
@@ -56,7 +112,11 @@ export function RiskWorkspace() {
               description: "How significant would the consequences be?",
             },
           ].map((input) => (
-            <fieldset className="rating-field" key={input.name}>
+            <fieldset
+              className="rating-field"
+              key={input.name}
+              disabled={pending}
+            >
               <legend>
                 {input.name}
                 <span>{input.labels[input.value - 1]}</span>
@@ -83,6 +143,7 @@ export function RiskWorkspace() {
             </fieldset>
           ))}
           <Button
+            disabled={pending}
             variant="ghost"
             size="sm"
             onClick={() => {
@@ -121,6 +182,7 @@ export function RiskWorkspace() {
                     return (
                       <button
                         type="button"
+                        disabled={pending}
                         key={i}
                         className={`matrix-cell severity-${r.category.toLowerCase()} ${l === likelihood && i === impact ? "chosen" : ""}`}
                         aria-label={`Likelihood ${l}, impact ${i}: ${r.score}, ${r.category}`}
@@ -167,7 +229,7 @@ export function RiskWorkspace() {
         aria-atomic="true"
       >
         <div className="risk-score">
-          <span className="tiny-label">YOUR RISK SCORE</span>
+          <span className="tiny-label">LOCAL PREVIEW · CLIENT CALCULATION</span>
           <p>
             <strong>{result.score}</strong>
             <span>/ 25</span>
@@ -205,6 +267,53 @@ export function RiskWorkspace() {
             Same formula as the backend risk tool
           </span>
         </div>
+      </section>
+      <section
+        className="card server-assessment"
+        aria-label="Server risk assessment"
+      >
+        <div>
+          <p className="eyebrow">BACKEND CONFIRMATION</p>
+          <h2>Confirm with the deterministic agent.</h2>
+          <p className="muted">
+            Preview values are local. Only the server response below is a
+            submitted assessment.
+          </p>
+        </div>
+        <Button onClick={() => void submit()} disabled={pending}>
+          {pending
+            ? "Confirming assessment…"
+            : retry &&
+                retry.likelihood === likelihood &&
+                retry.impact === impact
+              ? "Retry assessment"
+              : "Confirm assessment"}
+        </Button>
+        {error && (
+          <p role="alert" className="form-error">
+            {error}
+          </p>
+        )}
+        {confirmed?.assessment && (
+          <div className="server-result" role="status">
+            <Badge
+              className={`severity-${confirmed.assessment.category.toLowerCase()}`}
+            >
+              Server confirmed · {confirmed.assessment.category}
+            </Badge>
+            <h3>
+              {confirmed.assessment.score}/25 — {confirmed.assessment.category}
+            </h3>
+            <p>{confirmed.assessment.interpretation}</p>
+            <p>{confirmed.assessment.disclaimer}</p>
+            {(confirmed.assessment.likelihood !== likelihood ||
+              confirmed.assessment.impact !== impact) && (
+              <p className="muted">
+                Inputs changed. Confirm again to assess the current preview.
+              </p>
+            )}
+          </div>
+        )}
       </section>
     </>
   );

@@ -8,6 +8,12 @@ import type {
   SearchRequest,
   SearchResponse,
 } from "./api-types";
+import {
+  ContractError,
+  parseAgent,
+  parseHealth,
+  parseHistory,
+} from "./contracts";
 
 export class ApiError extends Error {
   constructor(
@@ -36,6 +42,7 @@ export function createApiClient(
     path: string,
     body?: unknown,
     signal?: AbortSignal,
+    parse?: (value: unknown) => T,
   ): Promise<T> {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 120_000);
@@ -57,10 +64,11 @@ export function createApiClient(
           messages[response.status] ??
             "The request could not be completed. Please try again.",
         );
-      // Backend types are mirrored here; full runtime contract validation is a Milestone 11 task.
-      return (await response.json()) as T;
+      const value: unknown = await response.json();
+      return parse ? parse(value) : (value as T);
     } catch (error) {
       if (error instanceof ApiError) throw error;
+      if (error instanceof ContractError) throw new ApiError(0, error.message);
       if (controller.signal.aborted)
         throw new ApiError(
           0,
@@ -77,9 +85,9 @@ export function createApiClient(
   }
   return {
     health: (signal?: AbortSignal) =>
-      request<HealthResponse>("/health", undefined, signal),
+      request<HealthResponse>("/health", undefined, signal, parseHealth),
     invoke: (body: AgentRequest, signal?: AbortSignal) =>
-      request<AgentResponse>("/agent/invoke", body, signal),
+      request<AgentResponse>("/agent/invoke", body, signal, parseAgent),
     ask: (body: AskRequest, signal?: AbortSignal) =>
       request<AskResponse>("/rag/ask", body, signal),
     search: (body: SearchRequest, signal?: AbortSignal) =>
@@ -95,6 +103,7 @@ export function createApiClient(
         `/conversations/${encodeURIComponent(id)}/messages?limit=10${before ? `&before_turn=${before}` : ""}`,
         undefined,
         signal,
+        parseHistory,
       );
     },
   };

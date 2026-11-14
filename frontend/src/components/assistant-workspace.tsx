@@ -248,6 +248,11 @@ function ChatSession({
       if (response.conversation_id) {
         setConversation(response.conversation_id);
         rememberConversation(response.conversation_id, payload.message);
+        if (initialId !== response.conversation_id)
+          router.replace(
+            `/assistant?conversation=${encodeURIComponent(response.conversation_id)}`,
+            { scroll: false },
+          );
       }
     } catch (e) {
       if (!controller.signal.aborted) {

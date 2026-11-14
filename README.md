@@ -6,7 +6,7 @@ Grounded extractive RAG answers are available through Groq. A dedicated Next.js
 frontend now provides a responsive intelligence workspace, source catalog,
 assistant interface, and interactive risk matrix.
 
-## Frontend workspace (Milestone 10)
+## Frontend workspace (Milestones 10–11)
 
 `frontend/` uses Next.js App Router, strict TypeScript, Tailwind CSS, locally owned
 shadcn/ui components with Radix primitives, Lucide icons, and Motion for React.
@@ -18,7 +18,7 @@ With Node.js 24 LTS and npm installed, from the repository root:
 ```powershell
 cd frontend
 npm.cmd ci
-Copy-Item .env.example .env.local
+if (!(Test-Path .env.local)) { Copy-Item .env.example .env.local }
 npm.cmd run dev -- --hostname 127.0.0.1
 ```
 
@@ -47,14 +47,16 @@ variables, especially `NEXT_PUBLIC_*` values.
 |---|---|
 | `/` | Overview, corpus snapshot, assistant and assessment entry points |
 | `/assistant` | Agent request UI, citations, history, retry and local recent shortcuts |
-| `/risk-analyzer` | Offline deterministic 5×5 illustrative risk assessment |
+| `/risk-analyzer` | Local 5×5 preview plus authoritative server-confirmed assessment |
 | `/knowledge-base` | Searchable/filterable catalog of the three actual sources |
 | `/about` | Architecture, grounding, memory and limitations |
 
-Assistant/history requests and health checks are wired to the existing API with
-typed contracts and safe errors. Milestone 10 validates interface behavior using
-explicit test fixtures; full live browser-to-Groq/memory integration remains for
-Milestone 11. Health indicates FastAPI reachability only, not database/provider
+Assistant/history requests, server-confirmed risk assessments and health checks
+use the existing API with typed contracts, runtime response checks and safe errors.
+Milestone 11 adds separate real-service browser validation; deterministic tests
+continue to use explicit fixtures. See [full-stack integration](docs/milestone11-integration.md)
+for actual results, screenshot paths and startup instructions.
+Health indicates FastAPI reachability only, not database/provider
 readiness. The catalog is a labeled Milestone 9 snapshot, not a live inventory.
 There are no source upload/delete/download controls or simulated answers.
 

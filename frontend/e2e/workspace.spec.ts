@@ -1,5 +1,11 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import {
+  agentFixture,
+  historyFixture,
+  testConversation,
+} from "../tests/fixtures";
+import type { AgentResponse } from "../src/lib/api-types";
 test.beforeEach(async ({ page }) => {
   await page.route("**/api/v1/health", (route) =>
     route.fulfill({
@@ -75,6 +81,14 @@ test("assistant validates, preserves idempotent retries, renders real contract f
   // Explicit test fixture only; no fabricated response is bundled in the application.
   let attempts = 0;
   const requests: Record<string, unknown>[] = [];
+  let recorded: AgentResponse | null = null;
+  await page.route(
+    `**/api/v1/conversations/${testConversation}/messages?*`,
+    (route) =>
+      route.fulfill({
+        json: historyFixture(recorded!, String(requests[0].message)),
+      }),
+  );
   await page.route("**/api/v1/agent/invoke", async (route) => {
     requests.push(route.request().postDataJSON());
     attempts++;
@@ -83,40 +97,38 @@ test("assistant validates, preserves idempotent retries, renders real contract f
         status: 503,
         json: { detail: "Internal secret must not render" },
       });
-    return route.fulfill({
-      json: {
-        capability: "knowledge",
-        status: "answered",
-        answer:
-          "Framework guidance: incident reports are triaged and validated.",
-        assessment: null,
-        error: null,
-        model: "test-provider",
-        retrieved_evidence_count: 1,
-        selected_evidence_count: 1,
-        abstention_reason: null,
-        conversation_id: "39ae079b-9fa1-43e8-a165-2ad685b2b7d9",
-        request_id: requests[0].request_id,
-        resolved_message: requests[0].message,
-        context_used: false,
-        citations: [
-          {
-            document_id: "test-doc",
-            document_title: null,
-            filename: "NIST.CSWP.29.pdf",
-            page_number: 27,
-            display_title: "NIST CSF 2.0",
-            title_source: "filename",
-            label: "[NIST CSF 2.0, p. 27]",
-            evidence_id: "E_test",
-            chunk_id: "test-chunk",
-            chunk_index: 76,
-            quote: "RS.MA-02: Incident reports are triaged and validated",
-            source_kind: "framework",
-          },
-        ],
-      },
-    });
+    recorded = {
+      capability: "knowledge",
+      status: "answered",
+      answer: "Framework guidance: incident reports are triaged and validated.",
+      assessment: null,
+      error: null,
+      model: "test-provider",
+      retrieved_evidence_count: 1,
+      selected_evidence_count: 1,
+      abstention_reason: null,
+      conversation_id: "39ae079b-9fa1-43e8-a165-2ad685b2b7d9",
+      request_id: String(requests[0].request_id),
+      resolved_message: String(requests[0].message),
+      context_used: false,
+      citations: [
+        {
+          document_id: "test-doc",
+          document_title: null,
+          filename: "NIST.CSWP.29.pdf",
+          page_number: 27,
+          display_title: "NIST CSF 2.0",
+          title_source: "filename",
+          label: "[NIST CSF 2.0, p. 27]",
+          evidence_id: "E_test",
+          chunk_id: "test-chunk",
+          chunk_index: 76,
+          quote: "RS.MA-02: Incident reports are triaged and validated",
+          source_kind: "framework",
+        },
+      ],
+    };
+    return route.fulfill({ json: recorded });
   });
   await page.goto("/assistant");
   await page.getByRole("button", { name: "Send question" }).click();
@@ -187,12 +199,7 @@ test("saved history loads actual metadata and requests earlier turns safely", as
             request_id: "fixture-request",
             role: "assistant",
             content: older ? "Earlier response" : "Recent response",
-            metadata: {
-              capability: "knowledge",
-              status: "insufficient_evidence",
-              citations: [],
-              context_used: false,
-            },
+            metadata: agentFixture(),
             created_at: "2026-11-13T00:00:01Z",
             turn_number: older ? 1 : 2,
           },

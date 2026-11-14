@@ -1,0 +1,527 @@
+{
+  "started_at": "2026-11-13T18:58:54.382Z",
+  "mocked": false,
+  "scenarios": [
+    {
+      "id": "A",
+      "question": "What does NIST CSF 2.0 say about incident response?",
+      "http_status": 200,
+      "duration_seconds": 24.168,
+      "response": {
+        "capability": "knowledge",
+        "status": "answered",
+        "answer": "Framework guidance: \"RESPOND (RS): Actions regarding a detected cybersecurity incident are taken \u2022 Incident Management (RS.MA): Responses to detected cybersecurity incidents are managed o RS.MA-01: The incident response plan is executed in coordination with relevant third parties once an incident is declared o RS.MA-02: Incident reports are triaged and validated o RS.MA-03: Incidents are categorized and prioritized o RS.MA-04: Incidents are escalated or elevated as needed o RS.MA-05: The criteria for initiating incident recovery are applied \u2022 Incident Analysis (RS.AN): Investigations are conducted to ensure effective response and support forensics and recovery activities o RS.AN-03: Analysis is performed to establish what has taken place during an incident and the root cause of the incident\" [NIST.CSWP.29.pdf, p. 27] (E_45eebff5cd2b40b6879df1161f0d7452)\n\nFramework guidance: \"Respond (RS) Incident Management RS.MA Incident Analysis RS.AN Incident Response Reporting and Communication RS.CO\" [NIST.CSWP.29.pdf, p. 20] (E_f3133d5b2078476886c7d474187c6f75)",
+        "assessment": null,
+        "citations": [
+          {
+            "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+            "document_title": null,
+            "filename": "NIST.CSWP.29.pdf",
+            "page_number": 27,
+            "display_title": "NIST.CSWP.29.pdf",
+            "title_source": "filename",
+            "label": "[NIST.CSWP.29.pdf, p. 27]",
+            "evidence_id": "E_45eebff5cd2b40b6879df1161f0d7452",
+            "chunk_id": "45eebff5-cd2b-40b6-879d-f1161f0d7452",
+            "chunk_index": 76,
+            "quote": "RESPOND (RS): Actions regarding a detected cybersecurity incident are taken \u2022 Incident Management (RS.MA): Responses to detected cybersecurity incidents are managed o RS.MA-01: The incident response plan is executed in coordination with relevant third parties once an incident is declared o RS.MA-02: Incident reports are triaged and validated o RS.MA-03: Incidents are categorized and prioritized o RS.MA-04: Incidents are escalated or elevated as needed o RS.MA-05: The criteria for initiating incident recovery are applied \u2022 Incident Analysis (RS.AN): Investigations are conducted to ensure effective response and support forensics and recovery activities o RS.AN-03: Analysis is performed to establish what has taken place during an incident and the root cause of the incident",
+            "source_kind": "framework"
+          },
+          {
+            "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+            "document_title": null,
+            "filename": "NIST.CSWP.29.pdf",
+            "page_number": 20,
+            "display_title": "NIST.CSWP.29.pdf",
+            "title_source": "filename",
+            "label": "[NIST.CSWP.29.pdf, p. 20]",
+            "evidence_id": "E_f3133d5b2078476886c7d474187c6f75",
+            "chunk_id": "f3133d5b-2078-4768-86c7-d474187c6f75",
+            "chunk_index": 57,
+            "quote": "Respond (RS) Incident Management RS.MA Incident Analysis RS.AN Incident Response Reporting and Communication RS.CO",
+            "source_kind": "framework"
+          }
+        ],
+        "error": null,
+        "model": "openai/gpt-oss-120b",
+        "retrieved_evidence_count": 5,
+        "selected_evidence_count": 5,
+        "abstention_reason": null,
+        "conversation_id": "[PRIVATE]",
+        "request_id": "[PRIVATE]",
+        "resolved_message": "What does NIST CSF 2.0 say about incident response?",
+        "context_used": false
+      },
+      "request": {
+        "message": "What does NIST CSF 2.0 say about incident response?",
+        "top_k": 5,
+        "request_id": "[PRIVATE]"
+      }
+    },
+    {
+      "id": "B",
+      "question": "What about recovery?",
+      "http_status": 200,
+      "duration_seconds": 4.974,
+      "response": {
+        "capability": "knowledge",
+        "status": "answered",
+        "answer": "Framework guidance: \"RC.RP-02: Recovery actions are selected, scoped, prioritized, and performed\" [NIST.CSWP.29.pdf, p. 28] (E_b4fe26f3294d4a62abaccaa24ef67707)\n\nFramework guidance: \"RC.RP-03: The integrity of backups and other restoration assets is verified before using them for restoration\" [NIST.CSWP.29.pdf, p. 28] (E_b4fe26f3294d4a62abaccaa24ef67707)\n\nFramework guidance: \"RC.RP-04: Critical mission functions and cybersecurity risk management are considered to establish post-incident operational norms\" [NIST.CSWP.29.pdf, p. 28] (E_b4fe26f3294d4a62abaccaa24ef67707)\n\nFramework guidance: \"RC.RP-05: The integrity of restored assets is verified, systems and services are restored, and normal operating status is confirmed\" [NIST.CSWP.29.pdf, p. 28] (E_b4fe26f3294d4a62abaccaa24ef67707)\n\nFramework guidance: \"RECOVER (RC): Assets and operations affected by a cybersecurity incident are restored\" [NIST.CSWP.29.pdf, p. 27] (E_4987b68396f748aeb06adbe4c7c0bce7)",
+        "assessment": null,
+        "citations": [
+          {
+            "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+            "document_title": null,
+            "filename": "NIST.CSWP.29.pdf",
+            "page_number": 28,
+            "display_title": "NIST.CSWP.29.pdf",
+            "title_source": "filename",
+            "label": "[NIST.CSWP.29.pdf, p. 28]",
+            "evidence_id": "E_b4fe26f3294d4a62abaccaa24ef67707",
+            "chunk_id": "b4fe26f3-294d-4a62-abac-caa24ef67707",
+            "chunk_index": 79,
+            "quote": "RC.RP-02: Recovery actions are selected, scoped, prioritized, and performed",
+            "source_kind": "framework"
+          },
+          {
+            "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+            "document_title": null,
+            "filename": "NIST.CSWP.29.pdf",
+            "page_number": 28,
+            "display_title": "NIST.CSWP.29.pdf",
+            "title_source": "filename",
+            "label": "[NIST.CSWP.29.pdf, p. 28]",
+            "evidence_id": "E_b4fe26f3294d4a62abaccaa24ef67707",
+            "chunk_id": "b4fe26f3-294d-4a62-abac-caa24ef67707",
+            "chunk_index": 79,
+            "quote": "RC.RP-03: The integrity of backups and other restoration assets is verified before using them for restoration",
+            "source_kind": "framework"
+          },
+          {
+            "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+            "document_title": null,
+            "filename": "NIST.CSWP.29.pdf",
+            "page_number": 28,
+            "display_title": "NIST.CSWP.29.pdf",
+            "title_source": "filename",
+            "label": "[NIST.CSWP.29.pdf, p. 28]",
+            "evidence_id": "E_b4fe26f3294d4a62abaccaa24ef67707",
+            "chunk_id": "b4fe26f3-294d-4a62-abac-caa24ef67707",
+            "chunk_index": 79,
+            "quote": "RC.RP-04: Critical mission functions and cybersecurity risk management are considered to establish post-incident operational norms",
+            "source_kind": "framework"
+          },
+          {
+            "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+            "document_title": null,
+            "filename": "NIST.CSWP.29.pdf",
+            "page_number": 28,
+            "display_title": "NIST.CSWP.29.pdf",
+            "title_source": "filename",
+            "label": "[NIST.CSWP.29.pdf, p. 28]",
+            "evidence_id": "E_b4fe26f3294d4a62abaccaa24ef67707",
+            "chunk_id": "b4fe26f3-294d-4a62-abac-caa24ef67707",
+            "chunk_index": 79,
+            "quote": "RC.RP-05: The integrity of restored assets is verified, systems and services are restored, and normal operating status is confirmed",
+            "source_kind": "framework"
+          },
+          {
+            "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+            "document_title": null,
+            "filename": "NIST.CSWP.29.pdf",
+            "page_number": 27,
+            "display_title": "NIST.CSWP.29.pdf",
+            "title_source": "filename",
+            "label": "[NIST.CSWP.29.pdf, p. 27]",
+            "evidence_id": "E_4987b68396f748aeb06adbe4c7c0bce7",
+            "chunk_id": "4987b683-96f7-48ae-b06a-dbe4c7c0bce7",
+            "chunk_index": 78,
+            "quote": "RECOVER (RC): Assets and operations affected by a cybersecurity incident are restored",
+            "source_kind": "framework"
+          }
+        ],
+        "error": null,
+        "model": "openai/gpt-oss-120b",
+        "retrieved_evidence_count": 5,
+        "selected_evidence_count": 5,
+        "abstention_reason": null,
+        "conversation_id": "[PRIVATE]",
+        "request_id": "[PRIVATE]",
+        "resolved_message": "What does NIST CSF 2.0 say about recovery?",
+        "context_used": true
+      },
+      "request": {
+        "message": "What about recovery?",
+        "top_k": 5,
+        "request_id": "[PRIVATE]",
+        "conversation_id": "[PRIVATE]"
+      }
+    },
+    {
+      "id": "C",
+      "http_status": 200,
+      "response": {
+        "capability": "risk",
+        "status": "assessed",
+        "answer": null,
+        "assessment": {
+          "likelihood": 4,
+          "impact": 5,
+          "score": 20,
+          "category": "Critical",
+          "interpretation": "Likelihood 4/5 and impact 5/5 produce 20/25, classified as Critical in this illustrative matrix.",
+          "disclaimer": "Illustrative qualitative matrix; not a validated prediction of real-world cyber risk."
+        },
+        "citations": [],
+        "error": null,
+        "model": null,
+        "retrieved_evidence_count": 0,
+        "selected_evidence_count": 0,
+        "abstention_reason": null,
+        "conversation_id": "[PRIVATE]",
+        "request_id": "[PRIVATE]",
+        "resolved_message": "Calculate risk",
+        "context_used": false
+      }
+    },
+    {
+      "id": "D",
+      "question": "What is the cybersecurity policy of Mars in 2050?",
+      "http_status": 200,
+      "duration_seconds": 1.436,
+      "response": {
+        "capability": "knowledge",
+        "status": "insufficient_evidence",
+        "answer": "The available source evidence is insufficient to answer this question reliably.",
+        "assessment": null,
+        "citations": [],
+        "error": null,
+        "model": "openai/gpt-oss-120b",
+        "retrieved_evidence_count": 5,
+        "selected_evidence_count": 5,
+        "abstention_reason": "model_abstained",
+        "conversation_id": "[PRIVATE]",
+        "request_id": "[PRIVATE]",
+        "resolved_message": "What is the cybersecurity policy of Mars in 2050?",
+        "context_used": false
+      },
+      "request": {
+        "message": "What is the cybersecurity policy of Mars in 2050?",
+        "top_k": 5,
+        "request_id": "[PRIVATE]"
+      }
+    }
+  ],
+  "console_errors": [],
+  "persistence": {
+    "http_status": 200,
+    "message_count": 4,
+    "original_questions": [
+      "What does NIST CSF 2.0 say about incident response?",
+      "What about recovery?"
+    ],
+    "history": {
+      "conversation_id": "[PRIVATE]",
+      "messages": [
+        {
+          "id": "c8dfd9bb-3795-43af-b842-1a963e01fbf2",
+          "request_id": "[PRIVATE]",
+          "role": "user",
+          "content": "What does NIST CSF 2.0 say about incident response?",
+          "metadata": {
+            "top_k": 5,
+            "impact": null,
+            "likelihood": null
+          },
+          "created_at": "2026-11-13T18:59:19.778968Z",
+          "turn_number": 1
+        },
+        {
+          "id": "64e5f1ef-1e76-444f-9741-342ebc10e8b8",
+          "request_id": "[PRIVATE]",
+          "role": "assistant",
+          "content": "Framework guidance: \"RESPOND (RS): Actions regarding a detected cybersecurity incident are taken \u2022 Incident Management (RS.MA): Responses to detected cybersecurity incidents are managed o RS.MA-01: The incident response plan is executed in coordination with relevant third parties once an incident is declared o RS.MA-02: Incident reports are triaged and validated o RS.MA-03: Incidents are categorized and prioritized o RS.MA-04: Incidents are escalated or elevated as needed o RS.MA-05: The criteria for initiating incident recovery are applied \u2022 Incident Analysis (RS.AN): Investigations are conducted to ensure effective response and support forensics and recovery activities o RS.AN-03: Analysis is performed to establish what has taken place during an incident and the root cause of the incident\" [NIST.CSWP.29.pdf, p. 27] (E_45eebff5cd2b40b6879df1161f0d7452)\n\nFramework guidance: \"Respond (RS) Incident Management RS.MA Incident Analysis RS.AN Incident Response Reporting and Communication RS.CO\" [NIST.CSWP.29.pdf, p. 20] (E_f3133d5b2078476886c7d474187c6f75)",
+          "metadata": {
+            "error": null,
+            "model": "openai/gpt-oss-120b",
+            "answer": "Framework guidance: \"RESPOND (RS): Actions regarding a detected cybersecurity incident are taken \u2022 Incident Management (RS.MA): Responses to detected cybersecurity incidents are managed o RS.MA-01: The incident response plan is executed in coordination with relevant third parties once an incident is declared o RS.MA-02: Incident reports are triaged and validated o RS.MA-03: Incidents are categorized and prioritized o RS.MA-04: Incidents are escalated or elevated as needed o RS.MA-05: The criteria for initiating incident recovery are applied \u2022 Incident Analysis (RS.AN): Investigations are conducted to ensure effective response and support forensics and recovery activities o RS.AN-03: Analysis is performed to establish what has taken place during an incident and the root cause of the incident\" [NIST.CSWP.29.pdf, p. 27] (E_45eebff5cd2b40b6879df1161f0d7452)\n\nFramework guidance: \"Respond (RS) Incident Management RS.MA Incident Analysis RS.AN Incident Response Reporting and Communication RS.CO\" [NIST.CSWP.29.pdf, p. 20] (E_f3133d5b2078476886c7d474187c6f75)",
+            "status": "answered",
+            "citations": [
+              {
+                "label": "[NIST.CSWP.29.pdf, p. 27]",
+                "quote": "RESPOND (RS): Actions regarding a detected cybersecurity incident are taken \u2022 Incident Management (RS.MA): Responses to detected cybersecurity incidents are managed o RS.MA-01: The incident response plan is executed in coordination with relevant third parties once an incident is declared o RS.MA-02: Incident reports are triaged and validated o RS.MA-03: Incidents are categorized and prioritized o RS.MA-04: Incidents are escalated or elevated as needed o RS.MA-05: The criteria for initiating incident recovery are applied \u2022 Incident Analysis (RS.AN): Investigations are conducted to ensure effective response and support forensics and recovery activities o RS.AN-03: Analysis is performed to establish what has taken place during an incident and the root cause of the incident",
+                "chunk_id": "45eebff5-cd2b-40b6-879d-f1161f0d7452",
+                "filename": "NIST.CSWP.29.pdf",
+                "chunk_index": 76,
+                "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+                "evidence_id": "E_45eebff5cd2b40b6879df1161f0d7452",
+                "page_number": 27,
+                "source_kind": "framework",
+                "title_source": "filename",
+                "display_title": "NIST.CSWP.29.pdf",
+                "document_title": null
+              },
+              {
+                "label": "[NIST.CSWP.29.pdf, p. 20]",
+                "quote": "Respond (RS) Incident Management RS.MA Incident Analysis RS.AN Incident Response Reporting and Communication RS.CO",
+                "chunk_id": "f3133d5b-2078-4768-86c7-d474187c6f75",
+                "filename": "NIST.CSWP.29.pdf",
+                "chunk_index": 57,
+                "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+                "evidence_id": "E_f3133d5b2078476886c7d474187c6f75",
+                "page_number": 20,
+                "source_kind": "framework",
+                "title_source": "filename",
+                "display_title": "NIST.CSWP.29.pdf",
+                "document_title": null
+              }
+            ],
+            "assessment": null,
+            "capability": "knowledge",
+            "request_id": "[PRIVATE]",
+            "context_used": false,
+            "conversation_id": "[PRIVATE]",
+            "resolved_message": "What does NIST CSF 2.0 say about incident response?",
+            "abstention_reason": null,
+            "selected_evidence_count": 5,
+            "retrieved_evidence_count": 5
+          },
+          "created_at": "2026-11-13T18:59:19.778968Z",
+          "turn_number": 1
+        },
+        {
+          "id": "e4e53255-c78a-4f16-9f0f-003213c70fc0",
+          "request_id": "[PRIVATE]",
+          "role": "user",
+          "content": "What about recovery?",
+          "metadata": {
+            "top_k": 5,
+            "impact": null,
+            "likelihood": null
+          },
+          "created_at": "2026-11-13T19:00:30.071829Z",
+          "turn_number": 2
+        },
+        {
+          "id": "94e90a99-76e7-4046-b3c2-9acf60153b93",
+          "request_id": "[PRIVATE]",
+          "role": "assistant",
+          "content": "Framework guidance: \"RC.RP-02: Recovery actions are selected, scoped, prioritized, and performed\" [NIST.CSWP.29.pdf, p. 28] (E_b4fe26f3294d4a62abaccaa24ef67707)\n\nFramework guidance: \"RC.RP-03: The integrity of backups and other restoration assets is verified before using them for restoration\" [NIST.CSWP.29.pdf, p. 28] (E_b4fe26f3294d4a62abaccaa24ef67707)\n\nFramework guidance: \"RC.RP-04: Critical mission functions and cybersecurity risk management are considered to establish post-incident operational norms\" [NIST.CSWP.29.pdf, p. 28] (E_b4fe26f3294d4a62abaccaa24ef67707)\n\nFramework guidance: \"RC.RP-05: The integrity of restored assets is verified, systems and services are restored, and normal operating status is confirmed\" [NIST.CSWP.29.pdf, p. 28] (E_b4fe26f3294d4a62abaccaa24ef67707)\n\nFramework guidance: \"RECOVER (RC): Assets and operations affected by a cybersecurity incident are restored\" [NIST.CSWP.29.pdf, p. 27] (E_4987b68396f748aeb06adbe4c7c0bce7)",
+          "metadata": {
+            "error": null,
+            "model": "openai/gpt-oss-120b",
+            "answer": "Framework guidance: \"RC.RP-02: Recovery actions are selected, scoped, prioritized, and performed\" [NIST.CSWP.29.pdf, p. 28] (E_b4fe26f3294d4a62abaccaa24ef67707)\n\nFramework guidance: \"RC.RP-03: The integrity of backups and other restoration assets is verified before using them for restoration\" [NIST.CSWP.29.pdf, p. 28] (E_b4fe26f3294d4a62abaccaa24ef67707)\n\nFramework guidance: \"RC.RP-04: Critical mission functions and cybersecurity risk management are considered to establish post-incident operational norms\" [NIST.CSWP.29.pdf, p. 28] (E_b4fe26f3294d4a62abaccaa24ef67707)\n\nFramework guidance: \"RC.RP-05: The integrity of restored assets is verified, systems and services are restored, and normal operating status is confirmed\" [NIST.CSWP.29.pdf, p. 28] (E_b4fe26f3294d4a62abaccaa24ef67707)\n\nFramework guidance: \"RECOVER (RC): Assets and operations affected by a cybersecurity incident are restored\" [NIST.CSWP.29.pdf, p. 27] (E_4987b68396f748aeb06adbe4c7c0bce7)",
+            "status": "answered",
+            "citations": [
+              {
+                "label": "[NIST.CSWP.29.pdf, p. 28]",
+                "quote": "RC.RP-02: Recovery actions are selected, scoped, prioritized, and performed",
+                "chunk_id": "b4fe26f3-294d-4a62-abac-caa24ef67707",
+                "filename": "NIST.CSWP.29.pdf",
+                "chunk_index": 79,
+                "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+                "evidence_id": "E_b4fe26f3294d4a62abaccaa24ef67707",
+                "page_number": 28,
+                "source_kind": "framework",
+                "title_source": "filename",
+                "display_title": "NIST.CSWP.29.pdf",
+                "document_title": null
+              },
+              {
+                "label": "[NIST.CSWP.29.pdf, p. 28]",
+                "quote": "RC.RP-03: The integrity of backups and other restoration assets is verified before using them for restoration",
+                "chunk_id": "b4fe26f3-294d-4a62-abac-caa24ef67707",
+                "filename": "NIST.CSWP.29.pdf",
+                "chunk_index": 79,
+                "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+                "evidence_id": "E_b4fe26f3294d4a62abaccaa24ef67707",
+                "page_number": 28,
+                "source_kind": "framework",
+                "title_source": "filename",
+                "display_title": "NIST.CSWP.29.pdf",
+                "document_title": null
+              },
+              {
+                "label": "[NIST.CSWP.29.pdf, p. 28]",
+                "quote": "RC.RP-04: Critical mission functions and cybersecurity risk management are considered to establish post-incident operational norms",
+                "chunk_id": "b4fe26f3-294d-4a62-abac-caa24ef67707",
+                "filename": "NIST.CSWP.29.pdf",
+                "chunk_index": 79,
+                "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+                "evidence_id": "E_b4fe26f3294d4a62abaccaa24ef67707",
+                "page_number": 28,
+                "source_kind": "framework",
+                "title_source": "filename",
+                "display_title": "NIST.CSWP.29.pdf",
+                "document_title": null
+              },
+              {
+                "label": "[NIST.CSWP.29.pdf, p. 28]",
+                "quote": "RC.RP-05: The integrity of restored assets is verified, systems and services are restored, and normal operating status is confirmed",
+                "chunk_id": "b4fe26f3-294d-4a62-abac-caa24ef67707",
+                "filename": "NIST.CSWP.29.pdf",
+                "chunk_index": 79,
+                "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+                "evidence_id": "E_b4fe26f3294d4a62abaccaa24ef67707",
+                "page_number": 28,
+                "source_kind": "framework",
+                "title_source": "filename",
+                "display_title": "NIST.CSWP.29.pdf",
+                "document_title": null
+              },
+              {
+                "label": "[NIST.CSWP.29.pdf, p. 27]",
+                "quote": "RECOVER (RC): Assets and operations affected by a cybersecurity incident are restored",
+                "chunk_id": "4987b683-96f7-48ae-b06a-dbe4c7c0bce7",
+                "filename": "NIST.CSWP.29.pdf",
+                "chunk_index": 78,
+                "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
+                "evidence_id": "E_4987b68396f748aeb06adbe4c7c0bce7",
+                "page_number": 27,
+                "source_kind": "framework",
+                "title_source": "filename",
+                "display_title": "NIST.CSWP.29.pdf",
+                "document_title": null
+              }
+            ],
+            "assessment": null,
+            "capability": "knowledge",
+            "request_id": "[PRIVATE]",
+            "context_used": true,
+            "conversation_id": "[PRIVATE]",
+            "resolved_message": "What does NIST CSF 2.0 say about recovery?",
+            "abstention_reason": null,
+            "selected_evidence_count": 5,
+            "retrieved_evidence_count": 5
+          },
+          "created_at": "2026-11-13T19:00:30.071829Z",
+          "turn_number": 2
+        }
+      ],
+      "has_more": false,
+      "next_before_turn": null
+    }
+  },
+  "invalid_input": {
+    "http_status": 422
+  },
+  "conversation_sha256": "b5a52504f04ece683f0ab4f813f5345710483af70b516275ba5aeb33507d3e97",
+  "finished_at": "2026-11-13T19:01:38.358Z",
+  "completed": true,
+  "risk_screenshot_confirmation": {
+    "http_status": 200,
+    "response": {
+      "capability": "risk",
+      "status": "assessed",
+      "answer": null,
+      "assessment": {
+        "likelihood": 4,
+        "impact": 5,
+        "score": 20,
+        "category": "Critical",
+        "interpretation": "Likelihood 4/5 and impact 5/5 produce 20/25, classified as Critical in this illustrative matrix.",
+        "disclaimer": "Illustrative qualitative matrix; not a validated prediction of real-world cyber risk."
+      },
+      "citations": [],
+      "error": null,
+      "model": null,
+      "retrieved_evidence_count": 0,
+      "selected_evidence_count": 0,
+      "abstention_reason": null,
+      "conversation_id": "[PRIVATE]",
+      "request_id": "[PRIVATE]",
+      "resolved_message": "Calculate risk",
+      "context_used": false
+    },
+    "captured_at": "2026-11-14T08:17:29.431Z"
+  },
+  "read_only_ui_review": {
+    "widths": [
+      1440,
+      390
+    ],
+    "routes_checked": 6,
+    "console_and_page_errors": [],
+    "additional_groq_calls": 0,
+    "completed_at": "2026-11-14T08:56:00.228Z"
+  },
+  "citation_audit": [
+    {
+      "evidence_id": "E_45eebff5cd2b40b6879df1161f0d7452",
+      "metadata_valid": true,
+      "quote_in_chunk": true,
+      "quote_in_pdf": true,
+      "provenance_valid": true,
+      "source_relevant": true,
+      "expected_page": true
+    },
+    {
+      "evidence_id": "E_f3133d5b2078476886c7d474187c6f75",
+      "metadata_valid": true,
+      "quote_in_chunk": true,
+      "quote_in_pdf": true,
+      "provenance_valid": true,
+      "source_relevant": true,
+      "expected_page": true
+    },
+    {
+      "evidence_id": "E_b4fe26f3294d4a62abaccaa24ef67707",
+      "metadata_valid": true,
+      "quote_in_chunk": true,
+      "quote_in_pdf": true,
+      "provenance_valid": true,
+      "source_relevant": true,
+      "expected_page": true
+    },
+    {
+      "evidence_id": "E_b4fe26f3294d4a62abaccaa24ef67707",
+      "metadata_valid": true,
+      "quote_in_chunk": true,
+      "quote_in_pdf": true,
+      "provenance_valid": true,
+      "source_relevant": true,
+      "expected_page": true
+    },
+    {
+      "evidence_id": "E_b4fe26f3294d4a62abaccaa24ef67707",
+      "metadata_valid": true,
+      "quote_in_chunk": true,
+      "quote_in_pdf": true,
+      "provenance_valid": true,
+      "source_relevant": true,
+      "expected_page": true
+    },
+    {
+      "evidence_id": "E_b4fe26f3294d4a62abaccaa24ef67707",
+      "metadata_valid": true,
+      "quote_in_chunk": true,
+      "quote_in_pdf": true,
+      "provenance_valid": true,
+      "source_relevant": true,
+      "expected_page": true
+    },
+    {
+      "evidence_id": "E_4987b68396f748aeb06adbe4c7c0bce7",
+      "metadata_valid": true,
+      "quote_in_chunk": true,
+      "quote_in_pdf": true,
+      "provenance_valid": true,
+      "source_relevant": true,
+      "expected_page": true
+    }
+  ],
+  "corpus_after_run": {
+    "documents": 3,
+    "chunks": 206,
+    "indexed": 3
+  },
+  "database": {
+    "postgresql": "17.11 (Debian 17.11-1.pgdg12+2)",
+    "pgvector": "0.8.7",
+    "embedding_type": "vector(384)"
+  },
+  "browser_bundle_secret_review": {
+    "files_checked": 34,
+    "configured_secrets_found": false
+  }
+}

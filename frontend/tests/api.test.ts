@@ -1,10 +1,18 @@
 import { expect, it, vi } from "vitest";
 import { ApiError, createApiClient } from "@/lib/api";
+import { agentFixture } from "./fixtures";
 it("uses real endpoint paths, JSON request fields and no provider credentials", async () => {
   const transport = vi
     .fn<typeof fetch>()
     .mockImplementation(
-      async () => new Response(JSON.stringify({ status: "answered" })),
+      async (url) =>
+        new Response(
+          JSON.stringify(
+            String(url).endsWith("/health")
+              ? { status: "healthy", service: "CyberSage", version: "0.1.0" }
+              : agentFixture(),
+          ),
+        ),
     );
   const client = createApiClient("http://localhost:8000/", transport);
   const payload = { message: "NIST response", request_id: "test-id", top_k: 5 };
@@ -59,7 +67,16 @@ it("handles network and malformed JSON failures with a safe message", async () =
   ).rejects.toThrow("Cannot reach CyberSage");
 });
 it("validates IDs and builds paged history URLs", async () => {
-  const transport = vi.fn<typeof fetch>().mockResolvedValue(new Response("{}"));
+  const transport = vi.fn<typeof fetch>().mockResolvedValue(
+    new Response(
+      JSON.stringify({
+        conversation_id: "39ae079b-9fa1-43e8-a165-2ad685b2b7d9",
+        messages: [],
+        has_more: false,
+        next_before_turn: null,
+      }),
+    ),
+  );
   const client = createApiClient("", transport);
   expect(() => client.history("../../secret")).toThrow(
     "Invalid conversation ID",

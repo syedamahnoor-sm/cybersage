@@ -1,89 +1,544 @@
-# CyberSage
+<div align="center">
 
-Cybersecurity RAG intelligence backend using Python 3.12, FastAPI, PostgreSQL 17,
-and pgvector. Local PDF ingestion and semantic evidence retrieval are implemented.
-Grounded extractive RAG answers are available through Groq. A dedicated Next.js
-frontend now provides a responsive intelligence workspace, source catalog,
-assistant interface, and interactive risk matrix.
+<img src="frontend/src/app/icon.svg" width="64" height="64" alt="CyberSage shield mark">
 
-## University submission package
+<h1>CyberSage</h1>
 
-Submission deadline: **November 19, 2026**. The package preserves the original
-ten-question evaluation, including failures, and copies genuine existing
-screenshots without regeneration.
+<p><strong>Cybersecurity intelligence, with the source in sight.</strong></p>
 
-- [Final assignment report](docs/CyberSage_Final_Assignment_Report.md)
-- [Implemented architecture](docs/architecture.md)
-- [5–7 minute demonstration guide](docs/demo-guide.md)
-- [Preserved screenshot evidence](docs/submission-evidence/README.md)
-- [Final verification log](docs/submission-verification.md)
-- [Submission checklist](docs/submission-checklist.md)
-- [Email draft — not sent](docs/submission-email.md)
+<p>A full-stack, document-grounded AI assistant for exploring cybersecurity<br>policy, framework guidance, incident scenarios, and risk.</p>
 
-Replace the student's name placeholder, rehearse the demonstration, confirm
-assessor repository access, and attach/send the report separately. Preparing
-this package does not mean the email has been submitted.
+<p>
+  <a href="backend/requirements.txt"><img src="https://img.shields.io/badge/Python-3.12-8ae7c2?labelColor=101925" alt="Python 3.12"></a>
+  <a href="frontend/package.json"><img src="https://img.shields.io/badge/Next.js-16.4.6-8ae7c2?labelColor=101925" alt="Next.js 16.4.6"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-8ae7c2?labelColor=101925" alt="MIT license"></a>
+</p>
 
-## Frontend workspace (Milestones 10–11)
+<p><a href="#getting-started">Run locally</a> · <a href="docs/demo-guide.md">Explore the demo guide</a> · <a href="docs/CyberSage_Final_Assignment_Report.md">Read the project report</a></p>
 
-`frontend/` uses Next.js App Router, strict TypeScript, Tailwind CSS, locally owned
-shadcn/ui components with Radix primitives, Lucide icons, and Motion for React.
-Manrope/Inter fonts are self-hosted through installed font packages. There are no
-remote font requests or bundled example AI answers.
+</div>
 
-With Node.js 24 LTS and npm installed, from the repository root:
+CyberSage brings **semantic retrieval, Groq inference, verified PDF citations,
+LangGraph orchestration, deterministic risk scoring, and persistent memory** into
+one Next.js workspace. Knowledge answers are assembled from checked source
+excerpts, with document metadata and physical PDF pages attached. A bounded
+agent selects either document-grounded answering or a numerical risk tool.
+
+The system makes its evidence and limits visible: inspect a quote, follow a
+conversation, confirm a calculation, or receive an explicit insufficient-evidence
+response. Citation safeguards improve traceability; they do not guarantee factual
+correctness or complete answers.
+
+> **Project status:** Working local research application with recorded full-stack
+> validation. Authentication and public-deployment hardening are not implemented.
+
+## Contents
+
+- [Features](#features)
+- [Screenshots](#screenshots)
+- [Technology stack](#technology-stack)
+- [System architecture](#system-architecture)
+- [Knowledge sources](#knowledge-sources)
+- [Getting started](#getting-started)
+- [Configuration](#configuration)
+- [API reference](#api-reference)
+- [Evaluation and testing](#evaluation-and-testing)
+- [Project structure](#project-structure)
+- [Security and limitations](#security-and-limitations)
+- [Roadmap](#roadmap)
+- [Documentation](#documentation)
+- [License](#license)
+
+## Features
+
+| Capability | Implemented behavior |
+|---|---|
+| **Grounded AI assistant** | Cosine-based document retrieval, evidence selection, checked source excerpts and PDF page citations. Explicit abstention when evidence or validation is insufficient. Synthetic incidents remain labeled. |
+| **Bounded LangGraph agent** | One acyclic workflow: validate, resolve context, route, execute RAG or risk scoring, format, terminate. Deterministic capability selection and an eight-step execution guard. |
+| **Risk Analyzer** | Interactive 5×5 likelihood/impact matrix, local preview and separate backend-confirmed assessment. Low, Medium, High and Critical categories; no LLM arithmetic. |
+| **Conversational memory** | PostgreSQL-persisted turns, source-scoped follow-up resolution, refresh/restoration, paged history and conversation isolation. Bounded context; no numerical carryover into risk requests. |
+| **Source-aware knowledge base** | Three indexed PDFs covering Pakistan's cybersecurity policy, NIST guidance and fictional incident examples. Page-aware chunks preserve source references. |
+| **Responsive frontend** | Navy/teal Next.js interface, desktop sidebar/mobile drawer, citation panels, recent conversation shortcuts, safe Markdown, keyboard focus states and reduced-motion support. |
+
+The interface has five routes: `/`, `/assistant`, `/risk-analyzer`,
+`/knowledge-base` and `/about`. There are no upload, deletion or PDF-download
+controls, and no simulated token streaming or live threat telemetry.
+
+## Screenshots
+
+Existing captures from the real-service integration run; no generated example
+answers or recreated screenshots. Dashboard counts are a labeled corpus snapshot.
+
+![CyberSage overview dashboard with knowledge sources and capability entry points](docs/submission-evidence/overview.png)
+
+<details>
+<summary><strong>Explore the assistant, risk assessment, and conversational memory</strong></summary>
+
+### AI Assistant — real NIST answer and citations
+
+![Actual NIST response with document filename and PDF page citations](docs/submission-evidence/assistant-citations.png)
+
+### Risk Analyzer — server-confirmed 20 / Critical
+
+![Risk matrix with local preview and a separate backend-confirmed assessment](docs/submission-evidence/risk-confirmed.png)
+
+### Memory — a recovery follow-up resolved to NIST
+
+![Persisted recovery follow-up with resolved question and real source evidence](docs/submission-evidence/memory.png)
+
+</details>
+
+[Screenshot provenance and hashes](docs/submission-evidence/README.md) ·
+[Recorded live responses](docs/milestone11-live-results.json)
+
+## Technology stack
+
+| Layer | Packages / verified versions | Role |
+|---|---|---|
+| Frontend | Next.js **16.4.6**, React **19.3.1**, TypeScript **6.0.3** | App Router, strict types and reusable feature workspaces |
+| Design system | Tailwind **4.3.5**, shadcn/ui component patterns with Radix **1.8.1**, Motion **14.14.0**, Lucide React **1.72.0** | Accessible primitives, interaction and visual identity |
+| API | Python **3.12**, FastAPI **0.162.2**, Pydantic settings | Input/output validation and service composition |
+| Agent / generation | LangGraph **1.2.21**, official Groq SDK **1.7.0** | Bounded routing and replaceable LLM provider adapter |
+| AI / retrieval | Sentence Transformers **6.3.0**, `all-MiniLM-L6-v2`, pgvector **0.8.7** | Normalized 384-dimensional embeddings and grounded RAG |
+| Database access | PostgreSQL **17** (validated **17.11**), SQLAlchemy **2.1.8**, psycopg **3.3.8** | Source vectors, metadata and transactional conversation persistence |
+| Infrastructure | Docker Compose, `pgvector/pgvector:pg17` | Loopback-bound PostgreSQL and persistent database volume |
+| Tests | pytest **9.2.0**, Vitest **5.1.0**, Testing Library, Playwright **1.65.0**, axe | Backend, component, browser and accessibility checks |
+
+Frontend versions are pinned in [package.json](frontend/package.json) and
+[package-lock.json](frontend/package-lock.json). Backend versions above describe
+the inspected local environment; [requirements.txt](backend/requirements.txt)
+uses a mixture of version ranges and unpinned dependencies, not a complete lock.
+The configured Groq text model is **`openai/gpt-oss-120b`**, subject to account
+availability. No GPU is required for the local MiniLM embedding workflow.
+
+## System architecture
+
+```mermaid
+flowchart TD
+    UI["Next.js frontend"] --> Proxy["Same-origin API rewrite"]
+    Proxy --> API["FastAPI"]
+    API --> Memory["Conversation service"]
+    Memory <--> History[("PostgreSQL conversation history")]
+    Memory --> Agent["LangGraph: validate → resolve → select"]
+    Agent -->|knowledge| RAG["Grounded RAG"]
+    Agent -->|risk| Risk["Deterministic likelihood × impact"]
+    RAG --> Embed["Local MiniLM query embedding"]
+    Embed --> Search["PostgreSQL / pgvector retrieval"]
+    Search --> Evidence["Bounded evidence selection"]
+    Evidence --> Groq["Groq LLM adapter"]
+    Groq --> Verify["Quote, citation-ID and support checks"]
+    Verify --> Result["Answer or explicit abstention"]
+    Risk --> Result
+    Result -->|completed turn + response| Memory
+    Memory --> API
+    API --> Proxy
+    Proxy --> UI
+```
+
+Storage/response arrows represent data flow, not agent execution loops. The graph
+itself is acyclic. Prior user context resolves a follow-up **before fresh
+retrieval**; prior assistant prose is not source evidence. Risk inputs come from
+the current request.
+
+Ingestion is an explicit CLI operation: file hash → page extraction → page-aware
+chunks → batch embeddings → transactional storage. Repeated ingestion skips
+already indexed files. Retrieval uses parameterized SQLAlchemy cosine queries
+with deterministic tie ordering. Similarity is **1 − cosine distance**, not a
+probability of correctness.
+
+Citation metadata comes from the database. The model selects evidence IDs and
+excerpts; local quote/ID checks and a constrained provider support/relevance
+verdict determine whether an answer can be returned.
+[Detailed architecture and trust boundaries →](docs/architecture.md)
+
+## Knowledge sources
+
+**Reference corpus: 3 indexed documents · 75 PDF pages · 206 stored chunks.**
+
+| Document | Pages / chunks | Why it is included |
+|---|---:|---|
+| Pakistan National Cyber Security Policy 2021 | 22 / 52 | Pakistan-focused governance, national priorities and critical infrastructure protection |
+| NIST Cybersecurity Framework 2.0 | 32 / 93 | Structured cybersecurity outcomes, including incident response and recovery |
+| CyberSage Security Incident Casebook v2 — **synthetic** | 21 / 61 | Controlled fictional scenarios for exploring detection, containment, recovery and illustrative assessments |
+
+Chunks retain **physical PDF page numbers**, which may differ from printed body
+page labels. The casebook is not evidence of real incidents. Counts describe the
+verified reference corpus, not a live inventory endpoint or arbitrary replacement
+documents.
+
+Source PDFs are excluded from Git. Obtain authorized copies separately before
+indexing; the repository alone does not reproduce the reference corpus. Use
+these filenames under `data/raw/`:
+
+```text
+2021-National-Cyber-Security-Policy-Final.pdf
+NIST.CSWP.29.pdf
+CyberSage_Security_Incident_Casebook_RAG_v2.pdf
+```
+
+The [evaluation artifact](backend/evaluation/results/milestone9.json) records
+source hashes and page counts. No source PDFs are redistributed here.
+
+## Getting started
+
+### Prerequisites
+
+Install [Git](https://git-scm.com/downloads/),
+[Python 3.12](https://www.python.org/downloads/),
+[Node.js 24 LTS with npm](https://nodejs.org/en/download), and
+[Docker with Compose](https://docs.docker.com/get-started/get-docker/).
+The reference environment used Python 3.12.10, Node 24.20.0 and npm 11.19.0.
+Docker must be running. The first embedding load needs network access to download
+the model; inference can subsequently use the local cache.
+
+A [Groq account/API key](https://console.groq.com/docs/quickstart) is required for
+grounded answer generation. Retrieval and local embedding generation do not need
+a Groq key. The agent API, including risk assessment, requires PostgreSQL for
+conversation persistence.
+
+Commands below use **Windows PowerShell**, without activating the virtual
+environment or changing execution policy. `python --version` must identify
+Python 3.12. `npm.cmd` avoids PowerShell's blocked `npm.ps1` on some systems.
+On macOS/Linux, use `python3.12`, `.venv/bin/python`, `npm`, and equivalent shell
+file-copy commands.
+
+### 1. Clone and configure
+
+```powershell
+git clone https://github.com/syedamahnoor-sm/cybersage.git
+cd cybersage
+Copy-Item .env.example .env
+```
+
+For a fresh clone, edit root `.env`: set a nonempty `POSTGRES_PASSWORD` and your
+`GROQ_API_KEY`; keep the database user/name consistent with Compose. Do not paste
+credentials into chat or commit them. **Keep existing environment files when
+continuing an installed workspace.**
+
+The root `.env` is sufficient for database credentials and the Groq key.
+`backend/.env` is optional and overrides root values, including empty ones;
+avoid copying a blank backend template over working root credentials.
+
+### 2. Start PostgreSQL and initialize a new database
+
+From the repository root:
+
+```powershell
+docker compose up -d db
+docker compose ps
+```
+
+Wait for `db` to become healthy. For a **new database only**, apply both explicit
+SQL migrations in order:
+
+```powershell
+Get-Content -Raw backend/migrations/001_initial_schema.sql | docker compose exec -T db sh -c 'psql -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" -d "$POSTGRES_DB"'
+Get-Content -Raw backend/migrations/002_conversational_memory.sql | docker compose exec -T db sh -c 'psql -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" -d "$POSTGRES_DB"'
+```
+
+Migration 001 creates source/vector tables; 002 creates conversation tables.
+**Do not rerun 002 on an initialized database.** There is no automatic migration
+runner or migration ledger. Existing workspaces should verify their schema
+instead of resetting volumes or replaying migrations. Compose exposes PostgreSQL
+at `127.0.0.1:5433` and persists data in its named volume.
+
+### 3. Install the backend and provide the PDFs
+
+Still at the repository root:
+
+```powershell
+python --version
+python -m venv backend/.venv
+.\backend\.venv\Scripts\python.exe -m pip install -r backend/requirements.txt
+New-Item -ItemType Directory -Path data/raw -Force | Out-Null
+```
+
+Place the three authorized PDFs listed above in `data/raw/`. Do not recreate an
+existing virtual environment unless you intend to replace it.
+
+### 4. Verify and index
+
+```powershell
+cd backend
+$env:HF_HOME = Join-Path (Get-Location) '.cache\huggingface'
+.\.venv\Scripts\python.exe -m app.ingestion --check-db
+.\.venv\Scripts\python.exe -m app.ingestion --batch-size 32
+.\.venv\Scripts\python.exe -m app.ingestion --verify
+```
+
+Ingestion prints processed/skipped documents, inserted chunks and failures.
+With the reference PDFs/current chunker, the corpus is 3 documents and 206 chunks.
+For an existing indexed workspace, use `--check-db` and `--verify` without
+reingestion. `--input-dir` supports a different source directory.
+
+### 5. Start FastAPI
+
+In the backend terminal:
+
+```powershell
+.\.venv\Scripts\python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 8000
+```
+
+For a new backend terminal, enter `backend/` and set `HF_HOME` as above to reuse
+the same model cache. Interactive API documentation is at
+`http://127.0.0.1:8000/docs`; health is `http://127.0.0.1:8000/api/v1/health`.
+Health checks FastAPI reachability, not database/model/provider readiness.
+
+### 6. Start Next.js
+
+In a **second terminal**, from the repository root:
 
 ```powershell
 cd frontend
 npm.cmd ci
 if (!(Test-Path .env.local)) { Copy-Item .env.example .env.local }
-npm.cmd run dev -- --hostname 127.0.0.1
+npm.cmd run dev -- --hostname 127.0.0.1 --port 3000
 ```
 
-Open `http://127.0.0.1:3000`. If that port is occupied, add `--port 3100` to the
-development command. On other operating systems, use `npm` instead of `npm.cmd`.
-On this Windows machine, the `.cmd` executable avoids the disabled PowerShell
-script execution policy. Backend setup remains documented below; run FastAPI
-separately. The frontend never calls Groq directly.
+Open **`http://127.0.0.1:3000`**. The frontend defaults to FastAPI on port 8000.
+If a port is occupied, choose another local port; update `FASTAPI_BASE_URL` when
+the API port changes and restart Next.js. Production mode uses `npm.cmd run build`
+then `npm.cmd run start -- --hostname 127.0.0.1 --port 3000`.
 
-`frontend/.env.local` contains only the API location:
+## Configuration
 
-```dotenv
-FASTAPI_BASE_URL=http://127.0.0.1:8000
+Source templates: [root](.env.example) · [backend](backend/.env.example) ·
+[frontend](frontend/.env.example). Settings precedence is **process environment →
+backend `.env` → root `.env` → application defaults**.
+
+| Setting | Default / expected value | Purpose |
+|---|---|---|
+| `APP_NAME`, `APP_ENV`, `DEBUG` | `CyberSage`, `development`, `false` | API identity and local application settings |
+| `POSTGRES_USER`, `POSTGRES_PASSWORD`, `POSTGRES_DB` | Set locally; password intentionally blank in examples | Shared backend/Compose credentials |
+| `POSTGRES_HOST`, `POSTGRES_PORT` | `127.0.0.1`, `5433` | Backend connection to the Compose database |
+| `GROQ_API_KEY` | Set locally on the backend | Required for generation; never a frontend variable |
+| `GROQ_MODEL` | `openai/gpt-oss-120b` | Account-supported text model, validated through the provider |
+| `GROQ_TEMPERATURE` | `0` | Evidence-grounded generation setting |
+| `GROQ_TIMEOUT_SECONDS`, `GROQ_MAX_OUTPUT_TOKENS` | `30`, `2048` | Provider request/output bounds |
+| `RETRIEVAL_MIN_SIMILARITY` | `0.2` | Permissive cosine cutoff, not calibrated confidence |
+| `RAG_MAX_RETRIEVED_CHUNKS` | `8` | Maximum evidence candidates allowed by RAG |
+| `RAG_MAX_CONTEXT_CHARS`, `RAG_MAX_PROMPT_CHARS` | `8000`, `24000` | Evidence and prompt budgets |
+| `MEMORY_HISTORY_TURNS`, `MEMORY_HISTORY_CHARS` | `6`, `8000` | Bounded recent conversational context |
+| `HF_HOME` | Library default unless explicitly set | Hugging Face model-cache directory; optional runtime environment setting |
+| `HF_HUB_OFFLINE` | Unset | Set to `1` only after the model is cached |
+| `FASTAPI_BASE_URL` | `http://127.0.0.1:8000` | Server-side Next.js rewrite target |
+| `NEXT_PUBLIC_API_BASE_URL` | Unset | Optional direct-browser API base; requires explicit backend CORS setup |
+
+The embedding model and dimension are constants in
+[the embedding service](backend/app/embeddings/service.py), not configurable
+`EMBEDDING_*` environment variables. They must remain compatible with `VECTOR(384)`.
+
+The default same-origin rewrite requires no backend CORS change. Never expose
+Groq/database secrets through `NEXT_PUBLIC_*`. Restart Next.js after changing
+its target; rebuild when using a production server. The rewrite timeout is
+125 seconds and the client abort is 120 seconds; provider timeouts remain bounded.
+
+## API reference
+
+Base URL: `http://127.0.0.1:8000`. FastAPI's `/docs` and `/openapi.json` provide
+the complete runtime schemas.
+
+| Method | Endpoint | Request / query | Response |
+|---|---|---|---|
+| `GET` | `/api/v1/health` | None | `status`, `service`, `version` |
+| `POST` | `/api/v1/retrieval/search` | `query`, optional `top_k`, `min_similarity` | `query`, `results`, `result_count`, `min_similarity` |
+| `POST` | `/api/v1/rag/ask` | `question`, optional `top_k` | Answer/status/citations, evidence counts, model, grounding mode and abstention reason |
+| `POST` | `/api/v1/agent/invoke` | `message`; optional ratings, `top_k`, conversation/request IDs | Selected capability, answer or assessment, status, citations and conversation metadata |
+| `GET` | `/api/v1/conversations/{conversation_id}/messages` | Optional `limit` and `before_turn` | `conversation_id`, `messages`, `has_more`, `next_before_turn` |
+
+Questions are trimmed, nonblank strings up to **2,000 characters**. `top_k`
+defaults to 5 and accepts integers 1–20; the RAG service also enforces its own
+retrieved-chunk cap. Risk ratings must be actual integers 1–5, not strings,
+booleans or decimals. History `limit` defaults to 10 and accepts 1–20 **turns**,
+each containing user/assistant messages; `before_turn` is an exclusive cursor.
+There is no endpoint that lists all conversations.
+
+### Ask and continue a conversation
+
+```powershell
+$base = 'http://127.0.0.1:8000'
+$body = @{
+    message = 'What does NIST CSF 2.0 say about incident response?'
+    top_k = 5
+    request_id = [guid]::NewGuid().ToString()
+} | ConvertTo-Json
+$reply = Invoke-RestMethod -Method Post -Uri "$base/api/v1/agent/invoke" -ContentType application/json -Body $body
+$reply | Select-Object capability, status, answer, citations, conversation_id
 ```
 
-The default client sends same-origin `/api/v1/*` requests; Next.js rewrites those
-requests to FastAPI. This is a transport proxy, not another application backend.
-Restart Next.js after changing the target (rebuild for a production build).
-No FastAPI CORS change is needed in this mode. Optional direct browser access
-through `NEXT_PUBLIC_API_BASE_URL` requires the backend to explicitly allow the
-frontend origin through CORS; that backend configuration is not added here.
-Never expose provider keys or database credentials in frontend environment
-variables, especially `NEXT_PUBLIC_*` values.
+After allowing for provider rate limits, reuse the returned conversation ID:
 
-| Page | Purpose |
+```powershell
+$followup = @{
+    message = 'What about recovery?'
+    conversation_id = $reply.conversation_id
+    request_id = [guid]::NewGuid().ToString()
+} | ConvertTo-Json
+Invoke-RestMethod -Method Post -Uri "$base/api/v1/agent/invoke" -ContentType application/json -Body $followup
+Invoke-RestMethod -Uri "$base/api/v1/conversations/$($reply.conversation_id)/messages?limit=10"
+```
+
+Agent responses include `capability`, `status`, nullable `answer`, `assessment`,
+`error` and `model`, `citations`, `retrieved_evidence_count`,
+`selected_evidence_count`, `abstention_reason`, `conversation_id`, `request_id`,
+`resolved_message` and `context_used`. Preserve the original request body and ID
+when retrying a failed request; generate a new ID for a new turn.
+
+Statuses are `answered`, `assessed`, `insufficient_evidence`, `missing_input`,
+`needs_clarification`, `invalid_input` and `error`. Missing or ambiguous inputs
+can return a structured HTTP 200 clarification response; inspect `status` and
+`error` rather than assuming every HTTP 200 contains an answer.
+
+### Submit a risk assessment
+
+```json
+{ "message": "Calculate risk", "likelihood": 4, "impact": 5 }
+```
+
+Recorded response excerpt from the real agent run; unrelated fields are omitted:
+
+```json
+{
+  "capability": "risk",
+  "status": "assessed",
+  "assessment": { "likelihood": 4, "impact": 5, "score": 20, "category": "Critical" },
+  "citations": [],
+  "model": null
+}
+```
+
+**Score = likelihood × impact.** Low: 1–5; Medium: 6–10; High: 11–15;
+Critical: 16–25. This is an illustrative qualitative matrix, not a validated
+prediction of real-world risk.
+
+<details>
+<summary><strong>Retrieval, direct RAG, citations and error behavior</strong></summary>
+
+Use `/api/v1/retrieval/search` to inspect evidence without generation:
+
+```json
+{ "query": "How does NIST CSF 2.0 address incident response?", "top_k": 5 }
+```
+
+Each result contains `chunk_id`, `document_id`, nullable `document_title`,
+`filename`, `page_number`, `chunk_index`, `content`, `cosine_distance`,
+`similarity_score` and structured `citation` metadata. Optional `min_similarity`
+accepts a number from −1 to 1.
+
+Use `/api/v1/rag/ask` for standalone RAG, without the agent/memory layer:
+
+```json
+{ "question": "How does NIST CSF 2.0 address incident response?", "top_k": 5 }
+```
+
+Its response includes `question`, `answer`, `status`, `citations`,
+`retrieved_evidence_count`, `selected_evidence_count`, nullable `model`,
+`grounding_mode: "verified_excerpts"` and nullable `abstention_reason`.
+
+Citation excerpt from the recorded live recovery answer:
+
+```json
+{
+  "filename": "NIST.CSWP.29.pdf",
+  "page_number": 28,
+  "chunk_index": 79,
+  "quote": "RC.RP-02: Recovery actions are selected, scoped, prioritized, and performed",
+  "source_kind": "framework"
+}
+```
+
+Full answer citations also include `document_id`, `document_title`,
+`display_title`, `title_source`, `label`, `evidence_id` and `chunk_id`.
+The UI expands these records; it does not invent file-viewing URLs.
+
+The recorded unanswerable Mars-policy question returned this agent excerpt:
+
+```json
+{
+  "capability": "knowledge",
+  "status": "insufficient_evidence",
+  "answer": "The available source evidence is insufficient to answer this question reliably.",
+  "citations": []
+}
+```
+
+Insufficient evidence is HTTP 200 with an explicit status. Operational failures
+are different: invalid input returns 422; unknown history returns 404; concurrent
+turn/idempotency conflicts return 409; unavailable retrieval/generation/storage
+returns 503; provider timeouts return 504. Bounded agent failures can return 500.
+Do not interpret those failures as successful abstentions.
+
+Schema sources: [agent](backend/app/agent/schemas.py),
+[RAG](backend/app/rag/schemas.py), [retrieval](backend/app/retrieval/schemas.py),
+[history](backend/app/memory/api.py).
+
+</details>
+
+## Evaluation and testing
+
+### Recorded answer evaluation
+
+The original evaluation uses **8 answerable + 2 unanswerable questions**, spanning
+all three sources. Ground-truth pages/criteria were checked against the PDFs;
+questions used independent conversations.
+
+| Observation | Original result |
+|---|---:|
+| Complete answer passes | 5 |
+| Partial answers | 1 |
+| Incorrect abstentions | 2 |
+| Correct abstentions | 2 |
+| Expected criteria covered | 15/21 — **71.4%** |
+| Citation records with verified provenance | **12/12** |
+| Unsupported answers observed during manual review | 0 |
+
+These are observations from one small, fixed evaluation—not guaranteed accuracy
+on arbitrary questions. Review was performed by the implementation assistant,
+not an independent expert panel. Valid citation provenance does not establish
+factual entailment or completeness. The seven review rows labeled “pass” include
+two correct abstentions; they do not mean seven complete answers.
+
+Actual failures included a missing policy responsibility and incorrect
+abstentions when identifier-bearing/neighboring chunks were omitted from
+retrieval. Later successful demonstrations did **not** replace those results.
+[Methodology and failure analysis](docs/milestone9-evaluation.md) ·
+[All ten original responses](docs/milestone9-results.md) ·
+[Dataset](backend/evaluation/dataset.json)
+
+### Latest recorded verification
+
+The [final submission verification log](docs/submission-verification.md), dated
+November 14, 2026, records:
+
+| Check | Result |
 |---|---|
-| `/` | Overview, corpus snapshot, assistant and assessment entry points |
-| `/assistant` | Agent request UI, citations, history, retry and local recent shortcuts |
-| `/risk-analyzer` | Local 5×5 preview plus authoritative server-confirmed assessment |
-| `/knowledge-base` | Searchable/filterable catalog of the three actual sources |
-| `/about` | Architecture, grounding, memory and limitations |
+| Backend tests, PostgreSQL enabled | **332 passed** |
+| Frontend unit/component tests | **41 passed** |
+| Functional Chromium tests, mocked APIs | **7 passed**; screenshot-generation test excluded |
+| Production build, TypeScript, ESLint | Passed; zero lint warnings |
+| Python/npm dependency checks | Passed; npm audit reported zero vulnerabilities |
 
-Assistant/history requests, server-confirmed risk assessments and health checks
-use the existing API with typed contracts, runtime response checks and safe errors.
-Milestone 11 adds separate real-service browser validation; deterministic tests
-continue to use explicit fixtures. See [full-stack integration](docs/milestone11-integration.md)
-for actual results, screenshot paths and startup instructions.
-Health indicates FastAPI reachability only, not database/provider
-readiness. The catalog is a labeled Milestone 9 snapshot, not a live inventory.
-There are no source upload/delete/download controls or simulated answers.
+Separately, [full-stack validation](docs/milestone11-integration.md) records real
+Groq answers, recovery follow-up, four-message persistence, server-confirmed
+20/Critical and correct Mars abstention. Seven live citations matched database
+metadata and PDF quotes. Its two live checks are distinct from mocked browser
+tests. Automated test success measures implementation behavior, not answer accuracy.
 
-Conversation IDs grant access to history because authentication is not yet
-implemented. Recent IDs, titles and timestamps are stored locally in this
-browser (maximum eight); answers are fetched from PostgreSQL. Clearing shortcuts
-does not delete server history. Avoid sensitive questions on shared machines.
+### Reproduce checks
 
-Frontend validation, from `frontend/`:
+Backend, from `backend/` with the configured database available:
+
+```powershell
+$env:CYBERSAGE_TEST_POSTGRES = '1'
+.\.venv\Scripts\python.exe -m pytest tests -q -p no:cacheprovider --basetemp=.cache/pytest-local
+.\.venv\Scripts\python.exe -m pip check
+```
+
+Without the PostgreSQL opt-in, integration tests are skipped. Source-PDF checks
+also depend on local files; a fresh clone may not reproduce the reference count.
+Ordinary unit tests mock external LLM calls.
+
+Frontend, from `frontend/`:
 
 ```powershell
 npm.cmd run build
@@ -92,678 +547,99 @@ npm.cmd run lint
 npm.cmd test
 $env:PLAYWRIGHT_BROWSERS_PATH = Join-Path (Get-Location) '.cache\playwright'
 npm.cmd exec -- playwright install chromium
-npm.cmd run test:e2e
+npm.cmd run test:e2e -- --grep-invert "capture actual local"
 npm.cmd audit
 ```
 
-Browser tests start the production app on port 3100 and stop it afterward. See
-[Milestone 10 frontend](docs/milestone10-frontend.md) for architecture, validation,
-design decisions, screenshots and the Milestone 11 checklist.
+For an opt-in live browser run, start real services first and follow the
+[integration guide](docs/milestone11-integration.md). Live runs consume provider
+quota, create conversations and capture new local evidence. To preserve existing
+assignment screenshots, inspect the committed evidence instead of rerunning them.
+The [demo guide](docs/demo-guide.md) includes pacing and failure fallbacks.
 
-## Bounded LangGraph cybersecurity agent
+## Project structure
 
-`POST /api/v1/agent/invoke` offers two fixed capabilities: existing document-grounded
-RAG and a deterministic illustrative risk matrix. A single `StateGraph` uses an
-explicit typed state and the following acyclic transitions:
-
-```mermaid
-flowchart TD
-    START --> validate
-    validate -->|valid|resolve
-    validate -->|invalid|error
-    resolve -->|resolved or standalone|select
-    resolve -->|ambiguous reference|error
-    select -->|knowledge|rag
-    select -->|risk with complete inputs|risk
-    select -->|ambiguous, missing, conflicting, invalid|error
-    rag -->|answer or abstention|format
-    risk -->|assessment|format
-    rag -->|service failure|error
-    risk -->|invalid inputs|error
-    error --> format
-    format --> END
+```text
+cybersage/
+├── backend/
+│   ├── app/
+│   │   ├── agent/           # Bounded graph, routing and risk tool
+│   │   ├── db/              # SQLAlchemy access and corpus verification
+│   │   ├── embeddings/      # Cached local embedding service
+│   │   ├── ingestion/       # PDF pipeline and CLI
+│   │   ├── llm/             # Provider adapter
+│   │   ├── memory/          # Persistent turns and context resolution
+│   │   ├── rag/             # Evidence selection and grounding
+│   │   └── retrieval/       # pgvector search and citation metadata
+│   ├── evaluation/          # Dataset, runner, reviews and original results
+│   ├── migrations/          # 001 source schema; 002 conversation schema
+│   ├── tests/
+│   └── requirements.txt
+├── frontend/
+│   ├── src/app/             # Five App Router pages
+│   ├── src/components/      # Shell, workspaces and UI primitives
+│   ├── src/lib/             # API contracts/client and shared logic
+│   ├── tests/               # Vitest/Testing Library
+│   ├── e2e/                 # Mocked Chromium tests
+│   └── live/                # Opt-in real-service browser checks
+├── data/raw/                # Local source PDFs; excluded from Git
+├── docs/                    # Architecture, evaluation and submission evidence
+├── compose.yaml
+├── .env.example
+└── LICENSE
 ```
 
-The normal path executes five nodes; a service failure executes six. Every path
-ends at `END`, with an additional fixed **eight-step recursion guard**. There are
-no loop edges, tool-call feedback loops, graph checkpointers, or multi-agent
-components. PostgreSQL conversation memory is described below. Only the formatted response is returned, never graph
-state or raw exceptions. The execution guard bounds graph steps, not total
-wall-clock latency; existing Groq per-request timeouts still apply to RAG calls.
+## Security and limitations
 
-Routing is deterministic and uses conservative English cues. Named source terms
-(NIST, CSF, policy, framework, casebook, document) select knowledge; cybersecurity
-questions can also select knowledge. Explicit calculation commands or supplied
-likelihood/impact fields select risk. Numerical requests mixed with source
-questions, unknown requests, and conflicting inputs return clarification without
-calling RAG. Conceptual/ambiguous risk questions may need to be restated. There is
-no LLM intent classifier. Keyword routing is intentionally limited and may require
-users to rephrase; it is not a general natural-language intent recognizer.
+- **No authentication or ownership authorization.** Knowing a conversation UUID
+  grants history access. Conversation IDs and local shortcuts are not secure
+  authorization. Do not publicly deploy the current application or use sensitive
+  questions on shared machines.
+- **Credentials stay server-side.** Keep `.env`, `.env.local`, provider keys,
+  database passwords and private history captures out of Git and browser bundles.
+  No direct Groq calls are made by the frontend.
+- **Grounding has limits.** Retrieval can miss relevant passages; exact-quote
+  and support safeguards can cause incorrect abstentions. A checked quote can
+  still omit context. Human review is required for consequential cybersecurity
+  decisions.
+- **The examples and scores have defined scope.** The casebook is fictional,
+  and the risk matrix is illustrative—not a real-world incident dataset or
+  calibrated risk prediction.
+- **Untrusted content is constrained, not proven harmless.** The application
+  treats PDF text as evidence, restricts generation and disables generated HTML,
+  remote images and actionable links. This is not a complete prompt-injection proof.
+- **Operational dependencies remain.** Cold embeddings, network failures,
+  provider quotas and concurrent turns affect availability. Recent context is
+  bounded and resolution is deliberately conservative. Chromium coverage and
+  automated accessibility checks do not establish universal browser/accessibility support.
 
-For risk, use structured fields or explicitly labeled English inputs such as
-`Calculate risk for an asset with likelihood 4 and impact 5.` The text parser
-supports a single digit 1..5 after each label (optionally `:`, `=`, `is`, or `of`).
-It rejects decimals, ranges, written-out numbers, repeated labels, and conflicts
-between text and structured fields. Unlabeled numbers are never guessed. Missing
-inputs are reported rather than inferred. JSON numbers must be actual integers
-1..5; booleans, floats, and numeric strings are invalid. Message length and top-k
-bounds remain 1..2000 stripped characters and integer 1..20, default top-k 5.
+## Roadmap
 
-### Illustrative risk matrix
+Planned, **not implemented**:
 
-**Score = Likelihood × Impact**, where both inputs are integers 1..5:
+- [ ] Authenticated users and conversation ownership/authorization.
+- [ ] Identifier-aware retrieval, neighboring-chunk expansion and evaluated reranking.
+- [ ] Broader held-out grounding evaluation, expert review and repeat-run analysis.
+- [ ] Additional bounded cybersecurity tools with validated inputs/outputs.
+- [ ] More robust conversational reference resolution and concurrency UX.
+- [ ] Deployment hardening, retention controls and operational readiness checks.
+- [ ] Firefox/WebKit coverage, manual screen-reader and zoom testing.
 
-| Score | Category |
+## Documentation
+
+| Guide | Contents |
 |---|---|
-| 1–5 | Low |
-| 6–10 | Medium |
-| 11–15 | High |
-| 16–25 | Critical |
-
-This is an **illustrative qualitative scoring matrix, not a validated prediction
-of real-world cyber risk**. It does not estimate probabilities, losses, compliance,
-or a calibrated asset risk level. The pure Python tool calculates the score and
-category. No LLM calculates, changes, or overrides them, and risk responses have
-no PDF citations or model identifier. The pure risk tool requires no database or
-provider; the agent API now requires PostgreSQL to persist its conversation turns.
-
-### Agent API examples
-
-```powershell
-$body = @{ message = 'What does NIST CSF 2.0 say about incident response?' } | ConvertTo-Json
-Invoke-RestMethod -Method Post -Uri http://127.0.0.1:8000/api/v1/agent/invoke -ContentType application/json -Body $body
-
-$body = @{ message = 'Calculate risk'; likelihood = 4; impact = 5 } | ConvertTo-Json
-Invoke-RestMethod -Method Post -Uri http://127.0.0.1:8000/api/v1/agent/invoke -ContentType application/json -Body $body
-```
-
-Risk response (core fields; conversation metadata is described below):
-
-```json
-{
-  "capability": "risk",
-  "status": "assessed",
-  "answer": null,
-  "assessment": {
-    "likelihood": 4,
-    "impact": 5,
-    "score": 20,
-    "category": "Critical",
-    "interpretation": "Likelihood 4/5 and impact 5/5 produce 20/25, classified as Critical in this illustrative matrix.",
-    "disclaimer": "Illustrative qualitative matrix; not a validated prediction of real-world cyber risk."
-  },
-  "citations": [],
-  "error": null,
-  "model": null,
-  "retrieved_evidence_count": 0,
-  "selected_evidence_count": 0,
-  "abstention_reason": null
-}
-```
-
-Knowledge responses have `capability: "knowledge"`, an answer, existing RAG
-citations/counts/model, and `assessment: null`. The agent reuses the complete RAG
-service, including quotation/ID/relevance checks, synthetic incident labels,
-and `insufficient_evidence` abstention; it does not reconstruct or invent citations.
-
-Missing inputs and ambiguous requests return HTTP 200 with `missing_input` or
-`needs_clarification` and a public `error` object (`code`, `message`,
-`missing_inputs`). Schema-invalid requests return FastAPI HTTP 422. Invalid
-numbers parsed from otherwise valid text return 422 with `status: "invalid_input"`
-and the agent response schema. Knowledge provider/retrieval failures retain safe
-503 responses and provider timeouts 504; unexpected/step-limit failures return
-safe 500 responses. Failures do not fall back to a guessed score or fabricated
-answer. The risk tool never queries documents or calls a provider; conversation
-storage still uses the database.
-
-No shell, filesystem, arbitrary network, user-defined tools, or dynamic execution
-tools are exposed. User text only selects among fixed capabilities; retrieved
-text remains untrusted within the existing RAG service. No authentication,
-frontend, external automation, user profiling, or deployment is included.
-
-From `backend/`, run the optional real smoke check:
-
-```powershell
-$env:HF_HOME = Join-Path (Get-Location) '.cache\huggingface'
-# Use HF_HUB_OFFLINE=1 only when model weights are already cached.
-.\.venv\Scripts\python.exe test_agent_manual.py
-```
-
-It checks all four risk categories, invalid/missing/ambiguous requests, and (when
-Groq credentials exist) one real grounded question and a Mars abstention, with
-65-second pacing. Citations are checked against both PostgreSQL and raw PDF pages.
-See [Milestone 7 validation](docs/milestone7-validation.md) for actual results.
-
-## Persistent conversation memory
-
-Milestone 8 adds conversation-scoped PostgreSQL history around the existing
-agent. Requests without a conversation ID still work and now receive a new
-`conversation_id` and `request_id`. Send the returned conversation ID for a
-follow-up. The response also includes `resolved_message` and `context_used` so
-the fresh retrieval question can be inspected without exposing graph state.
-
-```powershell
-$first = Invoke-RestMethod -Method Post -Uri http://127.0.0.1:8000/api/v1/agent/invoke -ContentType application/json -Body (@{
-    message = 'What does NIST CSF 2.0 say about incident response?'
-    request_id = [guid]::NewGuid().ToString()
-} | ConvertTo-Json)
-$followup = Invoke-RestMethod -Method Post -Uri http://127.0.0.1:8000/api/v1/agent/invoke -ContentType application/json -Body (@{
-    message = 'What about recovery?'
-    conversation_id = $first.conversation_id
-    request_id = [guid]::NewGuid().ToString()
-} | ConvertTo-Json)
-$followup.resolved_message  # What does NIST CSF 2.0 say about recovery?
-```
-
-The `resolve` graph node runs before capability routing and RAG retrieval. It
-uses only bounded recent user questions and server-recorded resolved questions,
-capabilities, and statuses. It **never uses prior assistant answer prose, scores,
-or citations as factual evidence** and never adds history to the RAG prompt.
-Every new knowledge turn retrieves document evidence afresh. Retries with a
-committed request ID replay the original response instead of calling RAG again.
-
-Deterministic source aliases currently cover NIST/CSF, Pakistan's named policy,
-and the CyberSage casebook. `What about recovery?` can use the immediately recent
-NIST source; `What response measures does it describe?` can substitute the recent
-Pakistan policy. Explicit standalone source questions do not need resolution.
-Multiple possible sources, a missing source, unsupported deictic references, or
-a preceding risk/clarification turn require clarification. No resolution LLM is
-called. This conservative resolver does not claim general co-reference handling.
-Risk calculations always require current-turn numbers; previous likelihood or
-impact values are never inherited.
-
-`MEMORY_HISTORY_TURNS=6` and `MEMORY_HISTORY_CHARS=8000` bound the internal history
-projection. Whole recent turns are retained until either limit is met. Assistant
-answer bodies are not loaded into this context projection. Stored history is
-durable and is not automatically expired; these limits bound context, not disk
-retention. A bounded projection that cannot identify a source safely abstains
-from resolution and requests clarification.
-
-### Storage and consistency
-
-Migration `002_conversational_memory.sql` adds only:
-
-- `conversations`: UUID, revision, creation/update timestamps.
-- `conversation_turns`: globally unique request UUID, conversation FK, monotonic
-  turn number, SHA-256 request fingerprint, timestamp, per-conversation uniqueness.
-- `conversation_messages`: UUID, conversation/request composite FK, user/assistant
-  role, original validated message or public assistant output, JSONB public
-  response metadata, timestamp, one message per request/role.
-
-Original user text is stored as validated/trimmed by the existing API, **not** as
-its contextual rewrite. Assistant metadata retains citations, assessment/status,
-model ID, resolved question, and context-use flag. Internal system prompts,
-provider diagnostics, API credentials, and graph state are not stored. Messages
-containing a configured credential or obvious Groq API-key pattern are rejected
-before inference or storage; responses with detected credentials are not stored.
-This is not a general sensitive-data detector: do not enter personal secrets or
-confidential incident details into an unauthenticated demo.
-
-Each completed response (including honest clarification, missing-input responses,
-and insufficient evidence) is saved with its user message in one transaction.
-Provider/graph errors and invalid requests save neither message. New conversation
-rows are created only when a turn commits; a failed new request has no conversation
-ID. Failure in the final database transaction withholds the generated answer and
-returns safe 503 rather than reporting an unsaved success. Documents/chunks remain
-unchanged. Application startup never silently creates or alters tables.
-
-For retry safety, generate a `request_id` once per logical turn and reuse it with
-the exact same message, risk inputs, top-k, and conversation ID. If the initial
-new-conversation response is lost, retrying the same request ID without a
-conversation ID recovers the committed response/ID. Changed inputs or another
-conversation produce 409, never another conversation's answer. If no client
-request ID was supplied and its generated value is lost, automatic deduplication
-cannot be guaranteed. Repeated questions with new request IDs are legitimate new
-turns. Corrected messages after a committed clarification need a new request ID.
-
-The history snapshot uses a short shared row lock. No database transaction remains
-open during model calls. Final writes compare the conversation revision: one of
-two concurrent turns wins; the other returns 409 without saving its generated
-answer. The client may retry against fresh history. Concurrent retries of the
-same request ID replay one committed result. Duplicate model work can still occur
-before the write race is detected; requests within one conversation should be
-sent sequentially. A concurrent document ingestion is independent of turn storage.
-
-### Bounded history endpoint and privacy
-
-```powershell
-Invoke-RestMethod -Uri "http://127.0.0.1:8000/api/v1/conversations/$($first.conversation_id)/messages?limit=10"
-```
-
-`GET /api/v1/conversations/{uuid}/messages` returns the latest `limit` **turns**
-(default 10, maximum 20; two messages per turn), in chronological order. It returns
-`has_more` and `next_before_turn`; supply `before_turn` to page backward. Unknown
-UUIDs return 404 and malformed IDs return 422. There is no endpoint to enumerate
-conversations. Conversation/storage failures return safe 404/409/503 errors.
-
-**There is no authentication or ownership check.** Anyone with a conversation ID
-can read and continue it. A request ID also acts as a replay capability for its
-original request. Treat these high-entropy identifiers as access secrets; URLs
-may appear in access logs. This is suitable only for a local demonstration until
-authentication/authorization and a retention policy are implemented. Conversation
-IDs scope queries and prevent accidental cross-conversation context mixing; they
-do not establish user identity or authorization.
-
-For the restart smoke check, start the API on localhost:8001 and run
-`python test_memory_manual.py --phase start` from `backend/`. Restart the API and
-run `--phase resume`. The script paces Groq calls, records IDs in ignored `.cache/`,
-checks original messages and citations, and verifies history/replay after restart.
-See [Milestone 8 validation](docs/milestone8-validation.md) for measured results.
-
-## Local setup (PowerShell)
-
-Create a repository-root `.env` using `.env.example` and set a nonempty local
-password. For an existing database volume, use its existing credentials: changing
-Compose variables does not change passwords stored in that volume. Never commit
-`.env`, source PDFs, model weights, or virtual environments.
-
-```powershell
-docker compose up -d db
-python -m venv backend/.venv
-cd backend
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-```
-
-An existing backend environment can be reused. Settings load root `.env`, then
-`backend/.env`, then process environment variables (highest priority). Optional
-backend settings are shown in `backend/.env.example`. The default database address
-is `127.0.0.1:5433`, matching Compose. When running the backend inside Docker, set
-`POSTGRES_HOST=db` and `POSTGRES_PORT=5432`. Credentials are passed using
-SQLAlchemy's URL builder, so special password characters need no manual escaping.
-
-For a **new** database, apply the existing migration once from the repository root:
-
-```powershell
-Get-Content -Raw backend/migrations/001_initial_schema.sql | docker compose exec -T db sh -c 'psql -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" -d "$POSTGRES_DB"'
-Get-Content -Raw backend/migrations/002_conversational_memory.sql | docker compose exec -T db sh -c 'psql -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" -d "$POSTGRES_DB"'
-```
-
-For an existing Milestone 7 database, apply **only 002** once. Its explicit
-transaction installs three new tables without changing documents/chunks. A repeat
-application fails rather than silently replacing an existing memory schema.
-
-The ingestion command never creates or changes schema. Check an existing database
-from `backend/`:
-
-```powershell
-.\.venv\Scripts\python.exe -m app.ingestion --check-db
-```
-
-## Ingest PDFs
-
-Put the source PDFs in `data/raw/` (ignored by Git). From `backend/`:
-
-```powershell
-$env:HF_HOME = Join-Path (Get-Location) '.cache\huggingface'
-.\.venv\Scripts\python.exe test_embeddings_manual.py
-.\.venv\Scripts\python.exe -m app.ingestion
-.\.venv\Scripts\python.exe -m app.ingestion --verify
-```
-
-The first model use may download `sentence-transformers/all-MiniLM-L6-v2`.
-If the model is already fully cached and you need offline operation, set
-`$env:HF_HUB_OFFLINE = '1'` before running the commands.
-Subsequent calls in one process reuse the loaded model; subsequent processes reuse
-downloaded weights. The model produces normalized vectors with 384 values.
-`embed_texts(texts, batch_size=32)` encodes a list in order. Empty lists return `[]`;
-blank texts, invalid types, and nonpositive batch sizes are rejected.
-
-The CLI discovers `.pdf` files directly in `data/raw/`, sorted by name. It prints
-per-file results and counts of documents processed/skipped, chunks inserted, and
-failures. Override defaults with `--input-dir PATH --batch-size 16`. It returns a
-nonzero exit code for failures, missing/empty input directories, or unsuccessful
-verification. Errors show their type without printing SQL parameters or secrets.
-
-SHA-256 identifies documents by file contents, so renamed copies are skipped after
-indexing. Changed contents form a new document; existing records are not removed.
-Failed/pending documents can be retried. A PostgreSQL transaction lock serializes
-workers for the same hash. Each document uses its own transaction and savepoint:
-chunk replacement and `indexed` status commit together, or processing writes roll
-back and the document becomes `failed`. An interrupted process rolls back its
-transaction. Other PDFs continue after a per-document failure. `processing` is an
-intermediate transactional value, not a separately committed progress indicator.
-
-Page references retain original PDF numbering, including gaps caused by blank
-pages. `page_count` records total PDF pages. A PDF without extractable text fails;
-OCR is not included. Verification reports both database-wide totals and records
-matching current source hashes, checking dimensions, vector norms, page bounds,
-duplicate chunk indices, and missing parent records. It does not delete any data.
-For the original three source PDFs, the expected result is 3 indexed documents and
-206 chunks. Other existing records may make database-wide totals larger.
-
-## Tests
-
-From `backend/`, ordinary unit tests require no model download or database:
-
-```powershell
-.\.venv\Scripts\python.exe -m pytest tests -q -p no:cacheprovider --basetemp=.cache/pytest-unit
-```
-
-Run PostgreSQL tests explicitly against the configured database:
-
-```powershell
-$env:CYBERSAGE_TEST_POSTGRES = '1'
-.\.venv\Scripts\python.exe -m pytest tests -q -p no:cacheprovider --basetemp=.cache/pytest-postgres
-Remove-Item Env:CYBERSAGE_TEST_POSTGRES
-```
-
-Integration tests reuse the real migration constraints in temporary tables and
-roll back their transactions; existing document data is untouched. They test real
-pgvector writes, duplicate handling, page references, foreign keys, dimension
-constraints, rollback after partial writes, and retries. Real-model behavior is
-checked separately by the smoke script and end-to-end ingestion.
-
-Start the API from `backend/`:
-
-```powershell
-.\.venv\Scripts\python.exe -m uvicorn app.main:app --reload
-```
-
-The existing health endpoint is `GET /api/v1/health`.
-
-## Semantic retrieval and PDF citations
-
-`POST /api/v1/retrieval/search` embeds the query using the same cached MiniLM
-model as ingestion. SQLAlchemy binds the vector, threshold, and result limit to a
-read-only pgvector cosine search joined to document metadata. Only `indexed`
-documents are searched. Each result includes content, chunk/document UUIDs,
-stored document title (nullable), filename, original PDF page number, chunk index,
-cosine distance, similarity score, and structured citation metadata.
-
-For this 206-chunk corpus, a materialized scoring CTE performs **exact** search
-before filtering and limiting. It deliberately does not use approximate HNSW
-candidate selection. Equal distances sort by document UUID, chunk index, and
-chunk UUID for deterministic results. This scans the full indexed corpus; larger
-collections will need performance evaluation before changing the search strategy.
-
-Cosine distance ranges from 0 to 2 (smaller is closer); cosine similarity is
-`1 - cosine_distance`, ranging from -1 to 1 (larger is closer). Similarity is a
-retrieval signal, **not a probability of correctness or proof of relevance**.
-The permissive initial threshold is `RETRIEVAL_MIN_SIMILARITY=0.2`, configurable
-in environment settings. Optional request/CLI `min_similarity` overrides it for
-that search. The cutoff is inclusive. Results below the cutoff are excluded before
-top-k; fewer than top-k results, including zero, are valid. No fallback evidence is
-fabricated. Threshold tuning requires a representative evaluation set.
-
-Queries are stripped and must contain 1..2000 characters. `top_k` defaults to 5
-and must be an integer from 1 to 20. Similarity cutoffs must be finite and in
-[-1, 1]. Invalid API requests return 422. Database/model failures return a generic
-503 without connection details, SQL parameters, or secrets. An empty successful
-search returns 200 with `results: []` and `result_count: 0`. Startup/health checks
-do not load the model or connect to PostgreSQL. Retrieval creates a shared engine
-lazily and disposes it on shutdown; synchronous work runs in a worker thread.
-
-Citation labels use a nonblank stored `documents.title`, falling back to the
-**exact filename** when no title is stored. `title_source` explicitly reports
-`metadata` or `filename`. The existing three documents have null titles, so their
-labels use filenames; retrieval does not infer or write titles. Document UUIDs
-and filenames distinguish sources even if their titles or content overlap.
-Pages are **1-based PDF page positions**, including front matter; printed page
-labels may differ. No page number is inferred from chunk text.
-
-From `backend/`, with the API running on its default port:
-
-```powershell
-$body = @{ query = 'How does NIST CSF 2.0 address incident response?'; top_k = 1 } | ConvertTo-Json
-Invoke-RestMethod -Method Post -Uri http://127.0.0.1:8000/api/v1/retrieval/search -ContentType application/json -Body $body
-```
-
-Example response from the existing corpus (only `content` shortened for readability):
-
-```json
-{
-  "query": "How does NIST CSF 2.0 address incident response?",
-  "results": [
-    {
-      "chunk_id": "45eebff5-cd2b-40b6-879d-f1161f0d7452",
-      "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
-      "document_title": null,
-      "filename": "NIST.CSWP.29.pdf",
-      "page_number": 27,
-      "chunk_index": 76,
-      "content": "...RESPOND (RS): Actions regarding a detected cybersecurity incident are taken...",
-      "cosine_distance": 0.36449939012527466,
-      "similarity_score": 0.6355006098747253,
-      "citation": {
-        "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
-        "document_title": null,
-        "filename": "NIST.CSWP.29.pdf",
-        "page_number": 27,
-        "display_title": "NIST.CSWP.29.pdf",
-        "title_source": "filename",
-        "label": "[NIST.CSWP.29.pdf, p. 27]"
-      }
-    }
-  ],
-  "result_count": 1,
-  "min_similarity": 0.2
-}
-```
-
-CLI searches (from `backend/`):
-
-```powershell
-$env:HF_HOME = Join-Path (Get-Location) '.cache\huggingface'
-# Set HF_HUB_OFFLINE=1 only if the model is already fully cached.
-.\.venv\Scripts\python.exe -m app.retrieval --query "What does Pakistan's cyber security policy say about critical infrastructure?" --top-k 5
-.\.venv\Scripts\python.exe -m app.retrieval --query "How does NIST CSF 2.0 address incident response?" --top-k 5
-.\.venv\Scripts\python.exe -m app.retrieval --query "What happened in the ransomware incidents described in the CyberSage casebook?" --top-k 5
-.\.venv\Scripts\python.exe -m app.retrieval --query "incident response" --min-similarity 0.4
-.\.venv\Scripts\python.exe test_retrieval_manual.py
-```
-
-CLI output is JSON; exit codes are 0 for success (including no evidence), 2 for
-invalid arguments, and 1 for an unavailable model/database. The manual script
-uses the actual API, model, database, and raw PDFs to check all 15 sample passage
-citations against their original page text. It also checks empty evidence and
-invalid requests. This checks provenance, not semantic relevance. Ordinary
-tests mock model inference; opt-in PostgreSQL tests use known vectors to check
-distances, negative similarities, thresholds, exact ranking, ties, metadata, and
-exclusion of failed documents. No new dependencies are required for retrieval.
-
-See [Milestone 5 validation](docs/milestone5-validation.md) for measured rankings,
-page checks, and observed relevance limitations.
-
-## Grounded RAG answers (Groq)
-
-`POST /api/v1/rag/ask` reuses the existing retrieval service and database engine.
-The orchestration depends on a small provider protocol under `app/llm/`; only the
-Groq adapter imports the official Groq SDK. Retrieval and ingestion do not depend
-on Groq credentials or calls. Install updated requirements in the backend venv.
-
-Set `GROQ_API_KEY` in an ignored root/backend `.env` or process environment.
-Never put a real key in `.env.example`, source code, logs, or Git. Other settings
-and defaults are:
-
-| Setting | Default | Purpose |
-|---|---|---|
-| `GROQ_MODEL` | `openai/gpt-oss-120b` | Configurable text model hosted by Groq |
-| `GROQ_TEMPERATURE` | `0` | Low-variance evidence selection |
-| `GROQ_TIMEOUT_SECONDS` | `30` | Timeout per provider request |
-| `GROQ_MAX_OUTPUT_TOKENS` | `2048` | Maximum completion tokens per generation/review call |
-| `RAG_MAX_RETRIEVED_CHUNKS` | `8` | Cap on requested retrieval count; never exceeds retrieval's hard limit of 20 |
-| `RAG_MAX_CONTEXT_CHARS` | `8000` | Maximum serialized evidence-array characters, including IDs and source kinds |
-| `RAG_MAX_PROMPT_CHARS` | `24000` | Maximum combined system and serialized payload characters per call |
-
-The default model was selected from Groq's current
-[production model list](https://console.groq.com/docs/models), considering its
-[deprecation notices](https://console.groq.com/docs/deprecations). Availability
-depends on the account and may change. The adapter retrieves the configured model
-from the account's active model list before its first completion and caches a successful validation. It does
-not silently switch models. JSON-object mode supports a replaceable text model;
-local Pydantic checks enforce the expected schema. Truncated/malformed output
-causes abstention. SDK retries are disabled to bound repeated attempts; timeouts,
-rate limits, model/authentication failures, and connection failures produce safe
-errors without provider response bodies or credentials.
-
-### Conservative answer and citation contract
-
-The initial answer mode is deliberately **extractive**, not unrestricted prose
-generation. The model selects up to five meaningful source excerpts. The server:
-
-1. Retrieves relevant chunks using the configured retrieval similarity cutoff.
-   Request `top_k` defaults to 5 (valid range 1..20), capped by the RAG setting.
-2. Selects whole passages within the context budget, deduplicating identical or
-   contained text and quarantining obvious embedded instruction attacks. No whole
-   documents are sent. The question and passages are serialized as untrusted user
-   data, separate from trusted system instructions; no LLM tools are enabled.
-3. Assigns stable `E_<chunk UUID without hyphens>` evidence IDs. The model supplies
-   IDs and quotes only; it never supplies authoritative filenames, titles, or pages.
-4. Requires every cited ID to belong to the selected context and every quote to
-   occur verbatim after whitespace normalization. Invented prose, extra output
-   fields, unknown IDs, altered claims, and incomplete outputs fail closed.
-5. Makes a second model call to review all quotes in their evidence context for
-   support, relevance, and misleading omissions. Any failed/uncertain verdict or
-   mismatched ID set causes abstention. This is a second check by the **same
-   model**, not an independent factual verifier.
-6. Renders only validated quotes with database-derived citations and local source
-   labels. Policy text is labeled as a policy source, not automatically a binding
-   requirement; NIST/framework passages are guidance. The known synthetic casebook
-   is explicitly labeled **not a real event**. Unknown source types remain unverified.
-
-Citation objects contain document/chunk UUIDs, filename, nullable stored title,
-PDF page number, chunk index, evidence ID, exact supporting quote, source kind,
-and display label. Only used excerpts become citations. Printed page labels may
-differ from physical PDF page positions. Missing titles use the exact filename.
-
-**ID validity and quote membership are mechanical checks, not proof of factual
-entailment, relevance, truth, or completeness.** A source can itself be wrong;
-quotes can omit context; the relevance model can be wrong or manipulated. The
-instruction-pattern filter is defense in depth and can miss attacks or reject
-legitimate discussions of them. Source-kind classification uses local metadata
-and content cues, not independent provenance verification. This conservative mode
-trades prose synthesis and some answer coverage for tighter citation integrity.
-The existing permissive 0.2 similarity cutoff is not a sufficient relevance gate;
-neither its scores nor the review verdict are calibrated correctness probabilities.
-
-Budgets are character limits on serialized input, not exact tokenizer counts.
-Output token limits are enforced by the provider. Up to three provider requests
-may occur on first use (model validation, selection, review); subsequent answered
-requests normally use two. Each has its own timeout; the setting is not an
-end-to-end request deadline. Source passages are sent to Groq when generation is
-used; credentials and database connection details are not part of prompts.
-
-### Ask endpoint
-
-With the API running, send:
-
-```powershell
-$body = @{ question = 'How does NIST CSF 2.0 address incident response?'; top_k = 5 } | ConvertTo-Json
-Invoke-RestMethod -Method Post -Uri http://127.0.0.1:8000/api/v1/rag/ask -ContentType application/json -Body $body
-```
-
-An illustrative grounded response (shape example, **not a live Groq result**;
-IDs below refer to the existing NIST chunk):
-
-```json
-{
-  "question": "How does NIST CSF 2.0 address incident response?",
-  "answer": "Framework guidance: \"The incident response plan is executed in coordination with relevant third parties once an incident is declared\" [NIST.CSWP.29.pdf, p. 27] (E_45eebff5cd2b40b6879df1161f0d7452)",
-  "status": "answered",
-  "citations": [{
-    "document_id": "7bc85d48-0606-4e6b-aa7e-f453e59cca0a",
-    "chunk_id": "45eebff5-cd2b-40b6-879d-f1161f0d7452",
-    "document_title": null,
-    "filename": "NIST.CSWP.29.pdf",
-    "page_number": 27,
-    "chunk_index": 76,
-    "evidence_id": "E_45eebff5cd2b40b6879df1161f0d7452",
-    "quote": "The incident response plan is executed in coordination with relevant third parties once an incident is declared",
-    "source_kind": "framework",
-    "display_title": "NIST.CSWP.29.pdf",
-    "title_source": "filename",
-    "label": "[NIST.CSWP.29.pdf, p. 27]"
-  }],
-  "retrieved_evidence_count": 5,
-  "selected_evidence_count": 5,
-  "model": "openai/gpt-oss-120b",
-  "grounding_mode": "verified_excerpts",
-  "abstention_reason": null
-}
-```
-
-No evidence, unusable/budget-exceeding context, model abstention, rejected
-citations/quotes, or a negative relevance verdict return HTTP 200 with
-`status: "insufficient_evidence"`, a fixed explanation, `citations: []`, and a
-safe `abstention_reason`. No-evidence responses do not call Groq and have a null
-model. Missing/invalid credentials and unavailable providers are operational
-failures: HTTP 503, **not** an insufficient-evidence result. Provider timeouts
-return 504. Invalid questions/top-k return 422, using the same strict bounds as
-retrieval. Partial answers are not returned after a validation failure.
-
-From `backend/`, run the live smoke check when a key is available:
-
-```powershell
-.\.venv\Scripts\python.exe test_rag_manual.py
-```
-
-The script asks the three corpus questions and an unanswerable Mars-policy
-question, checks source quotes against cited raw PDF pages, and records answers
-for manual relevance review. It prints `skipped_missing_credentials` without
-making provider calls when no key is configured. Automated tests always mock
-external model calls. The live script spaces questions 65 seconds apart to reduce
-per-minute token throttling; it normally takes several minutes. Production API
-calls still fail safely on rate limits without automatic retries. See
-[Milestone 6 validation](docs/milestone6-validation.md).
-
-## Milestone 9: evaluation and assignment evidence
-
-The evaluation dataset contains exactly eight answerable questions across all
-three PDFs and two unanswerable questions. Ground-truth criteria and PDF pages
-are verified against the local source files before a run. The runner uses the
-existing agent API with independent conversations, records actual answers and
-diagnostic retrieval, and spaces questions 65 seconds apart.
-
-With the existing API running on port 8001, from `backend/`:
-
-```powershell
-.\.venv\Scripts\python.exe -m evaluation --output evaluation/results/new-run.json
-.\.venv\Scripts\python.exe -m evaluation.extra --output evaluation/results/new-supplementary.json
-```
-
-Choose a new output path rather than overwrite recorded evidence. `--resume`
-only fills unexecuted questions. Missing credentials/provider errors make a run
-incomplete. The separate supplementary command exercises risk categories,
-invalid inputs and a real two-turn memory conversation. It stores private access
-IDs only under ignored `.cache/`; public artifacts redact them.
-
-After manually reviewing a new run against the dataset, create a matching review
-file following `evaluation/reviews.json` (including each `response_sha256` from
-`evaluation.report.response_hash`). Render it with:
-
-```powershell
-.\.venv\Scripts\python.exe -m evaluation.report --results evaluation/results/new-run.json --reviews evaluation/new-reviews.json --output ../docs/new-results.md
-$env:CYBERSAGE_TEST_POSTGRES = '1'
-.\.venv\Scripts\python.exe -m pytest tests -q -p no:cacheprovider --basetemp=.cache/pytest-evaluation
-.\.venv\Scripts\python.exe -m pip check
-```
-
-The recorded live run produced six answers, two correct abstentions, two
-incorrect abstentions, and one incomplete answer among the six answers. All 12
-returned citations had valid database/PDF provenance; reviewed coverage was
-15/21 criteria. Provenance is evaluated separately from factual support and
-completeness. See [Milestone 9 evaluation and failure analysis](docs/milestone9-evaluation.md)
-and [all ten recorded answers](docs/milestone9-results.md), including actual
-limitations and assignment screenshot instructions. No screenshot is claimed.
-
-## Milestone 4 validation (2026-11-12)
-
-Validated locally with PostgreSQL 17.11, pgvector 0.8.7, SQLAlchemy 2.1.8,
-psycopg 3.3.8, and sentence-transformers 6.3.0:
-
-- Full suite: **45 passed**, including five real PostgreSQL integration tests.
-- Ordinary offline suite: **40 passed, 5 integration tests skipped** as intended.
-- Real-model smoke test: 384 dimensions, L2 norm 1.000000.
-- Database baseline: 0 documents, 0 chunks. No existing records were removed.
-- First ingestion: 3 documents indexed, 206 chunks inserted, 0 failures.
-- Second ingestion: 3 documents skipped, 0 chunks inserted, 0 failures.
-- Stored documents: national policy 22 pages / 52 chunks, incident casebook
-  21 pages / 61 chunks, NIST CSF 32 pages / 93 chunks. All have status `indexed`.
-- Verification: 0 invalid dimensions, page references, vector norms, duplicate
-  indices, or orphan chunks. Database totals remained 3 documents / 206 chunks.
-- Existing health endpoint, `pip check`, and `git diff --check` passed.
-
-Windows denied access to pytest's default temporary directory in one initial
-integration run; the documented project-local `--basetemp` resolved it. Hugging
-Face metadata requests were restricted in the sandbox; the real smoke test passed
-with approved network access, and ingestion used the fully cached model offline.
+| [Architecture](docs/architecture.md) | System flow, graph transitions and trust boundaries |
+| [Evaluation](docs/milestone9-evaluation.md) / [original answers](docs/milestone9-results.md) | Dataset, grading, measured results and actual failures |
+| [Frontend design](docs/milestone10-frontend.md) | Design system, components and UI foundation |
+| [Integration validation](docs/milestone11-integration.md) | Local services, real scenarios and known issues |
+| [Final assignment report](docs/CyberSage_Final_Assignment_Report.md) | Consolidated implementation and university evidence |
+| [Demo guide](docs/demo-guide.md) | A 5–7 minute demonstration with verified questions |
+| [Submission verification](docs/submission-verification.md) / [checklist](docs/submission-checklist.md) | Executed checks and remaining student submission actions |
+| [Screenshot evidence](docs/submission-evidence/README.md) | Genuine captures and SHA-256 provenance |
+
+## License
+
+CyberSage's repository code is licensed under the [MIT License](LICENSE).
+That license does not imply permission to redistribute third-party source PDFs
+or model assets; obtain and use them under their respective terms.

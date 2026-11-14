@@ -1,0 +1,51 @@
+{
+  "copied_at_utc": "2026-11-14T09:17:53.004616+00:00",
+  "provenance": "Existing Milestone 11 real-service screenshots, visually inspected before copying; no regeneration, cropping, masking or retouching.",
+  "images": [
+    {
+      "filename": "overview.png",
+      "original_path": "frontend/.cache/milestone11/overview.png",
+      "sha256": "159bda17c340fc5b8678badc2aa1526e61f385873b905e902ab8e7a8310c3010",
+      "bytes": 345936,
+      "width": 1440,
+      "height": 1416,
+      "byte_identical_to_original": true
+    },
+    {
+      "filename": "assistant-citations.png",
+      "original_path": "frontend/.cache/milestone11/assistant-citations.png",
+      "sha256": "2504cb0ef1132c05cff5b1e4a9fa1f4ee7109258e6463e3cbf5215e88ad96ae3",
+      "bytes": 185979,
+      "width": 1440,
+      "height": 1126,
+      "byte_identical_to_original": true
+    },
+    {
+      "filename": "risk-confirmed.png",
+      "original_path": "frontend/.cache/milestone11/risk-confirmed.png",
+      "sha256": "ba01d2a0cb512074a90e985a39ffb43ecff6ba0fef42668129b6a0b4f2880cc8",
+      "bytes": 234156,
+      "width": 1440,
+      "height": 1445,
+      "byte_identical_to_original": true
+    },
+    {
+      "filename": "memory.png",
+      "original_path": "frontend/.cache/milestone11/memory.png",
+      "sha256": "3d9c6f22618eb30babdba58b95b2040b9cd93689ed87ac8c1b9a9ca0c1368259",
+      "bytes": 194990,
+      "width": 1440,
+      "height": 1126,
+      "byte_identical_to_original": true
+    },
+    {
+      "filename": "memory-mobile.png",
+      "original_path": "frontend/.cache/milestone11/memory-mobile.png",
+      "sha256": "12f2d5a361a90799797bf0701a225e128df187e0d0a757a25f7280ede948b24c",
+      "bytes": 78162,
+      "width": 390,
+      "height": 937,
+      "byte_identical_to_original": true
+    }
+  ]
+}

@@ -6,6 +6,24 @@ Grounded extractive RAG answers are available through Groq. A dedicated Next.js
 frontend now provides a responsive intelligence workspace, source catalog,
 assistant interface, and interactive risk matrix.
 
+## University submission package
+
+Submission deadline: **November 19, 2026**. The package preserves the original
+ten-question evaluation, including failures, and copies genuine existing
+screenshots without regeneration.
+
+- [Final assignment report](docs/CyberSage_Final_Assignment_Report.md)
+- [Implemented architecture](docs/architecture.md)
+- [5–7 minute demonstration guide](docs/demo-guide.md)
+- [Preserved screenshot evidence](docs/submission-evidence/README.md)
+- [Final verification log](docs/submission-verification.md)
+- [Submission checklist](docs/submission-checklist.md)
+- [Email draft — not sent](docs/submission-email.md)
+
+Replace the student's name placeholder, rehearse the demonstration, confirm
+assessor repository access, and attach/send the report separately. Preparing
+this package does not mean the email has been submitted.
+
 ## Frontend workspace (Milestones 10–11)
 
 `frontend/` uses Next.js App Router, strict TypeScript, Tailwind CSS, locally owned
